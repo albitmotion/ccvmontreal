@@ -1,0 +1,260 @@
+td, thead {
+  padding: 5px 0px 0px 0px !important;
+  text-align: center;
+}
+/* .active {
+  color:#C2CB52 !important;
+  font-weight: bold;
+} */
+.firstCol {
+  text-align: left;
+}
+.becomeMember {
+  color=white;
+  background-color:#C2CB52;
+  border-radius: 4px;
+  margin: 10px;
+}
+.becomeMember:hover {
+  color=white;
+  background-color:#C2CB52;
+  border-radius: 4px;
+  margin: 10px;
+}
+.signIn {
+  border-style: solid;
+  border-color:gray;
+  border-radius: 4px;
+  border-width: thin;
+  margin: 10px;
+  display: none;
+}
+.signIn:hover {
+  border-style: solid;
+  border-color:gray;
+  border-radius: 4px;
+  border-width: thin;
+  margin: 10px;
+}
+.background_img {
+  width:100%;
+}
+.centered {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.imgTitle {
+  color: white;
+  font-size: 40px;
+  top: 45%;
+}
+.imgTitle2 {
+  color: white;
+  font-size: 20px;
+  top: 50%;
+}
+.buttonsTitle {
+  top: 15%;
+}
+.subMenuButton {
+  background-color: black;
+  color: white;
+  opacity: 0.5;
+  border-radius: 20px;
+}
+.subMenuButton:active, .subMenuButton:hover {
+  background-color: white;
+  color: black;
+  opacity: 0.5;
+  border-radius: 20px;
+}
+.subMenuButtonActive {
+  background-color: white;
+  color: black;
+  opacity: 0.5;
+  border-radius: 20px;
+}
+.div-info {
+  padding: 100px 100px;
+  margin: 50px;
+}
+.loginBtn {
+  color=black;
+  background-color:#C2CB52;
+  border-radius: 4px;
+  width: 100%;
+  height: 40px;
+  border-style: none;
+}
+.loginBtn:hover {
+  color=black;
+  background-color:#C2CB52;
+  border-radius: 4px;
+  width:100%;
+  border-style: none;
+}
+#photo {
+  border-radius: 100px !important;
+  margin: 10px;
+  height: 40px;
+  width: 40px;
+  display:none;
+}
+.photo_list{
+  border-radius: 100px !important;
+  margin: 0px 10px 0px 0px;
+  height: 30px;
+  width: 30px;
+}
+.photo_list_square {
+  margin: 0px 10px 0px 0px;
+  height: 100px;
+  width: 150px;
+  object-fit: cover;
+}
+.photo_big {
+  width: 150px;
+  border-radius:100px;
+}
+#members_only {
+  display:none;
+}
+#member_area_menu {
+  display:none;
+}
+#executive_member_area_menu {
+  display:none;
+}
+.blueButton {
+  background-color:#123854;
+  color:white;
+  width: 250px;
+  height:40px;
+}
+.blueButton:hover, active {
+  background-color:#123854;
+  color:white;
+  height:40px;
+}
+.Paid {
+  background-color:#C2CB52;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+}
+.Expired {
+  background-color:#FF533C;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+}
+.Almost {
+  background-color:#FF9E3C;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  padding: 0px 5px 0px 5px;
+}
+.Found {
+  background-color: black;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+}
+
+/* Quota */
+.containerQuota {
+  position: relative;
+  width: 360px;
+}
+
+/* Top left text */
+.quotaDiv {
+  position: absolute;
+  top: 70px;
+  left: 16px;
+  font-size: 18px;
+  text-align: left;
+  text-align: left;
+  color: #084468;
+  font-weight: bold;
+  width: 90%;
+}
+/* Bottom left text */
+.quotaAuthorDiv {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  text-align: left;
+  width: 100%;
+}
+.quoteAuthor {
+  position: absolute;
+  font-weight: bold;
+  font-size: 15px;
+  color: #084468;
+  bottom: 15px;
+}
+.quoteOrganization {
+  position: absolute;
+  bottom: 0px;
+  font-size: 12px;
+}
+
+
+.timeDiff {
+  color: red;
+  font-size: 25px;
+}
+.gray_text p {
+  color: #c7c5c5;
+}
+.gray_text h5, .gray_text h2, .gray_text h1 {
+  color: #c7c5c5;
+}
+.gray_text img {
+  opacity: 50%;
+}
+.newsType {
+  background-color: #123854;
+  color: white;
+  padding: 5px;
+  width: fit-content;
+}
+.newCard:hover {
+  border-color: #123854;
+  border-width: 2px;
+  cursor: pointer;
+}
+.likeLink {
+  color: hotpink;
+}
+.likeLink:hover {
+  cursor: pointer;
+
+}
+.cke_notifications_area
+{
+    display: none !important;
+}
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 900px;
+}
+#cke_1_contents {
+  height: 450px !important;
+}
+.checkboxAttendance {
+  cursor: pointer;
+}
+.newsImage {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+.carousel-control-prev {
+  left: -17px !important;
+}
+.carousel-control-next {
+  right: -10px !important;
+}

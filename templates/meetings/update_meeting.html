@@ -1,0 +1,30 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+  {% for message in get_flashed_messages() %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+
+  <form action="/update_meeting/{{ register_to_update.id }}" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <strong>{{ form.file.label(class="form-label") }}</strong>
+    {{ form.file(class="form-control", value=register_to_update.file) }}
+    <strong>{{ form.date.label(class="form-label") }}</strong>
+    {{ form.date(class="form-control", value=register_to_update.date) }}
+    <strong>{{ form.attendees.label(class="form-label") }}</strong>
+    {{ form.attendees(class="form-control", value=register_to_update.attendees) }}
+
+
+    <br/>
+    {{ form.submit(class="btn blueButton") }}
+    <a class="btn btn-danger" href="{{ url_for('delete_meeting', id=register_to_update.id) }}">Delete</a>
+
+  </form>
+
+{% endblock %}

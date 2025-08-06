@@ -1,0 +1,40 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="taskRepartition">
+   <h3>Task Repartition Among Members</h3>
+   <p>{{ task_repartitionText.text | safe }}</p>
+   <div class="form-group">
+    <br/>
+    <div class="d-flex justify-content-between">
+        <div></div>
+        <div>
+          <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_task_repartition', id=1) }}" data-bs-title="Edit Task Repartition">Edit</button>
+        </div>
+   </div>
+   <br>
+   <br>
+   <h3>Task Repartition File History</h3>
+   <table class="table" id="taskRepartitionTable">
+     <thead>
+       <tr>
+         <th scope="col" class="firstCol">File</th>
+         <th scope="col">Edit</th>
+       </tr>
+     </thead>
+   {% for task_repartition_file in task_repartition_files %}
+
+     <tr>
+       <td class="firstCol">
+         <a href="{{ url_for('static', filename='upload/taskRepartitions/' + task_repartition_file.filename ) }}"><i class="bi bi-file-pdf-fill" style="color:red"></i>{{ task_repartition_file.filename }}</a>
+       </td>
+       <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_task_repartition_file', id=task_repartition_file.id) }}" data-bs-title="Update Member {{ task_repartition_file.filename }}"><i class="bi bi-gear"></i></button></td>
+     </tr>
+   {% endfor %}
+   </table>
+   <div class="d-flex justify-content-between">
+       <div></div>
+       <div>
+         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_task_repartition_file') }}" data-bs-title="Add Task Repartition File">Add Task Repartition File</button>
+       </div>
+  </div>
+
+  </div>
+</div>

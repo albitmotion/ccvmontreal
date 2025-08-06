@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  <h1>Home</h1>
+
+  {% if banner or quotes %}
+  <div class="" style="display: grid;grid-template-columns:auto 360px">
+  {% else %}
+  <div class="" style="display: grid;grid-template-columns:auto">
+  {% endif %}
+    <div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum congue ligula in interdum. Etiam sed felis non odio dapibus lacinia. Donec vel sodales justo, non fermentum est. Praesent non viverra massa. Integer faucibus, metus nec fermentum commodo, odio felis luctus mauris, in maximus felis tellus in risus. Aliquam sagittis sollicitudin ipsum eget fringilla. Phasellus nec quam odio.</p>
+
+      <p>Maecenas eu nulla lacinia, pellentesque tortor et, posuere odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et aliquet nisl. Vestibulum ut nibh nec risus tempor volutpat vitae nec quam. Nulla pharetra nisi dignissim leo vulputate, non efficitur neque scelerisque. Ut sed nunc porttitor, auctor urna sit amet, sagittis neque. Nulla faucibus felis vitae neque tempor, quis lacinia turpis tempus.</p>
+
+    </div>
+      {% if banner or quotes %}
+        <div>
+          {% if banner %}
+            <img class="workshop" src="{{ s3_root }}/images/banners/{{banner.file}}">
+            <!-- <img class="workshop" src="{{ url_for('static', filename='upload/banners/' + banner.file) }}"> -->
+          {% endif %}
+          {% if quotes %}
+          <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+            <div class="carousel-indicators">
+              {% for quote in quotes %}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ quote.id }}" class="{{ quote.active }}" aria-current="true" aria-label="Slide 1"></button>
+              {% endfor %}
+            </div>
+            <div class="carousel-inner" style="width:360px;">
+              {% for quote in quotes %}
+              <div class="carousel-item {{ quote.active }}">
+                <div class="containerQuota">
+                  <img src="{{ url_for('static', filename='images/quote_bg.jpg') }}" alt="Snow" >
+                    <div class="quotaDiv" id="quotaDiv" style="font-size:{{ quote.fontSize}}px">
+                      {{ quote.text }}
+                    </div>
+                  <div class="quotaAuthorDiv">
+                    <p class="quoteAuthor" id="quoteAuthor">{{ quote.author }}</p>
+                    <p class="quoteOrganization" id="quoteOrganization">{{ quote.organization }}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          {% endif %}
+        </div>
+      {% endif %}
+  </div>
+
+  <br/>
+  
+
+  <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('index') }}">
+      <img src="{{ url_for('static', filename='images/ccv_logo.png') }}">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            About CCV
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('mission') }}">Our Mission</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('executive_members') }}">Executive Members</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('member_directory') }}">Member Directory</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('annual_reports') }}">Annual Reports</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            News & Events
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('news') }}">News from the vol. ecosystem</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('activity_calendar') }}">Activity Calendar</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ url_for('resources') }}">Resources & Tools</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ url_for('contact_us') }}">Contact Us</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <li class="nav-item dropdown" style="list-style-type:none;">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+              <img class="background_img" id="photo" src="">
+
+              <img class="background_img" id="photo" src="">
+
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item hidden" href="{{ url_for('member_area', id=1) }}" id="member_area_menu">Member Area</a></li>
+            <li><a class="dropdown-item hidden" href="{{ url_for('executive_member_area', id=1) }}" id="executive_member_area_menu">Executive Member Area</a></li>
+            <li><a class="dropdown-item hidden" href="{{ url_for('content_management', id=1) }}" id="content_management_menu">Content Management</a></li>
+            <li><a class="dropdown-item hidden" href="{{ url_for('tutorials') }}" id="tutorials_menu">Video Tutorials</a></li>
+            <li><a class="dropdown-item hidden" onclick="logout()">Logout</a></li>
+          </ul>
+        </li>
+
+        <a class="btn signIn" id="signIn" href="{{ url_for('login') }}" role="button">Login</a>
+        <a class="btn becomeMember" href="{{ url_for('become_member') }}" role="button">Become a Member</a>
+      </form>
+    </div>
+  </div>
+</nav>
+{% if background is defined %}
+  <img class="background_img" src="{{ url_for('static', filename='images/' + background ) }}">
+{% else %}
+  <img class="background_img" src="{{ url_for('static', filename='images/background_01.jpg') }}">
+{% endif %}
+<div class="centered imgTitle">The Power Of Volunteer In Our Community</div>
+<div class="centered imgTitle2">Since 1983 supporting coordinators of volunteer services.</div>
+<div class="centered buttonsTitle">
+{% for button in buttons %}
+  <a class="btn subMenuButton" href="{{ button.link }}" role="button" active>{{ button.name }}</a>
+{% endfor %}
+</div>
+<br/><br/>

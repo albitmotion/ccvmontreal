@@ -1,0 +1,51 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+<!-- <div class="alert alert-danger fade hide" id="alertAttendance" role="alert">
+</div>
+<div class="alert alert-warning fade hide" id="warningAttendance" role="alert">
+</div> -->
+
+<p><strong>Member Since:</strong> {{ member_since }}</p>
+<p><strong>Membership Finish:</strong> {{ member_to }}</p>
+<p><strong>Attendance Percentage:</strong> {{ perc }}%</p>
+
+<table class="table" id="usersTable">
+  <thead>
+    <tr>
+      <th scope="col" class="firstCol">Meeting</th>
+      <th scope="col">Attendance</th>
+    </tr>
+  </thead>
+{% for meeting in meetings %}
+
+  <tr>
+    <td class="firstCol">{{ meeting.date }}</td>
+    <td>
+      <div class="checkboxAttendance">
+        {% if meeting.date > member_since %}
+          {% if member in meeting.member_attendance %}
+            <input class="checkboxAttendance" type="checkbox" id="{{ member.id}}_{{ meeting.id}}" name="attendance" value="" checked>
+          {% else %}
+            <input class="checkboxAttendance" type="checkbox" id="{{ member.id}}_{{ meeting.id}}" name="attendance" value="">
+          {% endif %}
+        {% endif %}
+      </div>
+
+    </td>
+  </tr>
+{% endfor %}
+</table>
+<div class="d-flex justify-content-between">
+    <div>
+      <button class="btn blueButton" style="padding:0px" onClick="checkAll()">Check All</button>
+      <button class="btn blueButton" style="padding:0px" onClick="uncheckAll()">Uncheck All</button>
+
+    </div>
+    <div>
+      <button class="btn blueButton" style="padding:0px" onClick="changeStatuses()">Save Attendance</button>
+    </div>
+</div>
+
+{% endblock %}

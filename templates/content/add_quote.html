@@ -1,0 +1,52 @@
+{% extends 'base/base_iframe.html' %}
+{% block content %}
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message|safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+    <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+      <strong>{{ form.title.label(class="form-label") }}</strong>
+      {{ form.title(class="form-control") }}
+
+      <strong>{{ form.text.label(class="form-label") }}</strong>
+      {{ form.text(class="form-control") }}
+
+      <strong>{{ form.author.label(class="form-label") }}</strong>
+      {{ form.author(class="form-control") }}
+
+      <strong>{{ form.organization.label(class="form-label") }}</strong>
+      {{ form.organization(class="form-control") }}
+
+      <strong>{{ form.fontSize.label(class="form-label") }}</strong>
+      {{ form.fontSize(class="form-control", value=18) }}
+
+      <strong>{{ form.visible.label(class="form-label") }}</strong>
+      {{ form.visible() }}<br/>
+      <br/>
+      {{ form.submit(class="btn blueButton") }}
+
+      <br>
+      <br>
+      <p><strong>Preview:</strong></p>
+
+      <div class="containerQuota">
+        <img src="{{ url_for('static', filename='images/quote_bg.jpg') }}" alt="Snow" >
+          <div class="quotaDiv" id="quotaDiv">
+          </div>
+        <div class="quotaAuthorDiv">
+          <p class="quoteAuthor" id="quoteAuthor"></p>
+          <p class="quoteOrganization" id="quoteOrganization"></p>
+        </div>
+      </div>
+
+    </form>
+    <script src="{{ url_for('static', filename='js/quote.js') }}"></script>
+
+<br/><br/><br/>
+{% endblock %}

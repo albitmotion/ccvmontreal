@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <h1>Executive Members</h1>
+  <br/>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for our_executive_member in our_executive_members %}
+    <div class="col">
+      <div class="card">
+        {% if our_executive_member.executive_member_pic %}
+          <img src="{{ s3_root }}/images/executive_member_pics/{{ our_executive_member.executive_member_pic|string}}" class="card-img-top" alt="...">
+        {% else %}
+          <img src="{{ url_for('static', filename='images/icons/user.png') }}" class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ our_executive_member.name }}</h5>
+          <p class="card-text">{{ our_executive_member.role }}</p>
+          <p class="card-text">{{ our_executive_member.organization }}</p>
+          <p class="card-text">{{ our_executive_member.bio }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+  <br/>
+  <br/>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="executive_member_list">
+   <h3>Executive Members</h3>
+   <input type="text" class="form-control" id="executivMember-search-input" onkeyup="filterExecutiveMember()" placeholder="Search"/>
+   <table class="table" id="executiveMemberTable">
+     <thead>
+       <tr>
+         <th scope="col" class="firstCol"></th>
+         <th scope="col" class="firstCol">Name</th>
+         <th scope="col">Role</th>
+         <th scope="col">Organization</th>
+         <th scope="col">Edit</th>
+       </tr>
+     </thead>
+   {% for our_executive_member in our_executive_members %}
+
+     <tr>
+       {% if our_executive_member.executive_member_pic %}
+        <td class="firstCol"><img class="photo_list" src="{{ s3_root }}/images/executive_member_pics/{{ our_executive_member.executive_member_pic|string}}"></td>
+       {% else %}
+        <td class="firstCol"><img class="photo_list" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
+       {% endif %}
+       <td class="firstCol">{{ our_executive_member.name }}</td>
+       <td>{{ our_executive_member.role}}</td>
+       <td>{{ our_executive_member.organization}}</td>
+       <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_executive_member', id=our_executive_member.id) }}" data-bs-title="Update Member {{ our_executive_member.name }}"><i class="bi bi-gear"></i></button></td>
+     </tr>
+   {% endfor %}
+   </table>
+   {% if executive_member %}
+   <div class="d-flex justify-content-between">
+       <div></div>
+       <div>
+         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_executive_member') }}" data-bs-title="Add New Executive Member">Add New Executive Member</button>
+       </div>
+  </div>
+
+   {% endif %}
+</div>

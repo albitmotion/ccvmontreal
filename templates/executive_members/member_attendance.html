@@ -1,0 +1,70 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="attendanceList">
+  <!-- <div class="alert alert-danger fade hide" id="alertAttendance" role="alert">
+  </div>
+  <div class="alert alert-warning fade hide" id="warningAttendance" role="alert">
+  </div> -->
+   <h3>Member Attendance</h3>
+
+   <div class="input-group">
+       <input type="text" class="form-control" id="validationTooltipUsername" placeholder="YYYY-mm-dd" aria-describedby="validationTooltipUsernamePrepend" required>
+       <div class="input-group-prepend">
+         <span class="input-group-text" id="validationTooltipUsernamePrepend">to</span>
+       </div>
+       <input type="text" class="form-control" id="validationTooltipUsername" placeholder="YYYY-mm-dd" aria-describedby="validationTooltipUsernamePrepend" required>
+       <div class="invalid-tooltip">
+         Please choose a unique and valid username.
+       </div>
+     </div>
+
+   <div class="form-group">
+     <table class="table" id="attendanceTable">
+       <thead>
+         <tr>
+
+           <th scope="col" class="firstCol"></th>
+           <th scope="col" class="firstCol">Name</th>
+           {% for meeting in meetings %}
+            <th scope="col">
+              <button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_meeting_attendance', id=meeting.id) }}" data-bs-title="Update Meeting Attendance: {{ meeting.date.strftime('%Y-%m-%d') }}">{{ meeting.date.strftime('%Y-%m-%d') }}</button>
+
+            </th>
+           {% endfor %}
+         </tr>
+       </thead>
+       {% for our_member in member_payments %}
+       <tr>
+         {% if our_member.member_pic %}
+         <td class="firstCol"><img class="photo_list" src="{{ s3_root }}/images/member_pics/{{ our_member.member_pic|string}}">
+          </td>
+         {% else %}
+          <td class="firstCol"><img class="photo_list" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
+         {% endif %}
+         <td class="firstCol">
+           <button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_member_attendance', id=our_member.id) }}" data-bs-title="Update Member Attendance: {{ our_member.name }}">{{ our_member.name }} ({{ our_member.perc }}%)</button>
+
+         </td>
+         {% for meeting in meetings %}
+          {% if meeting.date in our_member.meetings_active %}
+            {% if meeting.date in our_member.meeetings_attendee %}
+              <td><input class="checkboxAttendance" type="checkbox" id="{{ our_member.id}}_{{ meeting.id}}" name="attendance" value="" checked></td>
+            {% else %}
+              <td><input class="checkboxAttendance" type="checkbox" id="{{ our_member.id}}_{{ meeting.id}}" name="attendance" value=""></td>
+              {% endif %}
+            {% else %}
+              <td></td>
+            {% endif %}
+         {% endfor %}
+       </tr>
+     {% endfor %}
+     </table>
+    <br/>
+    <div class="d-flex justify-content-between">
+        <div></div>
+        <div>
+          <a class="btn blueButton" onClick="changeStatuses()" role="button">Save</a>
+           <a class="btn blueButton" onClick="downloadAttendance()" role="button">Download</a>
+        </div>
+   </div>
+
+  </div>
+</div>

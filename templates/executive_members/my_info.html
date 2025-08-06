@@ -1,0 +1,40 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="myInfo">
+  <h3>My Info</h3>
+    {% if executive_member.executive_member_pic %}
+     <td class="firstCol"><img class="photo_big" src="{{ s3_root }}/images/executive_member_pics/{{ executive_member.executive_member_pic|string}}"></td>
+    {% else %}
+     <td class="firstCol"><img class="photo_big" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
+    {% endif %}
+    <br>
+    <br>
+    <strong>Name: </strong>{{ executive_member.name}}<br/>
+    <strong>Role: </strong>{{ executive_member.role}}<br/>
+    <strong>Email: </strong>{{ executive_member.email}}<br/>
+    <strong>Phone Number: </strong>{{ executive_member.telephone}}<br/>
+    <strong>English: </strong>
+    {% if executive_member.english == True %}
+      Yes
+    {% else %}
+      No
+    {% endif %}
+    <br/>
+    <strong>French: </strong>
+    {% if executive_member.french == True %}
+      Yes
+    {% else %}
+      No
+    {% endif %}
+    <br/>
+    <strong>Preferable: </strong>
+    {% if executive_member.preferable == 1 %}
+      English
+    {% else %}
+      French
+    {% endif %}
+    <br/>
+    <strong>Organization: </strong>{{ executive_member.organization}}<br/>
+    <br/><br/>
+    <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_executive_member', id=executive_member.id) }}" data-bs-title="Edit My Info">Edit My Info</button>
+
+
+</div>

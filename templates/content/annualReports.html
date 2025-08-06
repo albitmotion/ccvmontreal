@@ -1,0 +1,32 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="annualReports">
+  <h3>Annual Reports</h3>
+
+  <table class="table" id="usersTable">
+    <thead>
+      <tr>
+        <th scope="col" class="firstCol">Filename</th>
+        <th scope="col">Visible</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+  {% for annualReport in annualReports %}
+
+    <tr>
+      <td class="firstCol">
+        <a target="_blank" href="{{ s3_root }}/docs/annualReports/{{ annualReport.file|string }}">
+          <i class="bi bi-file-pdf-fill" style="color:red"></i>{{ annualReport.filename }}
+        </a>
+      </td>
+      <td>{{ annualReport.visible }}</td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_annualReport', id=annualReport.id) }}" data-bs-title="Update Annual Report: {{ annualReport.filename }}"><i class="bi bi-gear"></i></button></td>
+    </tr>
+  {% endfor %}
+  </table>
+  <div class="d-flex justify-content-between">
+      <div></div>
+      <div>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_annualReport') }}" data-bs-title="Add New Annual Report">Add New Annual Report</button>
+      </div>
+ </div>
+
+  </div>

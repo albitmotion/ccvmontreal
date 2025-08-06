@@ -1,0 +1,42 @@
+{% extends 'base/base_iframe.html' %}
+{% block content %}
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message|safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+    <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+      <strong>{{ form.title.label(class="form-label") }}</strong>
+      {{ form.title(class="form-control") }}
+
+      <strong>{{ form.text.label(class="form-label") }}</strong>
+      {{ form.text(class="form-control") }}
+
+      <strong>{{ form.date.label(class="form-label") }}</strong>
+      {{ form.date(class="form-control") }}
+
+      <strong>{{ form.hour.label(class="form-label") }}</strong>
+      {{ form.hour(class="form-control") }}
+
+      <strong>{{ form.address.label(class="form-label") }}</strong>
+      {{ form.address(class="form-control") }}
+
+      <strong>{{ form.file.label(class="form-label") }}</strong>
+      {{ form.file(class="form-control") }}
+
+      <br/>
+      {{ form.submit(class="btn blueButton") }}
+
+
+    </form>
+
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='text')}}
+
+<br/><br/><br/>
+{% endblock %}

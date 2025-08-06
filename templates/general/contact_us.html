@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+  <h1>Contact Us</h1>
+
+  <div class="col-md-12 container">
+    <div class="d-flex justify-content-center">
+       <div class="col-md-7 shadow-lg rounded div-info">
+         <form action="https://formspree.io/f/movlkjwa" method="POST">
+           <div class="form-check">
+             {%if membership == "1" %}
+              <input class="form-check-input" type="radio" name="GeneralEnquiry" id="GeneralEnquiry"  >
+             {% else %}
+              <input class="form-check-input" type="radio" name="GeneralEnquiry" id="GeneralEnquiry" checked>
+             {% endif %}
+
+
+             <label class="form-check-label" for="GeneralEnquiry">
+               General enquiry
+             </label>
+           </div>
+           <div class="form-check">
+            {%if membership == "1" %}
+              <input class="form-check-input" type="radio" name="Membership" id="Membership" checked>
+            {% else %}
+              <input class="form-check-input" type="radio" name="Membership" id="Membership" >
+            {% endif %}
+
+            <label class="form-check-label" for="Membership">
+              Membership
+            </label>
+          </div>
+
+
+           <label for="name">Name:</label>
+           <input type="text" class="form-control" name="name">
+
+           <label for="organization">Organization:</label>
+           <input type="text" class="form-control" name="organization">
+
+           <label for="email">Your email:</label>
+           <input type="email" class="form-control" name="email">
+
+           <label for="phone">Telephone:</label>
+           <input type="text" class="form-control" name="phone">
+
+           <label class="form-label" for="message">Your message:</label><br>
+           <textarea class="form-control" name="message" rows="5"></textarea>
+
+           <br>
+           <br>
+           <button type="submit" class="loginBtn">Send</button>
+         </form>
+       </div>
+       <br>
+     </div>
+  </div>
+
+
+{% endblock %}

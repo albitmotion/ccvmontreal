@@ -1,0 +1,20 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="myInfo">
+  <h3>My Info</h3>
+    {% if member.member_pic %}
+    <td class="firstCol"><img class="photo_big" src="{{ s3_root }}/images/member_pics/{{ member.member_pic|string}}"></td>
+    {% else %}
+     <td class="firstCol"><img class="photo_big" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
+    {% endif %}
+    <br>
+    <strong>Name: </strong>{{ member.name}}<br/>
+    <strong>Role: </strong>{{ member.role}}<br/>
+    <strong>Email: </strong>{{ member.email}}<br/>
+    <strong>Phone Number: </strong>{{ member.telephone}}<br/>
+
+    <strong>Organization: </strong>{{ member.organization}}<br/>
+    <strong>Number of volunteers I manage: </strong>{{ member.volunteers}}<br/>
+    <br/><br/>
+    <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_member', id=member.id) }}" data-bs-title="Edit My Info">Edit My Info</button>
+
+
+</div>

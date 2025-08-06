@@ -1,0 +1,34 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="activities">
+  <h3>Activities</h3>
+
+  <table class="table" id="usersTable">
+    <thead>
+      <tr>
+        <th scope="col" class="firstCol">Image</th>
+        <th scope="col" class="firstCol">Title</th>
+        <th scope="col">Date</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+  {% for activity in activities %}
+
+    <tr>
+      {% if activity.file %}
+       <td class="firstCol" style="width:150px"><img class="photo_list_square" src="{{ s3_root }}/images/activities/{{  activity.file|string }}"></td>
+      {% else %}
+       <td></td>
+      {% endif %}
+      <td class="firstCol">{{ activity.title }}</td>
+      <td>{{ activity.date }}</td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_activity', id=activity.id) }}" data-bs-title="Update Activity {{ activity.title }}"><i class="bi bi-gear"></i></button></td>
+    </tr>
+  {% endfor %}
+  </table>
+  <div class="d-flex justify-content-between">
+      <div></div>
+      <div>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_activity') }}" data-bs-title="Add New Activity">Add New Activity</button>
+      </div>
+ </div>
+
+  </div>

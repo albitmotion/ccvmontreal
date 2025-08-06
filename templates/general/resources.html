@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+  <h1>Resources & Tools for Volunteer Managers</h1>
+  <br/><br/>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card">
+        <div style="height:230px">
+        <img src="{{ url_for('static', filename='images/resources/sector_source.png') }}" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+          <p class="card-text">Sector Source connects charities and nonprofits with resources that help develop organizations and support the work you do for your communities.
+This site is operated by Imagine Canada, a national charitable organization.​</p>
+        <a href="https://www.sectorsource.ca/managing-organization/volunteer-involvement/volunteer-management" class="btn blueButton" target="_blank">Read More</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="text-center">
+        <img src="{{ url_for('static', filename='images/resources/volunteer_benevoles.png') }}" class="card-img-top" alt="..." style="width:50%;height:50%">
+        </div>
+        <div class="card-body">
+          <p class="card-text">Sector Source connects charities and nonprofits with resources that help develop organizations and support the work you do for your communities.
+This site is operated by Imagine Canada, a national charitable organization.​</p>
+          <a href="https://volunteer.ca/management" class="btn blueButton" target="_blank">Read More</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div style="height:230px">
+        <img src="{{ url_for('static', filename='images/resources/charity_village.png') }}" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+          <p class="card-text">Sector Source connects charities and nonprofits with resources that help develop organizations and support the work you do for your communities.
+This site is operated by Imagine Canada, a national charitable organization.​</p>
+          <a href="https://charityvillage.com/topics/volunteer-engagement/volunteer-management.aspx" class="btn blueButton" target="_blank">Read More</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br/><br/><br/>
+{% endblock %}

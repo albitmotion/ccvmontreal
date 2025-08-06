@@ -1,0 +1,34 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="news">
+  <h3>News</h3>
+
+  <table class="table" id="usersTable">
+    <thead>
+      <tr>
+        <th scope="col" class="firstCol">Image</th>
+        <th scope="col" class="firstCol">New</th>
+        <th scope="col">Type</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+  {% for new in news %}
+
+    <tr>
+      {% if new.file %}
+      <td class="firstCol" style="width:150px"><img class="photo_list_square" src="{{ s3_root }}/images/news/{{  new.file|string }}"></td>
+      {% else %}
+       <td></td>
+      {% endif %}
+      <td class="firstCol">{{ new.title }}</td>
+      <td>{{ new.type }}</td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_news', id=new.id) }}" data-bs-title="Update Member {{ new.title }}"><i class="bi bi-gear"></i></button></td>
+    </tr>
+  {% endfor %}
+  </table>
+  <div class="d-flex justify-content-between">
+      <div></div>
+      <div>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_news') }}" data-bs-title="Add New News">Add New News</button>
+      </div>
+ </div>
+
+  </div>

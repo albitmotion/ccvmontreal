@@ -1,0 +1,51 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+<!-- <div class="alert alert-danger fade hide" id="alertAttendance" role="alert">
+</div>
+<div class="alert alert-warning fade hide" id="warningAttendance" role="alert">
+</div> -->
+
+<table class="table" id="usersTable">
+  <thead>
+    <tr>
+      <th scope="col" class="firstCol"></th>
+      <th scope="col" class="firstCol">Name</th>
+      <th scope="col">Attendance</th>
+    </tr>
+  </thead>
+{% for member in members %}
+
+  <tr>
+    {% if member.member_pic %}
+      <td class="firstCol"><img class="photo_list" src="{{ s3_root }}/images/member_pics/{{ member.member_pic|string}}"></td>
+    {% else %}
+     <td class="firstCol"><img class="photo_list" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
+    {% endif %}
+    <td class="firstCol">{{ member.name }}</td>
+    <td>
+      <div class="checkboxAttendance">
+        {% if member in meeting.member_attendance %}
+          <input class="checkboxAttendance" type="checkbox" id="{{ member.id}}_{{ meeting.id}}" name="attendance" value="" checked>
+        {% else %}
+          <input class="checkboxAttendance" type="checkbox" id="{{ member.id}}_{{ meeting.id}}" name="attendance" value="">
+        {% endif %}
+      </div>
+
+    </td>
+  </tr>
+{% endfor %}
+</table>
+<div class="d-flex justify-content-between">
+    <div>
+      <button class="btn blueButton" style="padding:0px" onClick="checkAll()">Check All</button>
+      <button class="btn blueButton" style="padding:0px" onClick="uncheckAll()">Uncheck All</button>
+
+    </div>
+    <div>
+      <button class="btn blueButton" style="padding:0px" onClick="changeStatuses()">Save Attendance</button>
+    </div>
+</div>
+
+{% endblock %}

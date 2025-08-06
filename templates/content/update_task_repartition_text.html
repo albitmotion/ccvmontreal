@@ -1,0 +1,32 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message|safe }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+  <form action="/update_task_repartition/{{ task_to_update.id }}" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <!-- <strong>{{ form.text.label(class="form-label") }}</strong>
+    {{ form.text(class="form-control", value="aa") }} -->
+
+    <strong>{{ form.text.label(class="form-label") }}</strong>
+    {{ ckeditor.create(value=task_to_update.text) }}
+
+
+    <br/>
+    {{ form.submit(class="btn blueButton") }}
+
+
+  </form>
+
+  {{ ckeditor.load() }}
+  {{ ckeditor.config(name='text', height= "900px")}}
+
+  <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+
+{% endblock %}

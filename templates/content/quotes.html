@@ -1,0 +1,32 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="quotes">
+  <h3>Quotes</h3>
+
+  <table class="table" id="usersTable">
+    <thead>
+      <tr>
+        <th scope="col" class="firstCol">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Organization</th>
+        <th scope="col">Visible</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+  {% for quote in quotes %}
+
+    <tr>
+      <td class="firstCol">{{ quote.title }}</td>
+      <td>{{ quote.author }}</td>
+      <td>{{ quote.organization }}</td>
+      <td>{{ quote.visible }}</td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_quote', id=quote.id) }}" data-bs-title="Update Member {{ quote.title }}"><i class="bi bi-gear"></i></button></td>
+    </tr>
+  {% endfor %}
+  </table>
+  <div class="d-flex justify-content-between">
+      <div></div>
+      <div>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_quote') }}" data-bs-title="Add New Quote">Add New Quote</button>
+      </div>
+ </div>
+
+  </div>

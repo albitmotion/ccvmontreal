@@ -1,0 +1,38 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="meetings_list">
+   <h3>Meetings</h3>
+   <input type="text" class="form-control" id="meeting-search-input" onkeyup="filterMeeting()" placeholder="Search"/>
+   <table class="table" id="meetingTable">
+   <thead>
+     <tr>
+       <th class="firstCol" scope="col">Date</th>
+       <th scope="col">Minute</th>
+       <th scope="col">Attendees</th>
+       {% if executive_member %}
+       <th scope="col">Edit</th>
+       {% endif %}
+     </tr>
+   </thead>
+   {% for meeting in meetings %}
+     <tr>
+       <td class="firstCol">{{ meeting.date.strftime('%Y-%m-%d') }}</td>
+       <td>
+         <a target="_blank" href="{{ s3_root }}/docs/meetings/{{ meeting.file|string }}">
+           <i class="bi bi-file-pdf-fill" style="color:red"></i>{{ meeting.minute }}
+         </a></td>
+       <td>{{ meeting.attendees }}</td>
+       {% if executive_member %}
+         <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_meeting', id=meeting.id) }}" data-bs-title="Update Meeting {{ meeting.date.strftime('%Y-%m-%d') }}"><i class="bi bi-gear"></i></button></td>
+       {% endif %}
+     </tr>
+   {% endfor %}
+   </table>
+   {% if executive_member %}
+   <div class="d-flex justify-content-between">
+       <div></div>
+       <div>
+         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_meeting') }}" data-bs-title="Add New Meeting">Add New Meeting</button>
+       </div>
+  </div>
+  {% endif %}
+
+</div>

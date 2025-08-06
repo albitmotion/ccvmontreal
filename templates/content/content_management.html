@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+
+  <h1>Content Management</h1>
+  <div class="col-md-12 container">
+    {% include 'content/activities.html' %}
+    {% include 'content/news.html' %}
+    {% include 'content/annualReports.html' %}
+    {% include 'content/banners.html' %}
+    {% include 'content/quotes.html' %}
+
+  </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="banners">
+  <h3>Banners</h3>
+
+  <table class="table" id="usersTable">
+    <thead>
+      <tr>
+        <th scope="col" class="firstCol">Filename</th>
+        <th scope="col">Visible</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+  {% for banner in banners %}
+
+    <tr>
+      <td class="firstCol">
+        <a target="_blank" href="{{ s3_root }}/images/banners/{{ banner.file|string }}">
+          {{ banner.filename }}
+        </a>
+      </td>
+      <td>{{ banner.visible }}</td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_banner', id=banner.id) }}" data-bs-title="Update Banner {{ banner.filename }}"><i class="bi bi-gear"></i></button></td>
+    </tr>
+  {% endfor %}
+  </table>
+  <div class="d-flex justify-content-between">
+      <div></div>
+      <div>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_banner') }}" data-bs-title="Add New Banner">Add New Banner</button>
+      </div>
+ </div>
+
+  </div>

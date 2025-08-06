@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+
+  <h1>Executive Member Area</h1>
+  <div class="col-md-12 container">
+    {% include 'executive_members/my_info.html' %}
+    {% include 'executive_members/task_repartition.html' %}
+    {% include 'executive_members/executive_member_list.html' %}
+    {% include 'members/member_list.html' %}
+    {% include 'memberships/membership_list.html' %}
+    {% include 'executive_members/member_attendance.html' %}
+    {% include 'meetings/meetings_list.html' %}
+    {% include 'surveys/surveys_list.html' %}
+  </div>
+{% endblock %}

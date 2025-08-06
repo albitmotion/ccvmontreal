@@ -1,0 +1,62 @@
+{% extends 'base/base_iframe.html' %}
+{% block content %}
+
+    {% for message in get_flashed_messages() %}
+      {% if message.startswith("Error:") %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+       {% else %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+       {% endif %}
+        {{ message|safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+
+    <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+      <strong>{{ form.name.label(class="form-label") }}</strong>
+      {{ form.name(class="form-control") }}
+
+      <strong>{{ form.role.label(class="form-label") }}</strong>
+      {{ form.role(class="form-control") }}
+
+      <strong>{{ form.email.label(class="form-label") }}</strong>
+      {{ form.email(class="form-control") }}
+
+      <strong>{{ form.telephone.label(class="form-label") }}</strong>
+      {{ form.telephone(class="form-control") }}
+
+      <strong>{{ form.english.label(class="form-label") }}</strong>
+      {{ form.english() }}<br>
+
+      <strong>{{ form.french.label(class="form-label") }}</strong>
+      {{ form.french() }}<br>
+
+      <strong>{{ form.preferable.label(class="form-label") }}</strong>
+      {{ form.preferable(class="form-control") }}
+
+      <strong>{{ form.organization.label(class="form-label") }}</strong>
+      {{ form.organization(class="form-control") }}
+
+      <strong>{{ form.volunteers.label(class="form-label") }}</strong>
+      {{ form.volunteers(class="form-control", value=1) }}
+
+      <strong>{{ form.member_pic.label(class="form-label") }}</strong>
+      {{ form.member_pic(class="form-control") }}
+
+      <strong>{{ form.password_hash.label(class="form-label") }}</strong>
+      {{ form.password_hash(class="form-control") }}
+
+      <strong>{{ form.password_hash2.label(class="form-label") }}</strong>
+      {{ form.password_hash2(class="form-control") }}
+
+
+      <br/>
+      {{ form.submit(class="btn blueButton") }}
+
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <h1>News From the Volunteer Ecosystem</h1>
+  <br>
+  <br>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for new in news %}
+  <div class="card newCard" onClick="window.location.href='/news/{{ new.id }}';" style="width: 25rem; margin: 10px; padding: 0px">
+    <img src="{{ s3_root }}/images/news/{{  new.file|string }}" class="card-img-top newsImage" alt="...">
+    <div class="card-body">
+      <p class="card-title newsType">{{ new.type }}</p>
+      <h5 class="card-title">{{ new.title }}</h5>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

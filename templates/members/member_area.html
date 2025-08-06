@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+  <h1>Member Area</h1>
+  <div class="col-md-12 container">
+       {% include 'members/my_info.html' %}
+       {% include 'members/membership.html' %}
+       {% include 'meetings/meetings_list.html' %}
+       {% include 'members/member_list.html' %}
+       <br>
+  </div>
+{% endblock %}

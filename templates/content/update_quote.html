@@ -1,0 +1,55 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message|safe }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+  <form action="/update_quote/{{ register_to_update.id }}" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <strong>{{ form.title.label(class="form-label") }}</strong>
+    {{ form.title(class="form-control", value=register_to_update.title) }}
+
+    <strong>{{ form.text.label(class="form-label") }}</strong>
+    <textarea id="text" name="text" class="form-control">{{ register_to_update.text }}</textarea>
+
+    <strong>{{ form.author.label(class="form-label") }}</strong>
+    {{ form.author(class="form-control", value=register_to_update.author) }}
+
+    <strong>{{ form.organization.label(class="form-label") }}</strong>
+    {{ form.organization(class="form-control", value=register_to_update.organization) }}
+
+    <strong>{{ form.visible.label(class="form-label") }}</strong>
+    {{ form.visible(checked=register_to_update.visible) }}
+    <br>
+    <strong>{{ form.fontSize.label(class="form-label") }}</strong>
+    {{ form.fontSize(class="form-control", value=register_to_update.fontSize) }}
+
+
+    <br/>
+    {{ form.submit(class="btn blueButton") }}
+    <a class="btn btn-danger" href="{{ url_for('delete_quote', id=register_to_update.id) }}">Delete</a>
+
+  </form>
+  <br>
+  <br>
+  <p><strong>Preview:</strong></p>
+
+  <div class="containerQuota">
+    <img src="{{ url_for('static', filename='images/quote_bg.jpg') }}" alt="Snow" >
+      <div class="quotaDiv" id="quotaDiv">
+      </div>
+    <div class="quotaAuthorDiv">
+      <p class="quoteAuthor" id="quoteAuthor"></p>
+      <p class="quoteOrganization" id="quoteOrganization"></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/quote.js') }}"></script>
+
+{% endblock %}

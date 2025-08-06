@@ -1,0 +1,37 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="surveysList">
+   <h3>Surveys</h3>
+   <input type="text" class="form-control" id="survey-search-input" onkeyup="filterSurvey()" placeholder="Search"/>
+   <table class="table" id="surveyTable">
+   <thead>
+     <tr>
+       <th scope="col" class="firstCol">Title</th>
+       <th scope="col">Start</th>
+       <th scope="col">End</th>
+       <th scope="col">Responders</th>
+       <th scope="col">Result</th>
+       <th scope="col">Edit</th>
+     </tr>
+   </thead>
+   {% for survey in surveys %}
+     <tr>
+       <td class="firstCol">{{ survey.title }}</td>
+       <td>{{ survey.start}}</td>
+       <td>{{ survey.end}}</td>
+       <td>{{ survey.responders}}</td>
+       <td>
+         <a target="_blank" href="{{ s3_root }}/docs/surveys/{{ survey.file|string}}">
+         <i class="bi-box-arrow-down"></i>
+         </a>
+       </td>
+       <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_survey', id=survey.id) }}" data-bs-title="Update Survey {{ survey.title }}"><i class="bi bi-gear"></i></button></td>
+     </tr>
+   {% endfor %}
+   </table>
+   <div class="d-flex justify-content-between">
+       <div></div>
+       <div>
+         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_survey') }}" data-bs-title="Add New Survey">Add New Survey</button>
+       </div>
+  </div>
+
+</div>

@@ -1,0 +1,75 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="paymentList">
+   <h3>Payment Statuses</h3>
+   <input type="text" class="form-control" id="memberships-search-input" onkeyup="filterMembership()" placeholder="Search"/>
+   <div class="form-group">
+     <table class="table" id="membershipTable">
+       <thead>
+         <tr>
+           <th scope="col" class="firstCol"></th>
+           <th scope="col" class="firstCol">Name</th>
+           <th scope="col">Role</th>
+           <th scope="col">Organization</th>
+           <th scope="col">Status</th>
+           <th scope="col">Member Since</th>
+           <th scope="col">Expiration Date</th>
+           <th scope="col">Reminded</th>
+           <th scope="col">Edit</th>
+         </tr>
+       </thead>
+     {% for member_payment in member_payments %}
+       <tr>
+         {% if member_payment.member_pic %}
+           <td class="firstCol"><img class="photo_list" src="{{ s3_root }}/images/member_pics/{{ member_payment.member_pic|string}}"></td>
+         {% else %}
+          <td class="firstCol"><img class="photo_list" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
+         {% endif %}
+         <td class="firstCol">{{ member_payment.name }}</td>
+         <td>{{ member_payment.role }}</td>
+         <td>{{ member_payment.organization }}</td>
+         <td><p class="{{ member_payment.status }}">{{ member_payment.status }}</p></td>
+         <td>{{ member_payment.member_since }}</td>
+         <td>{{ member_payment.expiration_date }}</td>
+         <td>
+            {% if member_payment.warning_icon %}
+              <button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('remind', id=member_payment.id) }}" data-bs-title="Remind Membership {{ member_payment.name }}"><img src="{{ url_for('static', filename='images/icons/warning.png') }}" style="width:20px" alt=""></button>
+            {% endif %}
+            {% if member_payment.remembered %}
+              {{ member_payment.remembered }}
+            {% endif %}
+
+         </td>
+         <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_memberships', id=member_payment.id) }}" data-bs-title="Update Memberships {{ member_payment.name }}"><i class="bi bi-gear"></i></button></td>
+       </tr>
+     {% endfor %}
+     </table>
+    <br/>
+    <div class="d-flex justify-content-between">
+        <div></div>
+        <div>
+           <a class="btn blueButton" onClick="downloadPayments()" role="button">Download</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editPaymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Payment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

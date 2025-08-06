@@ -1,0 +1,20 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+  {% if member.member_pic %}
+  <td class="firstCol"><img class="photo_big" src="{{ s3_root }}/images/member_pics/{{ member.member_pic|string}}"></td>
+  {% else %}
+   <td class="firstCol"><img class="photo_big" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
+  {% endif %}
+  <br>
+  <strong>Name:</strong> {{ member.name }}<br/>
+  <strong>Role:</strong> {{ member.role }}<br/>
+  <strong>Organization:</strong> {{ member.organization }}<br/>
+  <strong>Phone Number:</strong> {{ member.telephone }}<br/>
+  <strong>Email:</strong> {{ member.email }}<br/>
+  <strong>English:</strong> {{ member.english }}<br/>
+  <strong>French:</strong> {{ member.french }}<br/>
+  <strong>Preferable Language:</strong> {{ member.preferable }}<br/>
+
+
+{% endblock %}

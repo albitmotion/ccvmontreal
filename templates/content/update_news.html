@@ -1,0 +1,44 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message|safe }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+  <form action="/update_news/{{ register_to_update.id }}" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <strong>{{ form.title.label(class="form-label") }}</strong>
+    {{ form.title(class="form-control", value=register_to_update.title) }}
+
+    <strong>{{ form.type.label(class="form-label") }}</strong>
+    {{ form.type(class="form-control", value=register_to_update.type) }}
+
+    <strong>{{ form.text.label(class="form-label") }}</strong>
+    {{ ckeditor.create(value=register_to_update.text) }}
+
+    <strong>{{ form.file.label(class="form-label") }}</strong>
+    {{ form.file(class="form-control", value=register_to_update.file) }}
+
+    <strong>{{ form.author.label(class="form-label") }}</strong>
+    {{ form.author(class="form-control", value=register_to_update.author) }}
+
+    <strong>{{ form.date.label(class="form-label") }}</strong>
+    {{ form.date(class="form-control", value=register_to_update.date) }}
+
+
+    <br/>
+    {{ form.submit(class="btn blueButton") }}
+    <a class="btn btn-danger" href="{{ url_for('delete_news', id=register_to_update.id) }}">Delete</a>
+
+  </form>
+
+  {{ ckeditor.load() }}
+  {{ ckeditor.config(name='text', height= "900px")}}
+
+  <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+
+{% endblock %}

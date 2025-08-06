@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <h1>Login</h1>
+
+  <div class="col-md-12 container">
+    <div class="d-flex justify-content-center">
+       <div class="col-md-7 shadow-lg rounded div-info">
+         <div class="alert alert-danger fade hide" id="alertLogin" role="alert">
+         </div>
+         <h4>Enter your Credentials to access your account</h4>
+         <h7>You need to be a CCV Member to have access to our Member Content</h7>
+         <br><br><br>
+         <label for="email">Email adress:</label>
+         <input type="email" class="form-control" id="email">
+         <label class="form-label" for="password">Password:</label>
+         <input type="password" id="password" style="width:100%;" class="form-control" />
+
+         <br>
+         <br>
+         <button type="submit" form="form1" class="loginBtn" value="Submit" id="loginBtn" onclick="loginFn()">Login</button>
+       </div>
+       <br>
+     </div>
+  </div>
+
+{% endblock %}

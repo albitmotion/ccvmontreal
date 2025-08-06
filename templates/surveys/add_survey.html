@@ -1,0 +1,33 @@
+{% extends 'base/base_iframe.html' %}
+{% block content %}
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message|safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+    <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+      {{ form.title.label(class="form-label") }}
+      {{ form.title(class="form-control") }}
+
+      {{ form.start.label(class="form-label") }}
+      {{ form.start(class="form-control") }}
+
+      {{ form.end.label(class="form-label") }}
+      {{ form.end(class="form-control") }}
+
+      {{ form.responders.label(class="form-label") }}
+      {{ form.responders(class="form-control") }}
+
+      {{ form.file.label(class="form-label") }}
+      {{ form.file(class="form-control") }}
+
+      <br/>
+      {{ form.submit(class="btn blueButton") }}
+
+    </form>
+{% endblock %}

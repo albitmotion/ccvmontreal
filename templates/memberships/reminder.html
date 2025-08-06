@@ -1,0 +1,42 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+<p>Here's a sample email to remind members about renewing their membership.</p>
+  <ul>
+    <li>1. Create an email to: {{ member.email }}</li>
+    <li>2. Copy and paste the text bellow to the email body.</li>
+    <li>2. Make changes if needs before sending. </li>
+    <li>3. Click in the button "Mark as Reminded and Close".</li>
+  </ul>
+
+  <label for="exampleFormControlTextarea1" class="fo  <label for="exampleInputEmail1"><strong>Email Subject</strong></label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="Membership renew reminder - CCV Montreal">
+  <label><strong>Email Text:</strong></label>
+<div class="" style="border: 1px lightgray solid;border-radius:0.35rem; padding:15px;">
+  <br>
+  <p>Hello {{ member.name }},</p>
+
+  <p>Your membership, which began in <strong>{{ last_membership.start.strftime('%Y-%m-%d') }}</strong>, is expiring on <strong>{{ last_membership.end.strftime('%Y-%m-%d') }}</strong>.</p>
+
+  <p>We hope you've enjoyed your experience with our association this year and encourage you to renew your membership!</p>
+
+  <p>To renew, please send a check to [Address] or an e-transfer to info@ccvmontreal.org. Kindly send us an email by [Date] to confirm your renewal.</p>
+
+  <p>We look forward to another year of enrichment and learning together.</p>
+  <br>
+  <p>CCV Montreal</p>
+
+</div>
+
+
+
+<br>
+<div class="d-flex justify-content-between">
+    <div></div>
+    <div>
+      <a class="btn blueButton" onclick="markReminded({{ last_membership.id }})" role="button">Mark as Reminded and Close</a>
+       <button type="button" onclick="closeModal()" class="btn blueButton" data-bs-dismiss="modal" aria-label="Close">Close</button>
+    </div>
+</div>
+{% endblock %}

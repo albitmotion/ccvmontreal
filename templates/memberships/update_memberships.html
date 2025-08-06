@@ -1,0 +1,63 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+
+<p>
+<span><strong>Name:</strong> {{ member.name }}</span><br>
+<span><strong>Role:</strong> {{ member.role }}</span><br>
+<span><strong>Email:</strong> {{ member.email }}</span><br>
+<span><strong>organization:</strong> {{ member.organization }}</span><br>
+<span><strong>Member Since:</strong></span>
+
+  {% if first_membership %}
+    {{ first_membership.start.strftime('%Y-%m-%d') }}
+  {% endif %}
+<br>
+<strong>Expiration Date:</strong>
+  {% if last_membership %}
+    {{ last_membership.end.strftime('%Y-%m-%d') }}
+  {% endif %}
+</p>
+<br/>
+<h2>Memberships</h2>
+<table class="table" id="membershipTable">
+  <thead>
+    <tr>
+      <th scope="col" class="firstCol">File</th>
+      <th scope="col" class="">Start</th>
+      <th scope="col" class="">End</th>
+      <th scope="col" class="">Reminded</th>
+      <th scope="col" class="">Edit</th>
+    </tr>
+    {% for membership in memberships %}
+      <tr>
+        <td class="firstCol"><a target="_blank" href="{{ url_for('static', filename='upload/memberships/' + membership.file|string ) }}"><i class="bi bi-file-pdf-fill" style="color:red"></i>{{ membership.name }}</a></td>
+        <td>{{ membership.start.strftime('%Y-%m-%d') }}</td>
+        <td>{{ membership.end.strftime('%Y-%m-%d') }}</td>
+        {% if membership.remembered %}
+          <td>{{  membership.remembered }}</td>
+        {% else %}
+          <td></td>
+        {% endif %}
+        <td><button class="btn" onClick="editMembership({{ membership.id }})"><i class="bi bi-gear"></i></button></td>
+
+      </tr>
+    {% endfor %}
+  </thead>
+</table>
+<div class="d-flex justify-content-between">
+    <div></div>
+    <div>
+      <a class="btn blueButton" id="saveBtn" onClick="saveMembership()" role="button" style="display:none">Save</a>
+      <a class="btn btn-warning" id="cancelBtn" onClick="cancelMembership()" role="button" style="display:none">Cancel</a>
+      <a class="btn blueButton" id="newBtn" onClick="addMembership({{ member.id }}, '{{ member.name }}')" role="button">Add Membership</a>
+    </div>
+</div>
+{% endblock %}

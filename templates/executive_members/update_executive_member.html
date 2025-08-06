@@ -1,0 +1,70 @@
+{% extends 'base/base_iframe.html' %}
+
+{% block content %}
+
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message|safe }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+
+  <form action="/update_executive_member/{{ register_to_update.id }}" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    {% if register_to_update.executive_member_pic %}
+      <img class="photo_big" src="{{ s3_root }}/images/executive_member_pics/{{ register_to_update.executive_member_pic|string}}">
+    {% else %}
+     <img class="photo_big" src="{{ url_for('static', filename='images/icons/user.png') }}">
+    {% endif %}
+    <br>
+    <a class="btn blueButton" href="{{ url_for('update_executive_password', id=register_to_update.id) }}">Upate Password</a>
+    <br>
+
+
+    <strong>{{ form.name.label(class="form-label") }}</strong>
+    {{ form.name(class="form-control", value=register_to_update.name) }}
+    <strong>{{ form.role.label(class="form-label") }}</strong>
+    {{ form.role(class="form-control", value=register_to_update.role) }}
+    <strong>{{ form.bio.label(class="form-label") }}</strong>
+    {{ form.bio(class="form-control", value=register_to_update.bio) }}
+    <strong>{{ form.email.label(class="form-label") }}</strong>
+    {{ form.email(class="form-control", value=register_to_update.email) }}
+    <strong>{{ form.telephone.label(class="form-label") }}</strong>
+    {{ form.telephone(class="form-control", value=register_to_update.telephone) }}
+    <strong>{{ form.order.label(class="form-label") }}</strong>
+    {{ form.order(class="form-control", value=register_to_update.order) }}
+    <strong>{{ form.english.label(class="form-label") }}</strong>
+    {{ form.english(checked=register_to_update.english) }}<br/>
+    <strong>{{ form.french.label(class="form-label") }}</strong>
+    {{ form.french(checked=register_to_update.french) }}<br/>
+    <select name="preferable" id="preferable" class="form-control">
+      {% if register_to_update.preferable == "English" %}
+        <option value="English" selected>English</option>
+      {% else %}
+        <option value="English">English</option>
+      {% endif %}
+      {% if register_to_update.preferable == "French" %}
+        <option value="French" selected>French</option>
+      {% else %}
+        <option value="French">French</option>
+      {% endif %}
+    </select>
+
+    <strong>{{ form.organization.label(class="form-label") }}</strong>
+    {{ form.organization(class="form-control", value=register_to_update.organization) }}
+    <strong>{{ form.executive_member_pic.label(class="form-label") }}</strong>
+    {{ form.executive_member_pic(class="form-control", value=register_to_update.executive_member_pic) }}
+    <br>
+
+
+    <br/>
+    {{ form.submit(class="btn blueButton") }}
+    {% if deletable %}
+      <a class="btn btn-danger" href="{{ url_for('delete_executive_member', id=register_to_update.id) }}">Delete</a>
+    {% endif %}
+
+  </form>
+  <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+
+{% endblock %}
