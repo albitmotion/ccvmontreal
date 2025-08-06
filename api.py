@@ -327,7 +327,7 @@ def download_payment():
 
     return {
         "result": "CSV file 'people.csv' created successfully.",
-        "url": "https://s3.us-east-2.amazonaws.com/ccvmontreal.al/download/payments.csv",
+        "url": "https://s3.us-east-2.amazonaws.com/ccvmontreal/download/payments.csv",
     }
 
 @app.route("/download_attendance/", methods=["GET", "POST"])
@@ -369,9 +369,9 @@ def download_attendance():
         # Write the data rows
         writer.writerows(rowList)
     with open(csvfilePath, "rb") as f:
-        s3_client.upload_fileobj(f, "ccvmontreal.al", "download/attendance.csv")
+        s3_client.upload_fileobj(f, "ccvmontreal", "download/attendance.csv")
 
     return {
         "result": "CSV file 'people.csv' created successfully.",
-        "url": "https://s3.us-east-2.amazonaws.com/ccvmontreal.al/download/attendance.csv",
+        "url": "https://s3.us-east-2.amazonaws.com/ccvmontreal/download/attendance.csv",
     }
