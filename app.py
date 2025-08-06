@@ -43,13 +43,13 @@ bucket_policy = {
             "Effect": "Allow",
             "Principal": "*",
             "Action": "s3:GetObject",
-            "Resource": f"arn:aws:s3:::cvvmontreal.al/*",
+            "Resource": f"arn:aws:s3:::ccvmontreal/*",
         }
     ],
 }
 
 s3_client = boto3.client("s3")
-s3_client.put_bucket_policy(Bucket="cvvmontreal.al", Policy=json.dumps(bucket_policy))
+s3_client.put_bucket_policy(Bucket="ccvmontreal", Policy=json.dumps(bucket_policy))
 
 
 app = Flask(__name__)
@@ -59,7 +59,7 @@ app.config["S3"] = s3_client
 if app.debug:
     UPLOAD_FOLDER = "static/upload/"
     app.config["S3_BASE_FOLDER"] = "dev/"
-    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/cvvmontreal.al/dev"
+    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
     app.config["DOWNLOAD"] = "static/download/"
     app.config["SQLALCHEMY_DATABASE_URI"] = (
         "mysql+pymysql://root:password123@localhost/cvv"
@@ -67,10 +67,10 @@ if app.debug:
 else:
     UPLOAD_FOLDER = "/app/static/upload/"
     app.config["S3_BASE_FOLDER"] = "prod/"
-    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/cvvmontreal.al/prod"
+    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
     app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
     app.config["SQLALCHEMY_DATABASE_URI"] = (
-        "mysql+pymysql://albitmotion:zL3)G01w@albitmotion.mysql.pythonanywhere-services.com/albitmotion$cvvmontreal"
+        "mysql+pymysql://albitmotion:zL3)G01w@albitmotion.mysql.pythonanywhere-services.com/albitmotion$ccvmontreal"
     )
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ucocfesi3a50sp:pd433ef3bdce54e70213c225eeb3635b196db7de24db82f7bad98f30d35820253@c34u0gd6rbe7bo.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6eq465ijvjihi'
 
@@ -331,13 +331,13 @@ def save_file(file, folderName):
     unique_filename = str(uuid.uuid1()) + "_" + secure_filename_var
 
     filename_s3 = app.config["S3_BASE_FOLDER"] + folderName + unique_filename
-    s3_client.upload_fileobj(file, "cvvmontreal.al", filename_s3)
+    s3_client.upload_fileobj(file, "ccvmontreal", filename_s3)
     return unique_filename
 
 
 def delete_file(object_key):
     try:
-        bucket_name = "cvvmontreal.al"
+        bucket_name = "ccvmontreal"
         response = s3_client.delete_object(
             Bucket=bucket_name, Key=app.config["S3_BASE_FOLDER"] + object_key
         )
