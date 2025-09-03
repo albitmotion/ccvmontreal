@@ -243,25 +243,6 @@ def create_initial_user():
     return result, 200
 
 
-@app.route("/test/", methods=["GET", "POST"])
-def test():
-    memberships = Memberships.query.filter_by(member_id=24).all()
-    print('memberships1', memberships)
-    for membership in memberships:
-        print('membership1', membership)
-        db.session.delete(membership)
-        db.session.commit()
-
-    # meeting = Meetings.query.filter_by(id=10).first()
-    # member = Members.query.filter_by(name="Initial Member").first()
-    # if not member in meeting.member_attendance:
-    #     member.meetings_attendance.append(meeting)
-    #     try:
-    #         db.session.commit()
-    #     except:
-    #         print("Not possible to save Meeting Attendance")
-    return ''
-
 @app.route("/mark_reminded/", methods=["GET", "POST"])
 def mark_reminded():
     data = json.loads(request.data)
@@ -363,10 +344,6 @@ def download_attendance():
     with open(csvfilePath, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
 
-        # Write the header row
-        # writer.writerow(headers)
-
-        # Write the data rows
         writer.writerows(rowList)
     with open(csvfilePath, "rb") as f:
         s3_client.upload_fileobj(f, "ccvmontreal", "download/attendance.csv")

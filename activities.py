@@ -65,43 +65,6 @@ def add_activity():
         request, form, REGISTER_TYPE, S3_FOLDER, form_fields, TEMPLATE_FOLDER
     )
     return addRegister.returnTemplate()
-    # if form.validate_on_submit():
-    #     activity = Activities.query.filter_by(title=form.title.data).first()
-    #     if activity is None:
-    #         # Save file name to database
-    #         form.filename.data = request.files["file"].filename
-    #
-    #         # Save File
-    #         if form.file.data:
-    #             unique_filename = save_file(form.file.data, "images/activities/")
-    #             form.file.data = unique_filename
-    #
-    #         # Save in database
-    #         activity = Activities(
-    #             title=form.title.data,
-    #             text=form.text.data,
-    #             date=form.date.data,
-    #             hour=form.hour.data,
-    #             address=form.address.data,
-    #             file=form.file.data,
-    #         )
-    #         db.session.add(activity)
-    #         db.session.commit()
-    #         flash("Activity added successfully!")
-    #
-    #         form.title.data = ""
-    #         form.text.data = ""
-    #         form.date.data = ""
-    #         form.hour.data = ""
-    #         form.address.data = ""
-    #         form.file.data = ""
-    #     else:
-    #         flash("Error: An activity with this title already exists.")
-    #
-    # return render_template(
-    #     "content/add_activity.html",
-    #     form=form,
-    # )
 
 
 @app.route("/update_activity/<int:id>", methods=["GET", "POST"])
@@ -113,50 +76,6 @@ def update_activity(id):
         request, register, form, REGISTER_TYPE, S3_FOLDER, TEMPLATE_FOLDER
     )
     return updateRegister.returnTemplate()
-    # activity_to_update = Activities.query.get_or_404(id)
-    # if request.method == "POST":
-    #     if request.files["file"]:
-    #         # form.filename.data = request.files["file"].filename
-    #         if activity_to_update.file:
-    #             delete_file("images/activities/" + activity_to_update.file)
-    #         # Save File
-    #         unique_filename = save_file(form.file.data, "images/activities/")
-    #         # form.file.data = unique_filename
-    #
-    #         # unique_filename = save_file(
-    #         #     request.files["file"], "images/activities/" + request.files["file"]
-    #         # )
-    #
-    #         activity_to_update.file = unique_filename
-    #         activity_to_update.filename = request.files["file"].filename
-    #
-    #     activity_to_update.text = request.form.get("ckeditor")
-    #     activity_to_update.date = form.date.data
-    #     activity_to_update.hour = form.hour.data
-    #     activity_to_update.address = form.address.data
-    #     activity_to_update.title = form.title.data
-    #
-    #     try:
-    #         db.session.commit()
-    #         flash("Activity updated successfully!")
-    #         return render_template(
-    #             "content/update_activity.html",
-    #             form=form,
-    #             activity_to_update=activity_to_update,
-    #         )
-    #     except:
-    #         flash("Error")
-    #         return render_template(
-    #             "content/update_activity.html",
-    #             form=form,
-    #             activity_to_update=activity_to_update,
-    #         )
-    # else:
-    #     return render_template(
-    #         "content/update_activity.html",
-    #         form=form,
-    #         activity_to_update=activity_to_update,
-    #     )
 
 
 @app.route("/delete_activity/<int:id>", methods=["GET", "POST"])
@@ -168,31 +87,3 @@ def delete_activity(id):
         register, form, REGISTER_TYPE, S3_FOLDER, TEMPLATE_FOLDER
     )
     return deleteRegister.returnTemplate()
-    #
-    # try:
-    #     db.session.delete(activity_to_delete)
-    #     db.session.commit()
-    #     flash("Activity deleted successfully!")
-    #
-    #     if activity_to_delete.file:
-    #         delete_file("images/activities/" + activity_to_delete.file)
-    #
-    #     form.title.data = ""
-    #     form.text.data = ""
-    #     form.date.data = ""
-    #     form.hour.data = ""
-    #     form.address.data = ""
-    #     form.file.data = ""
-    #
-    #     return render_template(
-    #         "content/update_activity.html",
-    #         form=form,
-    #         activity_to_update=activity_to_delete,
-    #     )
-    # except:
-    #     flash("Error: Not possible to delete activity.")
-    #     return render_template(
-    #         "content/update_activity.html",
-    #         form=form,
-    #         activity_to_update=activity_to_delete,
-    #     )

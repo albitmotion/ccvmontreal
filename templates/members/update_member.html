@@ -19,7 +19,7 @@
      <img class="photo_big" src="{{ url_for('static', filename='images/icons/user.png') }}">
     {% endif %}
     <br>
-    <a class="btn blueButton" href="{{ url_for('update_member_password', id=register_to_update.id) }}">Upate Password</a>
+    <a class="btn blueButton" href="{{ url_for('update_member_password', id=register_to_update.id) }}">Update Password</a>
     <br>
 
     <strong>{{ form.name.label(class="form-label") }}</strong>
@@ -59,7 +59,9 @@
 
     <br/>
     {{ form.submit(class="btn blueButton") }}
-    <a class="btn btn-danger" href="{{ url_for('delete_member', id=register_to_update.id) }}">Delete</a>
+    {% if deletable %}
+      <a class="btn btn-danger" href="{{ url_for('delete_member', id=register_to_update.id) }}">Delete</a>
+    {% endif %}
   </form>
   <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
 

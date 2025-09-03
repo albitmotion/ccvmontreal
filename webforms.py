@@ -31,7 +31,7 @@ class MemberForm(FlaskForm):
         ],
     )
     organization = StringField("Organization:")
-    volunteers = IntegerField("Number Voluntters I manage:")
+    volunteers = IntegerField("Number Volunteers I manage:")
     member_pic = FileField("Member Pic:")
     update_pw = BooleanField("Update Password:")
     password_hash = PasswordField(

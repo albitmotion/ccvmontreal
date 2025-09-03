@@ -94,22 +94,6 @@ def update_membership(id):
     )
     return updateRegister.returnTemplate()
 
-    # form = MembershipForm()
-    # membership = Memberships.query.filter_by(id=id).first()
-    # member = Members.query.filter_by(id=membership.member_id).first()
-    # if form.validate_on_submit():
-    #     membership.start = form.start.data
-    #     membership.end = form.end.data
-    #     membership.remembered = form.remembered.data
-    #     db.session.commit()
-    #     flash("Membership updated successfully!")
-    # return render_template(
-    #     "/memberships/update_membership.html",
-    #     form=form,
-    #     member=member,
-    #     membership=membership,
-    # )
-
 
 @app.route("/delete_membership/<int:id>", methods=["GET", "POST"])
 def delete_membership(id):
@@ -133,22 +117,3 @@ def remind(id):
     return render_template(
         "/memberships/reminder.html", member=member, last_membership=last_membership
     )
-
-
-# Aline - Expired - jan
-# 2020-2021
-# 2021-2022
-# 2022-2023
-# 2023-2024 feb
-
-# Sev - Paid nov
-# 2022-2023
-# 2023-2024
-# 2024-2025
-# 2025-2026
-
-# Member 1 - Almost Expired - remembered
-# 2024-2025 - jul
-
-# Member 2 - Almost Expired - not remembered
-# 2024-2025 - jul

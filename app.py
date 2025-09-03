@@ -6,9 +6,6 @@ from flask_ckeditor import CKEditor
 
 from webforms import MemberForm, ExecutiveMemberForm, SurveyForm, MeetingForm
 
-# from routes.members import members_page
-# from yourapplication.simple_page import simple_page
-
 from sqlalchemy import desc
 from flask_migrate import Migrate
 
@@ -72,6 +69,7 @@ else:
     app.config["SQLALCHEMY_DATABASE_URI"] = (
         "mysql+pymysql://albitmotion:zL3)G01w@albitmotion.mysql.pythonanywhere-services.com/albitmotion$ccvmontreal"
     )
+    app.config['SQLALCHEMY_POOL_RECYCLE'] = 299
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ucocfesi3a50sp:pd433ef3bdce54e70213c225eeb3635b196db7de24db82f7bad98f30d35820253@c34u0gd6rbe7bo.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6eq465ijvjihi'
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
@@ -122,8 +120,6 @@ class Members(db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    # expiration_date = db.Column(db.DateTime)
-    # an user can have many docs
     documents = db.relationship("Memberships", backref="membership")
 
     def __repr__(self):
@@ -471,77 +467,6 @@ class UpdateRegister:
 
     def updateRegister(self):
         pass
-
-
-#
-#
-#
-#
-# def update_register(
-#     request,
-#     register,
-#     form,
-#     register_type,
-#     s3_folder,
-#     template_folder,
-#     file_field="file",
-# ):
-#     if request.method == "POST":
-#         unique_filename = ""
-#         if request.files[file_field]:
-#             if register.file:
-#                 delete_file(s3_folder + register.file)
-#             unique_filename = save_file(form.file.data, s3_folder)
-#             register.file = unique_filename
-#             register.filename = request.files[file_field].filename
-#
-#         # REDO THIS EVENTUALLY
-#         if register_type == "News":
-#             register.text = request.form.get("ckeditor")
-#             register.date = form.date.data
-#             register.author = form.author.data
-#             register.title = form.title.data
-#             register.type = form.type.data
-#
-#         # if register_type == "Task Repartition":
-#
-#         if register_type == "Member":
-#             register.name = form.name.data
-#             register.role = form.role.data
-#             register.email = form.email.data
-#             register.telephone = form.telephone.data
-#             register.organization = form.organization.data
-#             register.volunteers = form.volunteers.data
-#             # register.english = form.english.data
-#             # register.french = form.french.data
-#             # register.preferable = form.preferable.data
-#             if unique_filename:
-#                 register.member_pic = unique_filename
-#         if register_type == "Meeting":
-#             register.date = form.date.data
-#             register.attendees = form.attendees.data
-#             register.file = unique_filename
-#             if request.files["file"]:
-#                 register.minute = request.files["file"].filename
-#         try:
-#             db.session.commit()
-#
-#             flash(f"{register_type} updated successfully!")
-#             # return render_template(
-#             #     "content/update_news.html", form=form, news_to_update=register_to_update
-#             # )
-#         except:
-#             flash(f"Error: Not possible to update {register_type.lower()}.")
-#             # return render_template(
-#             #     "content/update_news.html", form=form, news_to_update=register_to_update
-#             # )
-#     # else:
-#     return render_template(
-#         f"{template_folder}/update_{register_type.lower().replace(" ", "_")}.html",
-#         form=form,
-#         register_to_update=register,
-#         s3_root=app.config["S3_ROOT"],
-#     )
 
 
 class DeleteRegister:

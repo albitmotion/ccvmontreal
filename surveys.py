@@ -66,36 +66,6 @@ def add_survey():
     )
     return addRegister.returnTemplate()
 
-    # if form.validate_on_submit():
-    #     survey = Surveys.query.filter_by(title=form.title.data).first()
-    #
-    #     if request.files["file"].filename:
-    #         unique_filename = save_file(form.file.data, "docs/surveys/")
-    #     form.file.data = unique_filename
-    #
-    #     if survey is None:
-    #         survey = Surveys(
-    #             title=form.title.data,
-    #             start=form.start.data,
-    #             end=form.end.data,
-    #             responders=form.responders.data,
-    #             file=form.file.data,
-    #         )
-    #         db.session.add(survey)
-    #         db.session.commit()
-    #         flash("Survey added successfully!")
-    #
-    #         title = form.title.data
-    #         form.title.data = ""
-    #         form.start.data = ""
-    #         form.end.data = ""
-    #
-    # return render_template(
-    #     "surveys/add_survey.html",
-    #     form=form,
-    #     title=title,
-    # )
-
 
 @app.route("/update_survey/<int:id>", methods=["GET", "POST"])
 def update_survey(id):
@@ -106,41 +76,6 @@ def update_survey(id):
         request, register, form, REGISTER_TYPE, S3_FOLDER, TEMPLATE_FOLDER
     )
     return updateRegister.returnTemplate()
-    # title = None
-    # survey_to_update = Surveys.query.get_or_404(id)
-    # if request.method == "POST":
-    #     survey_to_update.title = request.form["title"]
-    #     survey_to_update.start = request.form["start"]
-    #     survey_to_update.end = request.form["end"]
-    #     survey_to_update.responders = request.form["responders"]
-    #
-    #     # Save file name to database
-    #     if request.files["file"].filename:
-    #         if survey_to_update.file:
-    #             delete_file("docs/surveys/" + survey_to_update.file)
-    #         unique_filename = save_file(form.file.data, "docs/surveys/")
-    #
-    #     survey_to_update.file = unique_filename
-    #
-    #     try:
-    #         db.session.commit()
-    #         flash("Meeting updated successfully!")
-    #         return render_template(
-    #             "surveys/update_survey.html",
-    #             form=form,
-    #             survey_to_update=survey_to_update,
-    #         )
-    #     except:
-    #         flash("Error")
-    #         return render_template(
-    #             "surveys/update_survey.html",
-    #             form=form,
-    #             survey_to_update=survey_to_update,
-    #         )
-    # else:
-    #     return render_template(
-    #         "surveys/update_survey.html", form=form, survey_to_update=survey_to_update
-    #     )
 
 
 @app.route("/delete_survey/<int:id>", methods=["GET", "POST"])
@@ -151,29 +86,3 @@ def delete_survey(id):
         register, form, REGISTER_TYPE, S3_FOLDER, TEMPLATE_FOLDER
     )
     return deleteRegister.returnTemplate()
-    # title = None
-    # form = SurveyForm()
-    # try:
-    #     db.session.delete(survey_to_delete)
-    #     db.session.commit()
-    #     flash("Survey deleted successfully!")
-    #
-    #     if survey_to_delete.file:
-    #         delete_file("docs/surveys/" + survey_to_delete.file)
-    #
-    #     title = survey_to_delete.title
-    #
-    #     return render_template(
-    #         "surveys/update_survey.html",
-    #         form=form,
-    #         title=title,
-    #         survey_to_update=survey_to_delete,
-    #     )
-    # except:
-    #     flash("Error")
-    #     return render_template(
-    #         "surveys/update_survey.html",
-    #         form=form,
-    #         title=title,
-    #         survey_to_update=survey_to_delete,
-    #     )

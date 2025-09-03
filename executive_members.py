@@ -209,47 +209,6 @@ def add_executive_member():
         "executive_member_pic",
     )
     return addRegister.returnTemplate()
-    # name = None
-    # form = ExecutiveMemberForm()
-    # if form.validate_on_submit():
-    #     user = ExecutiveMembers.query.filter_by(email=form.email.data).first()
-    #     unique_filename = ""
-    #     # Save file name to database
-    #     if user is None:
-    #         if request.files["executive_member_pic"].filename:
-    #             # Upload Image
-    #             unique_filename = save_file(
-    #                 form.executive_member_pic.data, "images/executive_member_pics/"
-    #             )
-    #         hashed_pw = generate_password_hash(
-    #             form.password_hash.data, method="pbkdf2:sha256"
-    #         )
-    #         executiveMember = ExecutiveMembers(
-    #             name=form.name.data,
-    #             email=form.email.data,
-    #             bio=form.bio.data,
-    #             english=form.english.data,
-    #             french=form.french.data,
-    #             role=form.role.data,
-    #             order=form.order.data,
-    #             telephone=form.telephone.data,
-    #             organization=form.organization.data,
-    #             executive_member_pic=unique_filename,
-    #             password_hash=hashed_pw,
-    #         )
-    #         db.session.add(executiveMember)
-    #         db.session.commit()
-    #         flash(
-    #             "Executive Member <strong>%s</strong> added successfully!"
-    #             % form.name.data
-    #         )
-    # our_executive_members = ExecutiveMembers.query.order_by(ExecutiveMembers.name)
-    # return render_template(
-    #     "executive_members/add_executive_member.html",
-    #     form=form,
-    #     name=name,
-    #     our_executive_members=our_executive_members,
-    # )
 
 
 @app.route("/update_executive_member/<int:id>", methods=["GET", "POST"])
@@ -280,59 +239,6 @@ def update_executive_member(id):
         "executive_member_pic",
     )
     return updateRegister.returnTemplate()
-    # executive_member_to_update = ExecutiveMembers.query.get_or_404(id)
-    # if request.method == "POST":
-    #     executive_member_to_update.name = request.form["name"]
-    #     executive_member_to_update.role = request.form["role"]
-    #     executive_member_to_update.bio = request.form["bio"]
-    #     executive_member_to_update.email = request.form["email"]
-    #     executive_member_to_update.telephone = request.form["telephone"]
-    #     executive_member_to_update.order = request.form["order"]
-    #     executive_member_to_update.english = form.english.data
-    #     executive_member_to_update.french = form.french.data
-    #     # executive_member_to_update.preferable = form.preferable.data
-    #     executive_member_to_update.organization = request.form["organization"]
-    #
-    #     # Save file name to database
-    #     if request.files["executive_member_pic"]:
-    #         if executive_member_to_update.executive_member_pic:
-    #             delete_file(
-    #                 "images/executive_member_pics/"
-    #                 + executive_member_to_update.executive_member_pic
-    #             )
-    #         unique_filename = save_file(
-    #             form.executive_member_pic.data, "images/executive_member_pics/"
-    #         )
-    #         executive_member_to_update.executive_member_pic = unique_filename
-    #
-    #     try:
-    #         db.session.commit()
-    #         flash(
-    #             "Executive Member <strong>%s</strong> updated successfully!"
-    #             % executive_member_to_update.name
-    #         )
-    #         return render_template(
-    #             "executive_members/update_executive_member.html",
-    #             form=form,
-    #             executive_member_to_update=executive_member_to_update,
-    #             deletable=True,
-    #         )
-    #     except:
-    #         flash("Error")
-    #         return render_template(
-    #             "executive_members/update_executive_member.html",
-    #             form=form,
-    #             executive_member_to_update=executive_member_to_update,
-    #             deletable=True,
-    #         )
-    # else:
-    #     return render_template(
-    #         "executive_members/update_executive_member.html",
-    #         form=form,
-    #         executive_member_to_update=executive_member_to_update,
-    #         deletable=True,
-    #         s3_root=app.config["S3_ROOT"],
-    #     )
 
 
 @app.route("/delete_executive_member/<int:id>", methods=["GET", "POST"])
@@ -349,38 +255,6 @@ def delete_executive_member(id):
         "executive_member_pic",
     )
     return deleteRegister.returnTemplate()
-    # name = None
-    #
-    # try:
-    #     db.session.delete(executive_member_to_delete)
-    #     db.session.commit()
-    #
-    #     if executive_member_to_delete.executive_member_pic:
-    #         delete_file(
-    #             "images/executive_member_pics/"
-    #             + executive_member_to_delete.executive_member_pic
-    #         )
-    #
-    #     flash(
-    #         "Executive Member <strong>%s</strong> deleted successfully!"
-    #         % executive_member_to_delete.name
-    #     )
-    #
-    #     name = executive_member_to_delete.name
-    #
-    #     return render_template(
-    #         "executive_members/update_executive_member.html",
-    #         form=form,
-    #         name=name,
-    #         executive_member_to_update=executive_member_to_delete,
-    #     )
-    # except:
-    #     return render_template(
-    #         "executive_members/update_executive_member.html",
-    #         form=form,
-    #         name=name,
-    #         executive_member_to_update=executive_member_to_delete,
-    #     )
 
 
 @app.route("/update_executive_password/<int:id>", methods=["GET", "POST"])

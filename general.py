@@ -28,8 +28,6 @@ news_buttons = [
 
 def calculate_days_from_today(target_date, date_format="%Y-%m-%d"):
     today = date.today()
-    # target_date = datetime.strptime(target_date_str, date_format).date()
-
     delta = target_date - today
 
     if delta.days > 0:
