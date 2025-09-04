@@ -38,7 +38,7 @@
     </tr>
     {% for membership in memberships %}
       <tr>
-        <td class="firstCol"><a target="_blank" href="{{ url_for('static', filename='upload/memberships/' + membership.file|string ) }}"><i class="bi bi-file-pdf-fill" style="color:red"></i>{{ membership.name }}</a></td>
+        <td class="firstCol"><a target="_blank" href="{{ s3_root }}/docs/memberships/{{ membership.file|string }}"><i class="bi bi-file-pdf-fill" style="color:red"></i>{{ membership.name }}</a></td>
         <td>{{ membership.start.strftime('%Y-%m-%d') }}</td>
         <td>{{ membership.end.strftime('%Y-%m-%d') }}</td>
         {% if membership.remembered %}

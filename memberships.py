@@ -81,6 +81,7 @@ def update_memberships(id):
         first_membership=first_membership,
         last_membership=last_membership,
         memberships=memberships,
+        s3_root=app.config["S3_ROOT"],
     )
 
 
