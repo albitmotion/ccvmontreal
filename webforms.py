@@ -12,7 +12,7 @@ from wtforms import (
     ValidationError,
     SelectField,
 )
-from wtforms.validators import DataRequired, EqualTo, Length
+from wtforms.validators import DataRequired, NumberRange, EqualTo, Length
 from flask_ckeditor import CKEditorField
 
 
@@ -31,7 +31,7 @@ class MemberForm(FlaskForm):
         ],
     )
     organization = StringField("Organization:")
-    volunteers = IntegerField("Number Volunteers I manage:")
+    volunteers = IntegerField("Number Volunteers I manage:", validators=[NumberRange(min=0, message="Number must be non-negative.")])
     member_pic = FileField("Member Pic:")
     update_pw = BooleanField("Update Password:")
     password_hash = PasswordField(
