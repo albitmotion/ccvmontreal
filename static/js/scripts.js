@@ -189,10 +189,12 @@ function showUserPhoto() {
     document.getElementById("executive_member_area_menu").style.display = "none";
     document.getElementById("content_management_menu").style.display = "none";
   }
+  document.getElementById("becomeMember").style.display = "none";
 
 }
 function showLoginBnt() {
   document.getElementById("signIn").style.display = "block";
+  document.getElementById("becomeMember").style.display = "block";
 }
 function activateButton() {
   var buttons = document.getElementsByClassName("subMenuButton");

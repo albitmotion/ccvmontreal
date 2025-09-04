@@ -39,7 +39,7 @@
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <li class="nav-item dropdown" style="list-style-type:none;">
+        <li class="nav-item dropdown dropstart" style="list-style-type:none;">
           <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
               <img class="background_img" id="photo" src="">
@@ -47,7 +47,7 @@
               <img class="background_img" id="photo" src="">
 
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style="top: 50px;">
             <li><a class="dropdown-item hidden" href="{{ url_for('member_area', id=1) }}" id="member_area_menu">Member Area</a></li>
             <li><a class="dropdown-item hidden" href="{{ url_for('executive_member_area', id=1) }}" id="executive_member_area_menu">Executive Member Area</a></li>
             <li><a class="dropdown-item hidden" href="{{ url_for('content_management', id=1) }}" id="content_management_menu">Content Management</a></li>
@@ -57,7 +57,7 @@
         </li>
 
         <a class="btn signIn" id="signIn" href="{{ url_for('login') }}" role="button">Login</a>
-        <a class="btn becomeMember" href="{{ url_for('become_member') }}" role="button">Become a Member</a>
+        <a class="btn becomeMember" href="{{ url_for('become_member') }}" id="becomeMember" role="button">Become a Member</a>
       </form>
     </div>
   </div>
