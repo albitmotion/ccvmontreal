@@ -79,9 +79,9 @@ app.config["IS_EXECUTIVE_MEMBER"] = None
 app.config["SECRET_KEY"] = "secretKey"
 
 db = SQLAlchemy(app)
-with app.app_context():
-    db.create_all()
-migrate = Migrate(app, db)
+# with app.app_context():
+#     db.create_all()
+# migrate = Migrate(app, db)
 
 
 attendance = db.Table(
