@@ -213,6 +213,7 @@ def add_executive_member():
 
 @app.route("/update_executive_member/<int:id>", methods=["GET", "POST"])
 def update_executive_member(id):
+    deletable = request.args.get("deletable")
     form = ExecutiveMemberForm()
     register = ExecutiveMembers.query.get_or_404(id)
     form_fields = [
@@ -237,6 +238,7 @@ def update_executive_member(id):
         S3_FOLDER,
         TEMPLATE_FOLDER,
         "executive_member_pic",
+        deletable=deletable,
     )
     return updateRegister.returnTemplate()
 

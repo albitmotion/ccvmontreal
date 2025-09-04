@@ -414,6 +414,7 @@ class UpdateRegister:
         s3_folder,
         template_folder,
         file_field="file",
+        deletable=False,
     ):
         self.request = request
         self.register = register
@@ -422,6 +423,7 @@ class UpdateRegister:
         self.s3_folder = s3_folder
         self.template_folder = template_folder
         self.file_field = file_field
+        self.deletable = deletable
 
     def returnTemplate(self):
         if self.request.method == "POST":
@@ -455,15 +457,14 @@ class UpdateRegister:
                 flash(f"{self.register_type} updated successfully!")
             except:
                 flash(f"Error: Not possible to update {self.register_type.lower()}.")
-        deletable = False
-        if app.config["IS_EXECUTIVE_MEMBER"]:
-            deletable = True
+        # if app.config["IS_EXECUTIVE_MEMBER"]:
+        #     deletable = True
         return render_template(
             f"{self.template_folder}/update_{self.register_type.lower().replace(" ", "_")}.html",
             form=self.form,
             register_to_update=self.register,
             s3_root=app.config["S3_ROOT"],
-            deletable=deletable,
+            deletable=self.deletable,
         )
 
     def updateRegister(self):

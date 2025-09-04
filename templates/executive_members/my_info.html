@@ -34,7 +34,7 @@
     <br/>
     <strong>Organization: </strong>{{ executive_member.organization}}<br/>
     <br/><br/>
-    <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_executive_member', id=executive_member.id) }}" data-bs-title="Edit My Info">Edit My Info</button>
+    <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_executive_member', id=executive_member.id, deletable=0) }}" data-bs-title="Edit My Info">Edit My Info</button>
 
 
 </div>

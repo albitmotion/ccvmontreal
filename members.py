@@ -147,6 +147,7 @@ def add_member():
 
 @app.route("/update_member/<int:id>", methods=["GET", "POST"])
 def update_member(id):
+    deletable = request.args.get("deletable")
     form = MemberForm()
     register = Members.query.get_or_404(id)
     form_fields = [
@@ -164,7 +165,15 @@ def update_member(id):
     ]
 
     updateRegister = UpdateRegisterMember(
-        request, register, form, REGISTER_TYPE, S3_FOLDER, TEMPLATE_FOLDER, "member_pic"
+        request,
+        register,
+        form,
+        REGISTER_TYPE,
+        S3_FOLDER,
+        TEMPLATE_FOLDER,
+        "member_pic",
+        deletable=deletable,
+
     )
     return updateRegister.returnTemplate()
 

@@ -29,7 +29,7 @@
        <td>{{ our_member.role}}</td>
        <td>{{ our_member.organization}}</td>
        {% if executive_member %}
-        <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_member', id=our_member.id) }}" data-bs-title="Update Member {{ our_member.name }}"><i class="bi bi-gear"></i></button></td>
+        <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_member', id=our_member.id, deletable=1) }}" data-bs-title="Update Member {{ our_member.name }}"><i class="bi bi-gear"></i></button></td>
        {% else%}
        <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('view_member', id=our_member.id) }}" data-bs-title="View Member {{ our_member.name }}"><i class="bi bi-person-rolodex"></i></button></td>
         <!-- <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#editMemberModal"><i class="bi bi-person-rolodex"></i></button></td> -->
