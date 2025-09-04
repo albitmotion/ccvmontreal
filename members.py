@@ -94,10 +94,10 @@ def member_area():
         .first()
     )
     buttons = [
-        {"name": "My Info", "anchor": "myInfo"},
-        {"name": "My Membership", "anchor": "myMembership"},
-        {"name": "Meetings", "anchor": "meetings_list"},
-        {"name": "Contact Other Members", "anchor": "member_list"},
+        {"name": "My Info", "link": "#myInfo"},
+        {"name": "My Membership", "link": "#myMembership"},
+        {"name": "Meetings", "link": "#meetings_list"},
+        {"name": "Contact Other Members", "link": "#member_list"},
     ]
     return render_template(
         "members/member_area.html",
