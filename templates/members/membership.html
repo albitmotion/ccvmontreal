@@ -10,8 +10,7 @@
    {% for membership in Memberships %}
     <div class="col-md-2">
       <p class="text-center"><img src="{{ url_for('static', filename='images/icons/pdf.png') }}" style="width:100px" alt=""></p>
-      <p class="text-center"><a target="_blank" href="{{ url_for('static', filename='upload/memberships/' + membership.file ) }}">{{ membership.name }}</a></p>
-
+      <p class="text-center"><a target="_blank" href="{{ s3_root }}/docs/memberships/{{ membership.file|string }}">{{ membership.name }}</a></p>
     </div>
    {% endfor %}
   </div>
