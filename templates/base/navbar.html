@@ -9,33 +9,65 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Home</a>
+          <a class="nav-link" aria-current="page" href="{{ url_for('index') }}"><span lang="en">Home</span><span lang="fr">Accueil</span></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            About CCV
+            <span lang="en">About CCV</span>
+            <span lang="fr">À propos CCV</span>
+
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ url_for('mission') }}">Our Mission</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('executive_members') }}">Executive Members</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('member_directory') }}">Member Directory</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('annual_reports') }}">Annual Reports</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('mission') }}">
+              <span lang="en">Our Mission</span>
+              <span lang="fr">Notre mission</span>
+            </a></li>
+            <li><a class="dropdown-item" href="{{ url_for('executive_members') }}">
+              <span lang="en">Executive Members</span>
+              <span lang="fr">Membres Exécutifs</span>
+            </a></li>
+            <li><a class="dropdown-item" href="{{ url_for('member_directory') }}">
+              <span lang="en">Member Directory</span>
+              <span lang="fr">Répertoire des Membres</span>
+            </a></li>
+            <li><a class="dropdown-item" href="{{ url_for('annual_reports') }}">
+              <span lang="en">Annual Reports</span>
+              <span lang="fr">Rapports annuels</span>
+            </a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            News & Events
+            <span lang="en">News & Events</span>
+            <span lang="fr">Nouvelles & Événements</span>
+
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ url_for('news') }}">News from the vol. ecosystem</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('activity_calendar') }}">Activity Calendar</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('news') }}">
+              <span lang="en">News from the vol. ecosystem</span>
+              <span lang="fr">Actualités de l'écosystème bénévole</span>
+
+            </a></li>
+            <li><a class="dropdown-item" href="{{ url_for('activity_calendar') }}">
+              <span lang="en">Activity Calendar</span>
+              <span lang="fr">Calendrier d'activités</span>
+
+            </a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ url_for('resources') }}">Resources & Tools</a>
+          <a class="nav-link" aria-current="page" href="{{ url_for('resources') }}">
+            <span lang="en">Resources & Tools</span>
+            <span lang="fr">Ressources & Outils</span>
+
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ url_for('contact_us') }}">Contact Us</a>
+          <a class="nav-link" aria-current="page" href="{{ url_for('contact_us') }}">
+
+            <span lang="en">Contact Us</span>
+            <span lang="fr">Contactez-nous</span>
+          </a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -56,8 +88,18 @@
           </ul>
         </li>
 
-        <a class="btn signIn" id="signIn" href="{{ url_for('login') }}" role="button">Login</a>
-        <a class="btn becomeMember" href="{{ url_for('become_member') }}" id="becomeMember" role="button">Become a Member</a>
+
+        <a class="btn language" id="lang_btn" id="" onclick="changeLang()" role="button" style="margin-top: 10px;"><span lang="en">French</span><span lang="fr">English</span></a>
+
+        <a class="btn signIn" id="signIn" href="{{ url_for('login') }}" role="button">
+          <span lang="en">Login</span>
+          <span lang="fr">Se Connecter</span>
+        </a>
+        <a class="btn becomeMember" href="{{ url_for('become_member') }}" id="becomeMember" role="button">
+
+          <span lang="en">Become a Member</span>
+          <span lang="fr">Devenez Membre</span>
+        </a>
       </form>
     </div>
   </div>
@@ -67,8 +109,18 @@
 {% else %}
   <img class="background_img" src="{{ url_for('static', filename='images/background_01.jpg') }}">
 {% endif %}
-<div class="centered imgTitle">The Power Of Volunteer In Our Community</div>
-<div class="centered imgTitle2">Since 1983 supporting coordinators of volunteer services.</div>
+<div class="centered imgTitle">
+  <span lang="en">The Power Of Volunteer In Our Community</span>
+  <span lang="fr">La Force Du Bénévolat Dans Notre Communauté</span>
+
+
+</div>
+<div class="centered imgTitle2">
+  <span lang="en">Since 1983 supporting coordinators of volunteer services.</span>
+  <span lang="fr">Depuis 1983, nous soutenons les coordonnateurs de services bénévoles.</span>
+
+
+</div>
 <div class="centered buttonsTitle">
 {% for button in buttons %}
   <a class="btn subMenuButton" href="{{ button.link }}" role="button" active>{{ button.name }}</a>

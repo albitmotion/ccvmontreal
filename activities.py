@@ -30,7 +30,9 @@ class AddRegisterActivity(AddRegister):
     def createRegister(self):
         self.register = Activities()
         self.register.title = self.form.title.data
+        self.register.titleFR = self.form.titleFR.data
         self.register.text = self.form.text.data
+        self.register.textFR = self.form.textFR.data
         self.register.date = self.form.date.data
         self.register.hour = self.form.hour.data
         self.register.address = self.form.address.data

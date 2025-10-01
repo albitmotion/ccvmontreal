@@ -14,6 +14,7 @@ td, thead {
   background-color:#C2CB52;
   border-radius: 4px;
   margin: 10px;
+  width: 180px;
 }
 .becomeMember:hover {
   color=white;
@@ -28,6 +29,7 @@ td, thead {
   border-width: thin;
   margin: 10px;
   display: none;
+  width: 150px;
 }
 .signIn:hover {
   border-style: solid;

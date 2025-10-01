@@ -99,8 +99,9 @@ class MembershipForm(FlaskForm):
 
 class ActivityForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
-    # text = TextAreaField("Text", validators=[DataRequired()])
+    titleFR = StringField("Title", validators=[DataRequired()])
     text = CKEditorField("Text", validators=[DataRequired()])
+    textFR = CKEditorField("Text", validators=[DataRequired()])
     date = DateField("Date")
     hour = StringField("Hour")
     address = StringField("Address")

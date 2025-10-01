@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-  <h1>Home</h1>
+  <h1><span lang="en">Home</span><span lang="fr">Accueil</span></h1>
 
   {% if banner or quotes %}
   <div class="" style="display: grid;grid-template-columns:auto 360px">
@@ -9,10 +9,16 @@
   <div class="" style="display: grid;grid-template-columns:auto">
   {% endif %}
     <div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum congue ligula in interdum. Etiam sed felis non odio dapibus lacinia. Donec vel sodales justo, non fermentum est. Praesent non viverra massa. Integer faucibus, metus nec fermentum commodo, odio felis luctus mauris, in maximus felis tellus in risus. Aliquam sagittis sollicitudin ipsum eget fringilla. Phasellus nec quam odio.</p>
+      <span lang="en">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum congue ligula in interdum. Etiam sed felis non odio dapibus lacinia. Donec vel sodales justo, non fermentum est. Praesent non viverra massa. Integer faucibus, metus nec fermentum commodo, odio felis luctus mauris, in maximus felis tellus in risus. Aliquam sagittis sollicitudin ipsum eget fringilla. Phasellus nec quam odio.</p>
 
-      <p>Maecenas eu nulla lacinia, pellentesque tortor et, posuere odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et aliquet nisl. Vestibulum ut nibh nec risus tempor volutpat vitae nec quam. Nulla pharetra nisi dignissim leo vulputate, non efficitur neque scelerisque. Ut sed nunc porttitor, auctor urna sit amet, sagittis neque. Nulla faucibus felis vitae neque tempor, quis lacinia turpis tempus.</p>
+        <p>Maecenas eu nulla lacinia, pellentesque tortor et, posuere odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et aliquet nisl. Vestibulum ut nibh nec risus tempor volutpat vitae nec quam. Nulla pharetra nisi dignissim leo vulputate, non efficitur neque scelerisque. Ut sed nunc porttitor, auctor urna sit amet, sagittis neque. Nulla faucibus felis vitae neque tempor, quis lacinia turpis tempus.</p>
+      </span>
+      <span lang="fr">
+        <p>French Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum congue ligula in interdum. Etiam sed felis non odio dapibus lacinia. Donec vel sodales justo, non fermentum est. Praesent non viverra massa. Integer faucibus, metus nec fermentum commodo, odio felis luctus mauris, in maximus felis tellus in risus. Aliquam sagittis sollicitudin ipsum eget fringilla. Phasellus nec quam odio.</p>
 
+        <p>Maecenas eu nulla lacinia, pellentesque tortor et, posuere odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et aliquet nisl. Vestibulum ut nibh nec risus tempor volutpat vitae nec quam. Nulla pharetra nisi dignissim leo vulputate, non efficitur neque scelerisque. Ut sed nunc porttitor, auctor urna sit amet, sagittis neque. Nulla faucibus felis vitae neque tempor, quis lacinia turpis tempus.</p>
+      </span>
     </div>
       {% if banner or quotes %}
         <div>
@@ -59,7 +65,7 @@
   </div>
 
   <br/>
-  
+
 
   <script src="{{ url_for('static', filename='js/test.js') }}"></script>
 
