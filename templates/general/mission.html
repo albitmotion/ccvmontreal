@@ -1,11 +1,21 @@
 {% extends 'base/base.html' %}
 {% block content %}
-  <h1>Our Mission</h1>
+  <h1><span lang="en">Our Mission</span><span lang="fr">Notre mission</span></h1>
   <br/>
-  <p>The Community Council on Volunteerism (CCV) of Greater Montreal was created in 1983 by 7 founding organizations.​
-The CCV is a body of salaried professional coordinators of volunteer services; representing health, social service and community agencies.</p>
-<p><strong>The purpose of the Council is to promote volunteerism in the community and to enhance the profession of managers or administrators of volunteer services and programs.</strong></p>
+    <span lang="en">The Community Council on Volunteerism (CCV) of Greater Montreal was created in 1983 by 7 founding organizations.​
+    The CCV is a body of salaried professional coordinators of volunteer services; representing health, social service and community agencies.
+    <strong>The purpose of the Council is to promote volunteerism in the community and to enhance the profession of managers or administrators of volunteer services and programs.</strong>
+    </span>
+    <span lang="fr">Le Conseil communautaire du bénévolat (CCB) du Grand Montréal a été créé en 1983 par sept organismes fondateurs.
+Le CCB regroupe des coordonnateurs professionnels rémunérés de services bénévoles, représentant des organismes œuvrant dans les domaines de la santé, des services sociaux et communautaires.
+    <strong>L’objectif du Conseil est de promouvoir le bénévolat au sein de la communauté et de valoriser la profession des gestionnaires ou administrateurs de services et de programmes de bénévolat.</strong>
+    </span>
+
+
 <br/><br/><br/>
-<a class="btn becomeMember" href="/become_member" type="button" name="button">Learn about CCV membership</a>
+<a class="btn becomeMember" href="/become_member" type="button" name="button">
+  <span lang="en">Learn about CCV membership</span>
+  <span lang="fr">Découvrez l’adhésion au CCV</span>
+</a>
 
 {% endblock %}

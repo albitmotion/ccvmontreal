@@ -1,7 +1,10 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
-  <h1>Contact Us</h1>
+  <h1>
+    <span lang="en">Contact Us</span><span lang="fr">Contactez-nous</span>
+
+  </h1>
 
   <div class="col-md-12 container">
     <div class="d-flex justify-content-center">
@@ -16,7 +19,8 @@
 
 
              <label class="form-check-label" for="GeneralEnquiry">
-               General enquiry
+               <span lang="en">General enquiry</span><span lang="fr">Demande générale</span>
+
              </label>
            </div>
            <div class="form-check">
@@ -27,29 +31,49 @@
             {% endif %}
 
             <label class="form-check-label" for="Membership">
-              Membership
+              <span lang="en">Membership</span><span lang="fr">Adhésion</span>
+
+
             </label>
           </div>
 
 
-           <label for="name">Name:</label>
+           <label for="name">
+             <span lang="en">Name:</span><span lang="fr">Calendrier d'activités</span>
+
+           </label>
            <input type="text" class="form-control" name="name">
 
-           <label for="organization">Organization:</label>
+           <label for="organization">
+             <span lang="en">Organization:</span><span lang="fr">Organisation:</span>
+
+           </label>
+
            <input type="text" class="form-control" name="organization">
 
-           <label for="email">Your email:</label>
+           <label for="email">
+             <span lang="en">Your email:</span><span lang="fr">Votre email:</span>
+
+           </label>
            <input type="email" class="form-control" name="email">
 
-           <label for="phone">Telephone:</label>
+           <label for="phone">
+             <span lang="en">Telephone:</span><span lang="fr">Téléphone:</span>
+
+           </label>
            <input type="text" class="form-control" name="phone">
 
-           <label class="form-label" for="message">Your message:</label><br>
+           <label class="form-label" for="message">
+             <span lang="en">Your message:</span><span lang="fr">Votre message:</span>
+
+           </label><br>
            <textarea class="form-control" name="message" rows="5"></textarea>
 
            <br>
            <br>
-           <button type="submit" class="loginBtn">Send</button>
+           <button type="submit" class="loginBtn">
+             <span lang="en">Send</span><span lang="fr">Envoyer</span>
+             </button>
          </form>
        </div>
        <br>

@@ -1,23 +1,40 @@
 {% extends 'base/base.html' %}
 {% block content %}
-  <h1>Login</h1>
+  <h1>
+    <span lang="en">Login</span><span lang="fr">Se Connecter</span>
+  </h1>
 
   <div class="col-md-12 container">
     <div class="d-flex justify-content-center">
        <div class="col-md-7 shadow-lg rounded div-info">
          <div class="alert alert-danger fade hide" id="alertLogin" role="alert">
          </div>
-         <h4>Enter your Credentials to access your account</h4>
-         <h7>You need to be a CCV Member to have access to our Member Content</h7>
+         <h4>
+           <span lang="en">Enter your Credentials to access your account</span><span lang="fr">Entrez vos identifiants pour accéder à votre compte</span>
+
+         </h4>
+         <h7>
+           <span lang="en">You need to be a CCV Member to have access to our Member Content.</span><span lang="fr">Vous devez être membre du CCV pour avoir accès à notre contenu réservé aux membres.</span>
+
+         </h7>
          <br><br><br>
-         <label for="email">Email adress:</label>
+         <label for="email">
+           <span lang="en">Email adress:</span><span lang="fr">Adresse courriel :</span>
+
+         </label>
          <input type="email" class="form-control" id="email">
-         <label class="form-label" for="password">Password:</label>
+         <label class="form-label" for="password">
+           <span lang="en">Password:</span><span lang="fr">Mot de passe:</span>
+
+         </label>
          <input type="password" id="password" style="width:100%;" class="form-control" />
 
          <br>
          <br>
-         <button type="submit" form="form1" class="loginBtn" value="Submit" id="loginBtn" onclick="loginFn()">Login</button>
+         <button type="submit" form="form1" class="loginBtn" value="Submit" id="loginBtn" onclick="loginFn()">
+           <span lang="en">Login</span><span lang="fr">Se Connecter</span>
+
+         </button>
        </div>
        <br>
      </div>
