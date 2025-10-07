@@ -1,22 +1,35 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="taskRepartition">
-   <h3>Task Repartition Among Members</h3>
+   <h3>
+     <span lang="en">Task Repartition Among Members</span><span lang="fr">Répartition des tâches entre les membres</span>
+   </h3>
    <p>{{ task_repartitionText.text | safe }}</p>
    <div class="form-group">
     <br/>
     <div class="d-flex justify-content-between">
         <div></div>
         <div>
-          <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_task_repartition', id=1) }}" data-bs-title="Edit Task Repartition">Edit</button>
+          <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_task_repartition', id=1) }}" data-bs-title="Edit Task Repartition">
+            <span lang="en">Edit</span><span lang="fr">Modifier</span>
+
+          </button>
         </div>
    </div>
    <br>
    <br>
-   <h3>Task Repartition File History</h3>
+   <h3>
+     <span lang="en">Task Repartition File History</span><span lang="fr">Historique des fichiers de répartition des tâches</span>
+
+
+   </h3>
    <table class="table" id="taskRepartitionTable">
      <thead>
        <tr>
-         <th scope="col" class="firstCol">File</th>
-         <th scope="col">Edit</th>
+         <th scope="col" class="firstCol">
+           <span lang="en">File</span><span lang="fr">Fichier</span>
+         </th>
+         <th scope="col">
+           <span lang="en">Edit</span><span lang="fr">Modifier</span>
+           </th>
        </tr>
      </thead>
    {% for task_repartition_file in task_repartition_files %}
@@ -32,7 +45,10 @@
    <div class="d-flex justify-content-between">
        <div></div>
        <div>
-         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_task_repartition_file') }}" data-bs-title="Add Task Repartition File">Add Task Repartition File</button>
+         <button class="btn blueButton" style="padding:0px; width:350px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_task_repartition_file') }}" data-bs-title="Add Task Repartition File">
+           <span lang="en">Add Task Repartition File</span><span lang="fr">Ajouter un fichier de répartition des tâches</span>
+
+         </button>
        </div>
   </div>
 

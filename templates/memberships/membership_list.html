@@ -1,19 +1,38 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="paymentList">
-   <h3>Payment Statuses</h3>
+   <h3>
+     <span lang="en">Payment Statuses</span><span lang="fr">Statuts de Paiement</span>
+
+   </h3>
    <input type="text" class="form-control" id="memberships-search-input" onkeyup="filterMembership()" placeholder="Search"/>
    <div class="form-group">
      <table class="table" id="membershipTable">
        <thead>
          <tr>
            <th scope="col" class="firstCol"></th>
-           <th scope="col" class="firstCol">Name</th>
-           <th scope="col">Role</th>
-           <th scope="col">Organization</th>
-           <th scope="col">Status</th>
-           <th scope="col">Member Since</th>
-           <th scope="col">Expiration Date</th>
-           <th scope="col">Reminded</th>
-           <th scope="col">Edit</th>
+           <th scope="col" class="firstCol">
+             <span lang="en">Name</span><span lang="fr">Nom</span>
+             </th>
+           <th scope="col">
+             <span lang="en">Role</span><span lang="fr">Rôle</span>
+             </th>
+           <th scope="col">
+             <span lang="en">Organization</span><span lang="fr">Organisation</span>
+             </th>
+           <th scope="col">
+             <span lang="en">Status</span><span lang="fr">Statut</span>
+             </th>
+           <th scope="col">
+             <span lang="en">Member Since</span><span lang="fr">Membre depuis</span>
+             </th>
+           <th scope="col">
+             <span lang="en">Expiration Date</span><span lang="fr">Date d'expiration</span>
+             </th>
+           <th scope="col">
+             <span lang="en">Reminded</span><span lang="fr">Rappelée</span>
+             </th>
+           <th scope="col">
+             <span lang="en">Edit</span><span lang="fr">Modifier</span>
+             </th>
          </tr>
        </thead>
      {% for member_payment in member_payments %}
@@ -46,7 +65,10 @@
     <div class="d-flex justify-content-between">
         <div></div>
         <div>
-           <a class="btn blueButton" onClick="downloadPayments()" role="button">Download</a>
+           <a class="btn blueButton" onClick="downloadPayments()" role="button">
+             <span lang="en">Download</span><span lang="fr">Télécharger</span>
+
+           </a>
         </div>
     </div>
   </div>

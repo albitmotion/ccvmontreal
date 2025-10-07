@@ -1,13 +1,24 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="activities">
-  <h3>Activities</h3>
+  <h3>
+    <span lang="en">Activities</span><span lang="fr">Activités</span>
+
+  </h3>
 
   <table class="table" id="usersTable">
     <thead>
       <tr>
-        <th scope="col" class="firstCol">Image</th>
-        <th scope="col" class="firstCol">Title</th>
-        <th scope="col">Date</th>
-        <th scope="col">Edit</th>
+        <th scope="col" class="firstCol">
+          <span lang="en">Image</span><span lang="fr">Image</span>
+          </th>
+        <th scope="col" class="firstCol">
+          <span lang="en">Title</span><span lang="fr">Titre</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Date</span><span lang="fr">Date</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Edit</span><span lang="fr">Modifier</span>
+          </th>
       </tr>
     </thead>
   {% for activity in activities %}
@@ -27,7 +38,9 @@
   <div class="d-flex justify-content-between">
       <div></div>
       <div>
-        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_activity') }}" data-bs-title="Add New Activity">Add New Activity</button>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_activity') }}" data-bs-title="Add New Activity">
+          <span lang="en">Add New Activity</span><span lang="fr">Ajouter une nouvelle activité</span>
+        </button>
       </div>
  </div>
 

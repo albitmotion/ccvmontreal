@@ -1,14 +1,25 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="meetings_list">
-   <h3>Meetings</h3>
+   <h3>
+     <span lang="en">Meetings</span><span lang="fr">Réunions</span>
+
+   </h3>
    <input type="text" class="form-control" id="meeting-search-input" onkeyup="filterMeeting()" placeholder="Search"/>
    <table class="table" id="meetingTable">
    <thead>
      <tr>
-       <th class="firstCol" scope="col">Date</th>
-       <th scope="col">Minute</th>
-       <th scope="col">Attendees</th>
+       <th class="firstCol" scope="col">
+         <span lang="en">Date</span><span lang="fr">Date</span>
+         </th>
+       <th scope="col">
+         <span lang="en">Minute</span><span lang="fr">Minute</span>
+         </th>
+       <th scope="col">
+         <span lang="en">Attendees</span><span lang="fr">Participants</span>
+         </th>
        {% if executive_member %}
-       <th scope="col">Edit</th>
+       <th scope="col">
+         <span lang="en">Edit</span><span lang="fr">Modifier</span>
+         </th>
        {% endif %}
      </tr>
    </thead>
@@ -30,7 +41,10 @@
    <div class="d-flex justify-content-between">
        <div></div>
        <div>
-         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_meeting') }}" data-bs-title="Add New Meeting">Add New Meeting</button>
+         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_meeting') }}" data-bs-title="Add New Meeting">
+           <span lang="en">Add New Meeting</span><span lang="fr">Ajouter une nouvelle réunion</span>
+
+         </button>
        </div>
   </div>
   {% endif %}

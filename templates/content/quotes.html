@@ -1,14 +1,26 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="quotes">
-  <h3>Quotes</h3>
+  <h3>
+    <span lang="en">Quotes</span><span lang="fr">Citations</span>
+    </h3>
 
   <table class="table" id="usersTable">
     <thead>
       <tr>
-        <th scope="col" class="firstCol">Title</th>
-        <th scope="col">Author</th>
-        <th scope="col">Organization</th>
-        <th scope="col">Visible</th>
-        <th scope="col">Edit</th>
+        <th scope="col" class="firstCol">
+          <span lang="en">Title</span><span lang="fr">Titre</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Author</span><span lang="fr">Auteur</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Organization</span><span lang="fr">Organisation</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Visible</span><span lang="fr">Visible</span>
+          </th>
+        <th scope="col">
+
+          Edit</th>
       </tr>
     </thead>
   {% for quote in quotes %}
@@ -25,7 +37,9 @@
   <div class="d-flex justify-content-between">
       <div></div>
       <div>
-        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_quote') }}" data-bs-title="Add New Quote">Add New Quote</button>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_quote') }}" data-bs-title="Add New Quote">
+          <span lang="en">Add New Quote</span><span lang="fr">Ajouter un nouveau citations</span>
+          </button>
       </div>
  </div>
 

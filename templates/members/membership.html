@@ -1,5 +1,7 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="myMembership">
-   <h3>My Membership</h3>
+   <h3>
+     <span lang="en">My Membership</span><span lang="fr">Mon adhésion</span>
+     </h3>
    {% if first_membership %}
      <p ><strong>Member Since:</strong> {{ first_membership.start.strftime('%Y-%m-%d') }}</p>
      <p ><strong>Expiration Date:</strong> {{ last_membership.end.strftime('%Y-%m-%d') }}</p>

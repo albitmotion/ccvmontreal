@@ -1,12 +1,21 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="annualReports">
-  <h3>Annual Reports</h3>
+  <h3>
+    <span lang="en">Annual Reports</span><span lang="fr">Rapports annuels</span>
+
+  </h3>
 
   <table class="table" id="usersTable">
     <thead>
       <tr>
-        <th scope="col" class="firstCol">Filename</th>
-        <th scope="col">Visible</th>
-        <th scope="col">Edit</th>
+        <th scope="col" class="firstCol">
+          <span lang="en">Filename</span><span lang="fr">Filename</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Visible</span><span lang="fr">Visible</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Edit</span><span lang="fr">Modifier</span>
+          </th>
       </tr>
     </thead>
   {% for annualReport in annualReports %}
@@ -25,7 +34,9 @@
   <div class="d-flex justify-content-between">
       <div></div>
       <div>
-        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_annualReport') }}" data-bs-title="Add New Annual Report">Add New Annual Report</button>
+        <button class="btn blueButton" style="padding:0px;width:330px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_annualReport') }}" data-bs-title="Add New Annual Report">
+          <span lang="en">Add New Annual Report</span><span lang="fr">Ajouter un nouveau rapport annuel</span>
+        </button>
       </div>
  </div>
 

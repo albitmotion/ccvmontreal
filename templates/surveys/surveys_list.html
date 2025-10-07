@@ -1,15 +1,30 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="surveysList">
-   <h3>Surveys</h3>
+   <h3>
+     <span lang="en">Surveys</span><span lang="fr">Enquêtes</span>
+
+   </h3>
    <input type="text" class="form-control" id="survey-search-input" onkeyup="filterSurvey()" placeholder="Search"/>
    <table class="table" id="surveyTable">
    <thead>
      <tr>
-       <th scope="col" class="firstCol">Title</th>
-       <th scope="col">Start</th>
-       <th scope="col">End</th>
-       <th scope="col">Responders</th>
-       <th scope="col">Result</th>
-       <th scope="col">Edit</th>
+       <th scope="col" class="firstCol">
+         <span lang="en">Title</span><span lang="fr">Titre</span>
+         </th>
+       <th scope="col">
+         <span lang="en">Start</span><span lang="fr">Commencer</span>
+         </th>
+       <th scope="col">
+         <span lang="en">End</span><span lang="fr">Fin</span>
+         </th>
+       <th scope="col">
+         <span lang="en">Responders</span><span lang="fr">Répondants</span>
+         </th>
+       <th scope="col">
+         <span lang="en">Result</span><span lang="fr">Résultat</span>
+         </th>
+       <th scope="col">
+         <span lang="en">Edit</span><span lang="fr">Modifier</span>
+         </th>
      </tr>
    </thead>
    {% for survey in surveys %}
@@ -30,7 +45,10 @@
    <div class="d-flex justify-content-between">
        <div></div>
        <div>
-         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_survey') }}" data-bs-title="Add New Survey">Add New Survey</button>
+         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_survey') }}" data-bs-title="Add New Survey">
+           <span lang="en">Add New Survey</span><span lang="fr">Ajouter une nouvelle enquête</span>
+
+         </button>
        </div>
   </div>
 

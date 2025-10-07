@@ -80,11 +80,21 @@
 
           </a>
           <ul class="dropdown-menu" style="top: 50px;">
-            <li><a class="dropdown-item hidden" href="{{ url_for('member_area', id=1) }}" id="member_area_menu">Member Area</a></li>
-            <li><a class="dropdown-item hidden" href="{{ url_for('executive_member_area', id=1) }}" id="executive_member_area_menu">Executive Member Area</a></li>
-            <li><a class="dropdown-item hidden" href="{{ url_for('content_management', id=1) }}" id="content_management_menu">Content Management</a></li>
-            <li><a class="dropdown-item hidden" href="{{ url_for('tutorials') }}" id="tutorials_menu">Video Tutorials</a></li>
-            <li><a class="dropdown-item hidden" onclick="logout()">Logout</a></li>
+            <li><a class="dropdown-item hidden" href="{{ url_for('member_area', id=1) }}" id="member_area_menu">
+              <span lang="en">Member Area</span><span lang="fr">Espace membre</span>
+              </a></li>
+            <li><a class="dropdown-item hidden" href="{{ url_for('executive_member_area', id=1) }}" id="executive_member_area_menu">
+              <span lang="en">Executive Member Area</span><span lang="fr">Espace membre exécutif</span>
+              </a></li>
+            <li><a class="dropdown-item hidden" href="{{ url_for('content_management', id=1) }}" id="content_management_menu">
+              <span lang="en">Content Management</span><span lang="fr">Gestion de contenu</span>
+              </a></li>
+            <li><a class="dropdown-item hidden" href="{{ url_for('tutorials') }}" id="tutorials_menu">
+              <span lang="en">Video Tutorials</span><span lang="fr">Tutoriels vidéo</span>
+              </a></li>
+            <li><a class="dropdown-item hidden" onclick="logout()">
+              <span lang="en">Logout</span><span lang="fr">Déconnexion</span>
+              </a></li>
           </ul>
         </li>
 
@@ -123,7 +133,9 @@
 </div>
 <div class="centered buttonsTitle">
 {% for button in buttons %}
-  <a class="btn subMenuButton" href="{{ button.link }}" role="button" active>{{ button.name }}</a>
+  <a class="btn subMenuButton" href="{{ button.link }}" role="button" active>
+    <span lang="en">{{ button.name }}</span><span lang="fr">{{ button.nameFR }}</span>
+    </a>
 {% endfor %}
 </div>
 <br/><br/>

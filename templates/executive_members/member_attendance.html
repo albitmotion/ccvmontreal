@@ -1,9 +1,8 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="attendanceList">
-  <!-- <div class="alert alert-danger fade hide" id="alertAttendance" role="alert">
-  </div>
-  <div class="alert alert-warning fade hide" id="warningAttendance" role="alert">
-  </div> -->
-   <h3>Member Attendance</h3>
+   <h3>
+     <span lang="en">Member Attendance</span><span lang="fr">Présence des Membres</span>
+
+   </h3>
 
    <div class="input-group">
        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="YYYY-mm-dd" aria-describedby="validationTooltipUsernamePrepend" required>
@@ -22,7 +21,9 @@
          <tr>
 
            <th scope="col" class="firstCol"></th>
-           <th scope="col" class="firstCol">Name</th>
+           <th scope="col" class="firstCol">
+             <span lang="en">Name</span><span lang="fr">Nom</span>
+             </th>
            {% for meeting in meetings %}
             <th scope="col">
               <button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_meeting_attendance', id=meeting.id) }}" data-bs-title="Update Meeting Attendance: {{ meeting.date.strftime('%Y-%m-%d') }}">{{ meeting.date.strftime('%Y-%m-%d') }}</button>
@@ -61,8 +62,14 @@
     <div class="d-flex justify-content-between">
         <div></div>
         <div>
-          <a class="btn blueButton" onClick="changeStatuses()" role="button">Save</a>
-           <a class="btn blueButton" onClick="downloadAttendance()" role="button">Download</a>
+          <a class="btn blueButton" onClick="changeStatuses()" role="button">
+            <span lang="en">Save</span><span lang="fr">Sauvegarder</span>
+
+          </a>
+           <a class="btn blueButton" onClick="downloadAttendance()" role="button">
+             <span lang="en">Download</span><span lang="fr">Télécharger</span>
+
+           </a>
         </div>
    </div>
 

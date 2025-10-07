@@ -1,13 +1,24 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="news">
-  <h3>News</h3>
+  <h3>
+    <span lang="en">News</span><span lang="fr">Nouvelles</span>
+
+  </h3>
 
   <table class="table" id="usersTable">
     <thead>
       <tr>
-        <th scope="col" class="firstCol">Image</th>
-        <th scope="col" class="firstCol">New</th>
-        <th scope="col">Type</th>
-        <th scope="col">Edit</th>
+        <th scope="col" class="firstCol">
+          <span lang="en">Image</span><span lang="fr">Image</span>
+          </th>
+        <th scope="col" class="firstCol">
+          <span lang="en">New</span><span lang="fr">Nouvelle</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Type</span><span lang="fr">Type</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Edit</span><span lang="fr">Modifier</span>
+          </th>
       </tr>
     </thead>
   {% for new in news %}
@@ -27,7 +38,9 @@
   <div class="d-flex justify-content-between">
       <div></div>
       <div>
-        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_news') }}" data-bs-title="Add New News">Add New News</button>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_news') }}" data-bs-title="Add New News">
+          <span lang="en">Add New News</span><span lang="fr">Ajouter de nouvelles nouvelles</span>
+        </button>
       </div>
  </div>
 

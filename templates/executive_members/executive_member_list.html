@@ -1,14 +1,24 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="executive_member_list">
-   <h3>Executive Members</h3>
+   <h3>
+     <span lang="en">Executive Members</span><span lang="fr">Membres Exécutifs</span>
+   </h3>
    <input type="text" class="form-control" id="executivMember-search-input" onkeyup="filterExecutiveMember()" placeholder="Search"/>
    <table class="table" id="executiveMemberTable">
      <thead>
        <tr>
          <th scope="col" class="firstCol"></th>
-         <th scope="col" class="firstCol">Name</th>
-         <th scope="col">Role</th>
-         <th scope="col">Organization</th>
-         <th scope="col">Edit</th>
+         <th scope="col" class="firstCol">
+           <span lang="en">Name</span><span lang="fr">Nom</span>
+           </th>
+         <th scope="col">
+           <span lang="en">Role</span><span lang="fr">Rôle</span>
+           </th>
+         <th scope="col">
+           <span lang="en">Organization</span><span lang="fr">Organisation</span>
+           </th>
+         <th scope="col">
+           <span lang="en">Edit</span><span lang="fr">Modifier</span>
+           </th>
        </tr>
      </thead>
    {% for our_executive_member in our_executive_members %}
@@ -30,7 +40,10 @@
    <div class="d-flex justify-content-between">
        <div></div>
        <div>
-         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_executive_member') }}" data-bs-title="Add New Executive Member">Add New Executive Member</button>
+         <button class="btn blueButton" style="padding:0px;width:350px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_executive_member') }}" data-bs-title="Add New Executive Member">
+           <span lang="en">Add New Executive Member</span><span lang="fr">Ajouter un nouveau membre exécutif</span>
+
+         </button>
        </div>
   </div>
 

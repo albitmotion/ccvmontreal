@@ -1,12 +1,20 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="banners">
-  <h3>Banners</h3>
+  <h3>
+    <span lang="en">Banners</span><span lang="fr">Bannières</span>
+    </h3>
 
   <table class="table" id="usersTable">
     <thead>
       <tr>
-        <th scope="col" class="firstCol">Filename</th>
-        <th scope="col">Visible</th>
-        <th scope="col">Edit</th>
+        <th scope="col" class="firstCol">
+          <span lang="en">Filename</span><span lang="fr">Nom de fichier</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Visible</span><span lang="fr">Visible</span>
+          </th>
+        <th scope="col">
+          <span lang="en">Edit</span><span lang="fr">Modifier</span>
+          </th>
       </tr>
     </thead>
   {% for banner in banners %}
@@ -25,7 +33,9 @@
   <div class="d-flex justify-content-between">
       <div></div>
       <div>
-        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_banner') }}" data-bs-title="Add New Banner">Add New Banner</button>
+        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_banner') }}" data-bs-title="Add New Banner">
+          <span lang="en">Add New Banner</span><span lang="fr">Ajouter une nouvelle bannière</span>
+        </button>
       </div>
  </div>
 

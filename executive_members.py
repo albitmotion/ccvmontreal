@@ -153,14 +153,14 @@ def executive_member_area():
         member_payment["memberships"] = memberships
         member_payments.append(member_payment)
     buttons = [
-        {"name": "My Info", "link": "#myInfo"},
-        {"name": "Task Repartition", "link": "#taskRepartition"},
-        {"name": "Payment Status", "link": "#paymentList"},
-        {"name": "Member Attendance", "link": "#attendanceList"},
-        {"name": "Surveys", "link": "#surveysList"},
-        {"name": "Meetings", "link": "#meetings_list"},
-        {"name": "Executive Members", "link": "#executive_member_list"},
-        {"name": "Members", "link": "#member_list"},
+        {"name": "My Info", "nameFR": "Mes informations", "link": "#myInfo"},
+        {"name": "Task Repartition", "nameFR": "Task Repartition", "link": "#taskRepartition"},
+        {"name": "Payment Status", "nameFR": "Statut du paiement", "link": "#paymentList"},
+        {"name": "Member Attendance", "nameFR": "Présence des membres", "link": "#attendanceList"},
+        {"name": "Surveys", "nameFR": "Enquêtes", "link": "#surveysList"},
+        {"name": "Meetings", "nameFR": "Réunions", "link": "#meetings_list"},
+        {"name": "Executive Members", "nameFR": "Membres exécutifs", "link": "#executive_member_list"},
+        {"name": "Members", "nameFR": "Membres", "link": "#member_list"},
     ]
     return render_template(
         "executive_members/executive_member_area.html",
@@ -308,11 +308,11 @@ def content_management():
     banners = Banners.query.order_by(Banners.filename)
     quotes = Quotes.query.order_by(Quotes.title)
     buttons = [
-        {"name": "Activities", "link": "#activities"},
-        {"name": "News", "link": "#news"},
-        {"name": "Annual Reports", "link": "#annualReports"},
-        {"name": "Banners", "link": "#banners"},
-        {"name": "Quotes", "link": "#quotes"},
+        {"name": "Activities", "nameFR": "Activités", "link": "#activities"},
+        {"name": "News", "nameFR": "Nouvelles", "link": "#news"},
+        {"name": "Annual Reports", "nameFR": "Rapports annuels", "link": "#annualReports"},
+        {"name": "Banners", "nameFR": "Bannières", "link": "#banners"},
+        {"name": "Quotes", "nameFR": "Citations", "link": "#quotes"},
     ]
     return render_template(
         "content/content_management.html",
