@@ -10,49 +10,50 @@
     {% endif %}
     <br>
     <br>
-    <strong>
-      <span lang="en">Name:</span><span lang="fr">Nom:</span>
-    </strong>{{ executive_member.name}}<br/>
-    <strong>
-      <span lang="en">Role:</span><span lang="fr">Rôle:</span>
-    </strong>{{ executive_member.role}}<br/>
-    <strong>
-      <span lang="en">Email:</span><span lang="fr">Email:</span>
-    </strong>{{ executive_member.email}}<br/>
-    <strong>
-      <span lang="en">Phone Number:</span><span lang="fr">Numéro de téléphone:</span>
-    </strong>{{ executive_member.telephone}}<br/>
-    <strong>
-      <span lang="en">English:</span><span lang="fr">Anglais:</span>
-    </strong>
-    {% if executive_member.english == True %}
-      Yes
-    {% else %}
-      No
-    {% endif %}
-    <br/>
-    <strong>
-      <span lang="en">French:</span><span lang="fr">Français:</span>
-    </strong>
-    {% if executive_member.french == True %}
-      Yes
-    {% else %}
-      No
-    {% endif %}
-    <br/>
-    <strong>
-      <span lang="en">Preferable:</span><span lang="fr">Préférable:</span>
-    </strong>
-    {% if executive_member.preferable == 1 %}
-      English
-    {% else %}
-      French
-    {% endif %}
-    <br/>
-    <strong>
-      <span lang="en">Organization:</span><span lang="fr">Organisation:</span>
 
-     </strong>{{ executive_member.organization}}<br/>
+    <span lang="en"><strong>Name:</strong></span><span lang="fr"><strong>Nom:</strong></span>
+    <span>{{ executive_member.name}}</span><br/>
+
+    <span lang="en"><strong>Role:</strong></span><span lang="fr"><strong>Rôle:</strong></span>
+    <span>{{ executive_member.role}}</span><br/>
+
+    <span lang="en"><strong>Email:</strong></span><span lang="fr"><strong>Email:</strong></span>
+    <span>{{ executive_member.email}}</span><br/>
+
+    <span lang="en"><strong>Phone Number:</strong></span><span lang="fr"><strong>Numéro de téléphone:</strong></span>
+    <span>{{ executive_member.telephone}}</span><br/>
+
+    <span lang="en"><strong>English:</strong></span><span lang="fr"><strong>Anglais:</strong></span>
+    <span>
+      {% if executive_member.english == True %}
+        Yes
+      {% else %}
+        No
+      {% endif %}
+    </span><br/>
+
+    <span lang="en"><strong>French:</strong></span><span lang="fr"><strong>Français:</strong></span>
+    <span>
+      {% if executive_member.french == True %}
+        Yes
+      {% else %}
+        No
+      {% endif %}
+    </span><br/>
+
+    <span lang="en"><strong>Preferable:</strong></span><span lang="fr"><strong>Préférable:</strong></span>
+    <span>
+      {% if executive_member.preferable == 1 %}
+        English
+      {% else %}
+        French
+      {% endif %}
+    </span><br/>
+
+
+    <span lang="en"><strong>Organization:</strong></span><span lang="fr"><strong>Organisation:</strong></span>
+    <span>{{ executive_member.organization}}</span><br/>
+    
     <br/><br/>
     <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_executive_member', id=executive_member.id, deletable=0) }}" data-bs-title="Edit My Info">
       <span lang="en">Edit My Info</span><span lang="fr">Modifier mes informations</span>

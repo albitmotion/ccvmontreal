@@ -35,11 +35,13 @@ function updatePage() {
     console.log(spans[i])
     var spanLang = spans[i].getAttribute("lang");
     console.log(spanLang)
-    if ( spanLang === langInit ) {
-      spans[i].style = "display:block"
-    }
-    else {
-      spans[i].style = "display:none"
+    if (spanLang != null) {
+      if ( spanLang === langInit ) {
+        spans[i].style = "display:contents"
+      }
+      else {
+        spans[i].style = "display:none"
+      }
     }
   }
 }
