@@ -10,15 +10,59 @@
   {% endif %}
     <div>
       <span lang="en">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum congue ligula in interdum. Etiam sed felis non odio dapibus lacinia. Donec vel sodales justo, non fermentum est. Praesent non viverra massa. Integer faucibus, metus nec fermentum commodo, odio felis luctus mauris, in maximus felis tellus in risus. Aliquam sagittis sollicitudin ipsum eget fringilla. Phasellus nec quam odio.</p>
+<p><strong>Connecting Volunteer Leaders Across Sectors</strong></p>
 
-        <p>Maecenas eu nulla lacinia, pellentesque tortor et, posuere odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et aliquet nisl. Vestibulum ut nibh nec risus tempor volutpat vitae nec quam. Nulla pharetra nisi dignissim leo vulputate, non efficitur neque scelerisque. Ut sed nunc porttitor, auctor urna sit amet, sagittis neque. Nulla faucibus felis vitae neque tempor, quis lacinia turpis tempus.</p>
-      </span>
-      <span lang="fr">
-        <p>French Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum congue ligula in interdum. Etiam sed felis non odio dapibus lacinia. Donec vel sodales justo, non fermentum est. Praesent non viverra massa. Integer faucibus, metus nec fermentum commodo, odio felis luctus mauris, in maximus felis tellus in risus. Aliquam sagittis sollicitudin ipsum eget fringilla. Phasellus nec quam odio.</p>
+<p>The Community Council on Volunteerism (CCV) is a professional network of volunteer program managers working in healthcare, social services, and community-based organizations. Founded in 1983 by seven pioneering agencies, CCV continues to grow through the active involvement of its members.</p>
 
-        <p>Maecenas eu nulla lacinia, pellentesque tortor et, posuere odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et aliquet nisl. Vestibulum ut nibh nec risus tempor volutpat vitae nec quam. Nulla pharetra nisi dignissim leo vulputate, non efficitur neque scelerisque. Ut sed nunc porttitor, auctor urna sit amet, sagittis neque. Nulla faucibus felis vitae neque tempor, quis lacinia turpis tempus.</p>
-      </span>
+<p>Our organization has been created to serve the English community of Montreal, <strong>and our meetings and communications are in English.</strong></p>
+
+<p>We exist to:</p>
+
+<ul>
+<li><strong>Promote volunteerism</strong> across our communities</li>
+<li><strong>Support and elevate</strong> the profession of volunteer management</li>
+<li><strong>Foster collaboration</strong> among coordinators facing shared challenges</li>
+</ul>
+
+<p>CCV provides a dynamic space to exchange ideas, share tools, and build strategies that strengthen volunteer programs.</p>
+
+
+<a class="btn becomeMember" lang="en" href="{{ url_for('become_member') }}" id="becomeMember" role="button">
+  <span>JOIN US!</span>
+</a>
+
+<a class="btn becomeMember" href="{{ url_for('member_directory') }}" id="memberDirectory" style="width:300px" role="button">
+  <span>SEE OUR MEMBER LIST</span>
+</a>
+</span>
+
+
+<span lang="fr">
+
+<p><strong>Relier les leaders du bénévolat à travers les secteurs</strong></p>
+<p>Le Community Council on Volunteerism (CCV) est un réseau professionnel réunissant des gestionnaires de programmes de bénévolat œuvrant dans les domaines de la santé, des services sociaux et des organismes communautaires. Fondé en 1983 par sept agences pionnières, le CCV continue de croître grâce à l’engagement actif de ses membres.</p>
+
+<p>Notre organisation a été créée pour servir la communauté anglophone de Montréal, <strong>et nos réunions ainsi que nos communications se déroulent en anglais.</strong></p>
+
+<p>Nous existons pour:</p>
+
+<ul>
+  <li><strong>Promouvoir le bénévolat</strong> au sein de nos communautés</li>
+  <li><strong>Soutenir et valoriser</strong> la profession de gestion du bénévolat</li>
+  <li><strong>Favoriser la collaboration</strong> entre les coordonnateurs confrontés à des défis communs</li>
+</ul>
+
+<p>Le CCV offre un espace dynamique pour échanger des idées, partager des outils et élaborer des stratégies visant à renforcer les programmes de bénévolat.</p>
+
+<a class="btn becomeMember" lang="fr" href="{{ url_for('become_member') }}" id="becomeMember" role="button">
+  <span >REJOIGNEZ-NOUS!</span>
+</a>
+
+<a class="btn becomeMember" href="{{ url_for('member_directory') }}" id="memberDirectory" style="width:300px" role="button">
+  <span >VOIR NOS MEMBRES</span>
+</a>
+
+</span>
     </div>
       {% if banner or quotes %}
         <div>
