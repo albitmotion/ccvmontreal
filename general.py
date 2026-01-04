@@ -179,13 +179,13 @@ def member_directory():
     organizations = []
     background = get_background()
     for member in members:
-        if member.organization:
-            if member.organization != "System":
-                organizations.append(member.organization)
+        if member.organizationEN:
+            if member.organizationEN != "System":
+                organizations.append(member.organizationEN)
     for executive_member in executive_members:
-        if executive_member.organization:
-            if executive_member.organization != "System":
-                organizations.append(executive_member.organization)
+        if executive_member.organizationEN:
+            if executive_member.organizationEN != "System":
+                organizations.append(executive_member.organizationEN)
     organizations = list(set(organizations))
     mdTexts = Pages.query.filter_by(url="/member_directory").first()
     return render_template(
