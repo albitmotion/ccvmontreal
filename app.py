@@ -67,7 +67,7 @@ app.config["S3_BASE_FOLDER"] = "prod/"
 app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
 app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
 app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "mysql+pymysql://ccvmontreal:Ccv2026!@CCVMontreal.mysql.pythonanywhere-services.com/CCVMontreal$default"
+    "mysql+pymysql://ccvmontreal:mysqlroot@CCVMontreal.mysql.pythonanywhere-services.com/CCVMontreal$default"
 )
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
