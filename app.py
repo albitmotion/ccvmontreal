@@ -53,25 +53,25 @@ app = Flask(__name__)
 ckeditor = CKEditor(app)
 app.config["S3"] = s3_client
 
-# if app.debug:
-UPLOAD_FOLDER = "static/upload/"
-app.config["S3_BASE_FOLDER"] = "dev/"
-app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
-app.config["DOWNLOAD"] = "static/download/"
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "mysql+pymysql://root:password123@localhost/ccv"
-)
-# else:
-#     UPLOAD_FOLDER = "/app/static/upload/"
-#     app.config["S3_BASE_FOLDER"] = "prod/"
-#     app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
-#     app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
-#     app.config["SQLALCHEMY_DATABASE_URI"] = (
-#         "mysql+pymysql://albitmotion:zL3)G01w@albitmotion.mysql.pythonanywhere-services.com/albitmotion$ccvmontreal"
-#     )
-#     app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
-#     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-#     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ucocfesi3a50sp:pd433ef3bdce54e70213c225eeb3635b196db7de24db82f7bad98f30d35820253@c34u0gd6rbe7bo.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6eq465ijvjihi'
+if app.debug:
+    UPLOAD_FOLDER = "static/upload/"
+    app.config["S3_BASE_FOLDER"] = "dev/"
+    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
+    app.config["DOWNLOAD"] = "static/download/"
+    app.config["SQLALCHEMY_DATABASE_URI"] = (
+        "mysql+pymysql://root:password123@localhost/ccv"
+    )
+else:
+    UPLOAD_FOLDER = "/app/static/upload/"
+    app.config["S3_BASE_FOLDER"] = "prod/"
+    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
+    app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
+    app.config["SQLALCHEMY_DATABASE_URI"] = (
+        "mysql+pymysql://ccvmontreal:Ccv2026!@CCVMontreal.mysql.pythonanywhere-services.com/CCVMontreal$default"
+    )
+    app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ucocfesi3a50sp:pd433ef3bdce54e70213c225eeb3635b196db7de24db82f7bad98f30d35820253@c34u0gd6rbe7bo.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6eq465ijvjihi'
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["CURRENT_USER_ID"] = None
