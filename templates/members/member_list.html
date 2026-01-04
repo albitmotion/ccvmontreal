@@ -39,7 +39,7 @@
        <!-- /static/image/members/1.jpg -->
        <td class="firstCol">{{ our_member.name }}</td>
        <td>{{ our_member.role}}</td>
-       <td>{{ our_member.organization}}</td>
+       <td>{{ our_member.organizationEN}}</td>
        {% if executive_member %}
         <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_member', id=our_member.id, deletable=1) }}" data-bs-title="Update Member {{ our_member.name }}"><i class="bi bi-gear"></i></button></td>
        {% else%}

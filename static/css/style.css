@@ -263,3 +263,9 @@ td, thead {
 .hidden_form {
   display:none;
 }
+.exec_photo {
+  width: 50%;
+  margin: 10px;
+  align-self: center;
+
+}
