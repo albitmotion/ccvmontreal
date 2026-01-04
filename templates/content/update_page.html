@@ -28,6 +28,11 @@
     <br/>
     {{ form.submit(class="btn blueButton") }}
 
+    {% set protected_pages = ['Home', 'Member Directory', 'Mission'] %}
+    {% if register_to_update.name not in protected_pages %}
+      <a class="btn btn-danger" href="{{ url_for('delete_page', id=register_to_update.id) }}">Delete</a>
+    {% endif %}
+
   </form>
   <br>
   <br>
