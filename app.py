@@ -66,12 +66,16 @@ UPLOAD_FOLDER = "/app/static/upload/"
 app.config["S3_BASE_FOLDER"] = "prod/"
 app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
 app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "mysql+pymysql://ccvmontreal:mysqlroot@CCVMontreal.mysql.pythonanywhere-services.com/CCVMontreal$default"
+
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="CCVMontreal",
+    password="mysqlroot",
+    hostname="CCVMontreal.mysql.pythonanywhere-services.com",
+    databasename="CCVMontreal$default",
 )
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ucocfesi3a50sp:pd433ef3bdce54e70213c225eeb3635b196db7de24db82f7bad98f30d35820253@c34u0gd6rbe7bo.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6eq465ijvjihi'
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["CURRENT_USER_ID"] = None
