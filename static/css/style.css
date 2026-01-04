@@ -260,3 +260,6 @@ td, thead {
 .carousel-control-next {
   right: -10px !important;
 }
+.hidden_form {
+  display:none;
+}

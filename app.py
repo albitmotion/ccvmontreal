@@ -53,25 +53,25 @@ app = Flask(__name__)
 ckeditor = CKEditor(app)
 app.config["S3"] = s3_client
 
-if app.debug:
-    UPLOAD_FOLDER = "static/upload/"
-    app.config["S3_BASE_FOLDER"] = "dev/"
-    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
-    app.config["DOWNLOAD"] = "static/download/"
-    app.config["SQLALCHEMY_DATABASE_URI"] = (
-        "mysql+pymysql://root:password123@localhost/cvv"
-    )
-else:
-    UPLOAD_FOLDER = "/app/static/upload/"
-    app.config["S3_BASE_FOLDER"] = "prod/"
-    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
-    app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
-    app.config["SQLALCHEMY_DATABASE_URI"] = (
-        "mysql+pymysql://albitmotion:zL3)G01w@albitmotion.mysql.pythonanywhere-services.com/albitmotion$ccvmontreal"
-    )
-    app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ucocfesi3a50sp:pd433ef3bdce54e70213c225eeb3635b196db7de24db82f7bad98f30d35820253@c34u0gd6rbe7bo.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6eq465ijvjihi'
+# if app.debug:
+UPLOAD_FOLDER = "static/upload/"
+app.config["S3_BASE_FOLDER"] = "dev/"
+app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
+app.config["DOWNLOAD"] = "static/download/"
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    "mysql+pymysql://root:password123@localhost/ccv"
+)
+# else:
+#     UPLOAD_FOLDER = "/app/static/upload/"
+#     app.config["S3_BASE_FOLDER"] = "prod/"
+#     app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
+#     app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
+#     app.config["SQLALCHEMY_DATABASE_URI"] = (
+#         "mysql+pymysql://albitmotion:zL3)G01w@albitmotion.mysql.pythonanywhere-services.com/albitmotion$ccvmontreal"
+#     )
+#     app.config["SQLALCHEMY_POOL_RECYCLE"] = 280
+#     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+#     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ucocfesi3a50sp:pd433ef3bdce54e70213c225eeb3635b196db7de24db82f7bad98f30d35820253@c34u0gd6rbe7bo.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6eq465ijvjihi'
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["CURRENT_USER_ID"] = None
@@ -79,9 +79,9 @@ app.config["IS_EXECUTIVE_MEMBER"] = None
 app.config["SECRET_KEY"] = "secretKey"
 
 db = SQLAlchemy(app)
-# with app.app_context():
-#     db.create_all()
-# migrate = Migrate(app, db)
+with app.app_context():
+    db.create_all()
+migrate = Migrate(app, db)
 
 
 attendance = db.Table(
@@ -101,14 +101,21 @@ class Members(db.Model):
     english = db.Column(db.Boolean)
     french = db.Column(db.Boolean)
     preferable = db.Column(db.String(100))
-    organization = db.Column(db.String(100))
+    organizationEN = db.Column(db.String(100))
+    organizationFR = db.Column(db.String(100))
     volunteers = db.Column(db.Integer)
     member_since = db.Column(db.DateTime)
+    category = db.Column(db.String(100))
     member_pic = db.Column(db.String(400), nullable=True)
     password_hash = db.Column(db.String(128))
     meetings_attendance = db.relationship(
         "Meetings", secondary=attendance, backref="member_attendance"
     )
+
+    # executive member only
+    bioEN = db.Column(db.String(500))
+    bioFR = db.Column(db.String(500))
+    order = db.Column(db.Integer)
 
     @property
     def password(self):
@@ -122,36 +129,6 @@ class Members(db.Model):
         return check_password_hash(self.password_hash, password)
 
     documents = db.relationship("Memberships", backref="membership")
-
-    def __repr__(self):
-        return "<Name %r>" % self.name
-
-
-class ExecutiveMembers(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    role = db.Column(db.String(70))
-    bio = db.Column(db.String(500))
-    email = db.Column(db.String(50), nullable=False)
-    telephone = db.Column(db.String(20))
-    english = db.Column(db.Boolean)
-    french = db.Column(db.Boolean)
-    preferable = db.Column(db.String(100))
-    organization = db.Column(db.String(100))
-    order = db.Column(db.Integer)
-    executive_member_pic = db.Column(db.String(400), nullable=True)
-    password_hash = db.Column(db.String(128))
-
-    @property
-    def password(self):
-        raise AttributeError("Password is not readable attribute!")
-
-    @password.setter
-    def password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def verify_password(self, password):
-        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return "<Name %r>" % self.name
@@ -196,11 +173,15 @@ class Memberships(db.Model):
 
 class Activities(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    text = db.Column(db.Text, nullable=False)
+    titleEN = db.Column(db.String(100), nullable=False)
+    titleFR = db.Column(db.String(100), nullable=False)
+    textEN = db.Column(db.Text, nullable=False)
+    textFR = db.Column(db.Text, nullable=False)
     date = db.Column(db.Date)
-    hour = db.Column(db.String(100))
-    address = db.Column(db.String(200))
+    hourEN = db.Column(db.String(100))
+    hourFR = db.Column(db.String(100))
+    addressEN = db.Column(db.String(200))
+    addressFR = db.Column(db.String(200))
     file = db.Column(db.String(400))
     filename = db.Column(db.String(200))
     author = db.Column(db.String(100))
@@ -277,6 +258,17 @@ class Quotes(db.Model):
 
     def __repr__(self):
         return "<Title %r>" % self.title
+
+
+class Pages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200))
+    url = db.Column(db.String(200))
+    textEN = db.Column(db.Text, nullable=False)
+    textFR = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return "<Name %r>" % self.name
 
 
 ## ERROR -----------------------------------------------------
@@ -357,6 +349,7 @@ class AddRegister:
         file_field="file",
         member_id=None,
     ):
+        print("ADD REGISTER INIT")
         self.request = request
         self.form = form
         self.register_type = register_type
@@ -367,13 +360,19 @@ class AddRegister:
         self.member_id = member_id
 
     def returnTemplate(self):
+        print("ADD REGISTER INIT - RETURN TEMPLATE")
         if self.form.validate_on_submit():
+            print("IF1")
             if not self.checkIfExists():
+                print("IF2")
                 self.saveInS3()
+                print("post save in s3")
                 self.createRegister()
+                print('post create register')
                 db.session.add(self.register)
+                print('post add')
                 db.session.commit()
-
+                print('post commit')
                 for field in self.form_fields:
                     field.data = ""
 
@@ -382,6 +381,8 @@ class AddRegister:
                 flash(
                     f"Error: Already exists a {self.register_type.lower()} with this title."
                 )
+        else:
+            print('NOT VALIDATE ON SUBMIT')
         return render_template(
             f"{self.template_folder}/add_{self.register_type.lower().replace(" ", "_")}.html",
             form=self.form,
@@ -537,7 +538,7 @@ def get_background():
 
 
 # import declared routes
-import general, members, executive_members, memberships, meetings, surveys, api, activities, annualReports, banners, news, quotes, taskRepartition
+import general, members, executive_members, memberships, meetings, surveys, api, activities, annualReports, banners, news, quotes, pages, taskRepartition
 
 if __name__ == "__main__":
     app.run()

@@ -46,8 +46,10 @@ class AddRegisterMember(AddRegister):
         if "french" in self.request.form:
             self.register.french = bool(self.request.form["french"])
         self.register.preferable = self.request.form["preferable"]
-        self.register.organization = self.request.form["organization"]
+        self.register.organizationEN = self.request.form["organizationEN"]
+        self.register.organizationFR = self.request.form["organizationFR"]
         self.register.volunteers = self.request.form["volunteers"]
+        self.register.category = "Member"
         self.register.member_pic = self.unique_filename
         self.register.password_hash = hashed_pw
 
@@ -127,7 +129,8 @@ def add_member():
         form.english,
         form.french,
         form.preferable,
-        form.organization,
+        form.organizationEN,
+        form.organizationFR,
         form.volunteers,
         form.member_pic,
         form.password_hash,

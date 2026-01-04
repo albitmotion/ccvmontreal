@@ -11,20 +11,32 @@
     <form method="POST" enctype="multipart/form-data">
       {{ form.hidden_tag() }}
 
-      <strong>{{ form.title.label(class="form-label") }}</strong>
-      {{ form.title(class="form-control") }}
+      <strong>{{ form.titleEN.label(class="form-label") }}</strong>
+      {{ form.titleEN(class="form-control") }}
 
-      <strong>{{ form.text.label(class="form-label") }}</strong>
-      {{ form.text(class="form-control") }}
+      <strong>{{ form.titleFR.label(class="form-label") }}</strong>
+      {{ form.titleFR(class="form-control") }}
+
+      <strong>{{ form.textEN.label(class="form-label") }}</strong>
+      {{ ckeditor.create(name="ck1") }}
+
+      <strong>{{ form.textFR.label(class="form-label") }}</strong>
+      {{ ckeditor.create(name="ck2") }}
 
       <strong>{{ form.date.label(class="form-label") }}</strong>
       {{ form.date(class="form-control") }}
 
-      <strong>{{ form.hour.label(class="form-label") }}</strong>
-      {{ form.hour(class="form-control") }}
+      <strong>{{ form.hourEN.label(class="form-label") }}</strong>
+      {{ form.hourEN(class="form-control") }}
 
-      <strong>{{ form.address.label(class="form-label") }}</strong>
-      {{ form.address(class="form-control") }}
+      <strong>{{ form.hourFR.label(class="form-label") }}</strong>
+      {{ form.hourFR(class="form-control") }}
+
+      <strong>{{ form.addressEN.label(class="form-label") }}</strong>
+      {{ form.addressEN(class="form-control") }}
+
+      <strong>{{ form.addressFR.label(class="form-label") }}</strong>
+      {{ form.addressFR(class="form-control") }}
 
       <strong>{{ form.file.label(class="form-label") }}</strong>
       {{ form.file(class="form-control") }}
@@ -36,7 +48,8 @@
     </form>
 
     {{ ckeditor.load() }}
-    {{ ckeditor.config(name='text')}}
+    {{ ckeditor.config(name='ck1', height= "900px")}}
+    {{ ckeditor.config(name='ck2', height= "900px")}}
 
 <br/><br/><br/>
 {% endblock %}

@@ -30,7 +30,7 @@
       <td>{{ quote.author }}</td>
       <td>{{ quote.organization }}</td>
       <td>{{ quote.visible }}</td>
-      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_quote', id=quote.id) }}" data-bs-title="Update Member {{ quote.title }}"><i class="bi bi-gear"></i></button></td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_quote', id=quote.id) }}" data-bs-title="Update Quote {{ quote.title }}"><i class="bi bi-gear"></i></button></td>
     </tr>
   {% endfor %}
   </table>

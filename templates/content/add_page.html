@@ -1,0 +1,43 @@
+{% extends 'base/base_iframe.html' %}
+{% block content %}
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message|safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+    <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+
+      <strong>{{ form.name.label(class="form-label") }}</strong>
+      {{ form.name(class="form-control") }}
+
+      <strong>{{ form.url.label(class="form-label") }}</strong>
+      {{ form.url(class="form-control") }}
+
+      <strong>{{ form.textEN.label(class="form-label") }}</strong>
+      {{ ckeditor.create(name="ck1") }}
+
+      <strong>{{ form.textFR.label(class="form-label") }}</strong>
+      {{ ckeditor.create(name="ck2") }}
+
+
+      <br/>
+      {{ form.submit(class="btn blueButton") }}
+
+      <br>
+      <br>
+
+
+    </form>
+
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='ck1', height= "900px")}}
+    {{ ckeditor.config(name='ck2', height= "900px")}}
+    <script src="{{ url_for('static', filename='js/quote.js') }}"></script>
+
+<br/><br/><br/>
+{% endblock %}

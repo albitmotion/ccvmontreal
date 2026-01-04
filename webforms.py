@@ -19,7 +19,10 @@ from flask_ckeditor import CKEditorField
 class MemberForm(FlaskForm):
     name = StringField("Name*:", validators=[DataRequired()])
     email = StringField("Email*:", validators=[DataRequired()])
-    role = StringField("Role*:", validators=[DataRequired()])
+    role = StringField("Role:")
+    bioEN = StringField("BioEN:")
+    bioFR = StringField("BioFR:")
+    order = IntegerField("Order:")
     telephone = StringField("Phone Number:")
     english = BooleanField("English")
     french = BooleanField("French")
@@ -30,7 +33,8 @@ class MemberForm(FlaskForm):
             ("French", "French"),
         ],
     )
-    organization = StringField("Organization:")
+    organizationEN = StringField("OrganizationEN:")
+    organizationFR = StringField("OrganizationFR:")
     volunteers = IntegerField("Number Volunteers I manage:", validators=[NumberRange(min=0, message="Number must be non-negative.")])
     member_pic = FileField("Member Pic:")
     update_pw = BooleanField("Update Password:")
@@ -98,13 +102,15 @@ class MembershipForm(FlaskForm):
 
 
 class ActivityForm(FlaskForm):
-    title = StringField("Title", validators=[DataRequired()])
-    titleFR = StringField("Title", validators=[DataRequired()])
-    text = CKEditorField("Text", validators=[DataRequired()])
-    textFR = CKEditorField("Text", validators=[DataRequired()])
+    titleEN = StringField("Title EN", validators=[DataRequired()])
+    titleFR = StringField("Title FR", validators=[DataRequired()])
+    textEN = CKEditorField("Text EN", validators=[DataRequired()])
+    textFR = CKEditorField("Text FR", validators=[DataRequired()])
     date = DateField("Date")
-    hour = StringField("Hour")
-    address = StringField("Address")
+    hourEN = StringField("Hour EN")
+    hourFR = StringField("Hour FR")
+    addressEN = StringField("Address EN")
+    addressFR = StringField("Address FR")
     file = FileField("File")
     filename = StringField("Filename")
     author = StringField("Author")
@@ -158,4 +164,11 @@ class QuoteForm(FlaskForm):
     organization = StringField("Organization")
     visible = BooleanField("Visible")
     fontSize = FloatField("Font Size")
+    submit = SubmitField("Submit")
+
+class PageForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    url = StringField("url", validators=[DataRequired()])
+    textEN = StringField("Text EN")
+    textFR = StringField("Text FR")
     submit = SubmitField("Submit")

@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  <h1><span lang="en">Home</span><span lang="fr">Accueil</span></h1>
+
+  {% if banner or quotes %}
+  <div class="" style="display: grid;grid-template-columns:auto 360px">
+  {% else %}
+  <div class="" style="display: grid;grid-template-columns:auto">
+  {% endif %}
+    <div>
+
+
+<span lang="en">
+  {{ texts.textEN | safe }}
+</span>
+
+
+<span lang="fr">
+  {{ texts.textFR | safe }}
+</span>
+
+
+    </div>
+
+  </div>
+
+  <br/>
+
+
+  <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+
+
+
+{% endblock %}

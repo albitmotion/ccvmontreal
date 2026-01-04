@@ -4,7 +4,6 @@ from app import (
     app,
     db,
     Members,
-    ExecutiveMembers,
     Meetings,
     Memberships,
     Surveys,
@@ -14,6 +13,7 @@ from app import (
     News,
     Banners,
     Quotes,
+    Pages,
     TaskRepartitionTexts,
     TaskRepartitionFiles,
     save_file,
@@ -23,7 +23,7 @@ from app import (
     UpdateRegister,
     DeleteRegister,
 )
-from webforms import ExecutiveMemberForm
+from webforms import MemberForm
 
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -32,71 +32,72 @@ import os
 
 
 REGISTER_TYPE = "Executive Member"
-S3_FOLDER = "images/executive_member_pics/"
+S3_FOLDER = "images/member_pics/"
 TEMPLATE_FOLDER = "executive_members"
 
 
-class AddRegisterExecutiveMember(AddRegister):
+class AddRegisterMember(AddRegister):
     def checkIfExists(self):
-        self.register = ExecutiveMembers.query.filter_by(
+        self.register = Members.query.filter_by(
             email=self.request.form["email"]
         ).first()
         return self.register
 
     def createRegister(self):
-        self.register = ExecutiveMembers()
+        self.register = Members()
         hashed_pw = generate_password_hash(
             self.form.password_hash.data, method="pbkdf2:sha256"
         )
-        self.register = ExecutiveMembers()
+        self.register = Members()
         self.register.name = self.request.form["name"]
-        self.register.email = self.request.form["email"]
-        self.register.bio = self.request.form["bio"]
         self.register.role = self.request.form["role"]
-        self.register.order = self.request.form["order"]
+        self.register.email = self.request.form["email"]
+        self.register.bioEN = self.request.form["bioEN"]
+        self.register.bioFR = self.request.form["bioFR"]
         self.register.telephone = self.request.form["telephone"]
         if "english" in self.request.form:
             self.register.english = bool(self.request.form["english"])
-        else:
-            self.register.english = 0
         if "french" in self.request.form:
             self.register.french = bool(self.request.form["french"])
-        else:
-            self.register.french = 0
         self.register.preferable = self.request.form["preferable"]
-        self.register.organization = self.request.form["organization"]
-        self.register.executive_member_pic = self.unique_filename
+        self.register.organizationEN = self.request.form["organizationEN"]
+        self.register.organizationFR = self.request.form["organizationFR"]
+        self.register.category = "Executive Member"
+        self.register.volunteers = self.request.form["volunteers"]
+        self.register.member_pic = self.unique_filename
         self.register.password_hash = hashed_pw
 
 
-class UpdateRegisterExecutiveMember(UpdateRegister):
+class UpdateRegisterMember(UpdateRegister):
     def updateRegister(self):
         self.register.name = self.form.name.data
         self.register.email = self.form.email.data
-        self.register.bio = self.form.bio.data
+        self.register.bioEN = self.form.bioEN.data
+        self.register.bioFR = self.form.bioFR.data
         self.register.english = self.form.english.data
         self.register.french = self.form.french.data
         self.register.preferable = self.form.preferable.data
         self.register.role = self.form.role.data
         self.register.order = self.form.order.data
         self.register.telephone = self.form.telephone.data
-        self.register.organization = self.form.organization.data
-        if self.request.files["executive_member_pic"]:
-            self.register.executive_member_pic = self.unique_filename
+        self.register.organizationEN = self.form.organizationEN.data
+        self.register.organizationFR = self.form.organizationFR.data
+        if self.request.files["member_pic"]:
+            self.register.member_pic = self.unique_filename
 
 
 @app.route("/executive_member_area/")
 def executive_member_area():
-    form = ExecutiveMemberForm()
-    executive_member = ExecutiveMembers.query.filter_by(
+    form = MemberForm()
+    executive_member = Members.query.filter_by(
         id=app.config["CURRENT_USER_ID"]
     ).first()
     task_repartitionText = TaskRepartitionTexts.query.filter_by(id=1).first()
     task_repartition_files = TaskRepartitionFiles.query.order_by(
         TaskRepartitionFiles.filename
     )
-    our_executive_members = ExecutiveMembers.query.order_by(ExecutiveMembers.name)
-    our_members = Members.query.order_by(Members.name)
+    our_executive_members = Members.query.filter_by(category="Executive Member").order_by(Members.name)
+    our_members = Members.query.filter_by(category="Member").order_by(Members.name)
     surveys = Surveys.query.order_by(Surveys.title)
     meetings = Meetings.query.order_by(Meetings.date)
 
@@ -139,7 +140,8 @@ def executive_member_area():
             "id": member.id,
             "name": member.name,
             "role": member.role,
-            "organization": member.organization,
+            "organizationEN": member.organizationEN,
+            "organizationFR": member.organizationFR,
             "status": payment_status["status"],
             "warning_icon": payment_status["warning_icon"],
             "remembered": payment_status["remembered"],
@@ -184,29 +186,33 @@ def executive_member_area():
 
 @app.route("/add_executive_member", methods=["GET", "POST"])
 def add_executive_member():
-    form = ExecutiveMemberForm()
+    print('ADD EXECUTIVE MEMBER')
+    form = MemberForm()
     form_fields = [
         form.name,
+        form.role,
         form.email,
-        form.bio,
+        form.bioEN,
+        form.bioFR,
+        form.telephone,
         form.english,
         form.french,
-        form.role,
-        form.order,
-        form.telephone,
-        form.organization,
-        form.executive_member_pic,
+        form.preferable,
+        form.organizationEN,
+        form.organizationFR,
+        form.volunteers,
+        form.member_pic,
         form.password_hash,
     ]
 
-    addRegister = AddRegisterExecutiveMember(
+    addRegister = AddRegisterMember(
         request,
         form,
         REGISTER_TYPE,
         S3_FOLDER,
         form_fields,
         TEMPLATE_FOLDER,
-        "executive_member_pic",
+        "member_pic",
     )
     return addRegister.returnTemplate()
 
@@ -214,30 +220,32 @@ def add_executive_member():
 @app.route("/update_executive_member/<int:id>", methods=["GET", "POST"])
 def update_executive_member(id):
     deletable = request.args.get("deletable")
-    form = ExecutiveMemberForm()
-    register = ExecutiveMembers.query.get_or_404(id)
+    form = MemberForm()
+    register = Members.query.get_or_404(id)
     form_fields = [
         form.name.data,
         form.email.data,
-        form.bio.data,
+        form.bioEN.data,
+        form.bioFR.data,
         form.english.data,
         form.french.data,
         form.role.data,
         form.order.data,
         form.telephone.data,
-        form.organization.data,
-        form.executive_member_pic,
+        form.organizationEN.data,
+        form.organizationFR.data,
+        form.member_pic,
         form.password_hash,
     ]
 
-    updateRegister = UpdateRegisterExecutiveMember(
+    updateRegister = UpdateRegisterMember(
         request,
         register,
         form,
         REGISTER_TYPE,
         S3_FOLDER,
         TEMPLATE_FOLDER,
-        "executive_member_pic",
+        "member_pic",
         deletable=deletable,
     )
     return updateRegister.returnTemplate()
@@ -245,8 +253,8 @@ def update_executive_member(id):
 
 @app.route("/delete_executive_member/<int:id>", methods=["GET", "POST"])
 def delete_executive_member(id):
-    form = ExecutiveMemberForm()
-    register = ExecutiveMembers.query.get_or_404(id)
+    form = MemberForm()
+    register = Members.query.get_or_404(id)
 
     deleteRegister = DeleteRegister(
         register,
@@ -254,15 +262,15 @@ def delete_executive_member(id):
         REGISTER_TYPE,
         S3_FOLDER,
         TEMPLATE_FOLDER,
-        "executive_member_pic",
+        "member_pic",
     )
     return deleteRegister.returnTemplate()
 
 
 @app.route("/update_executive_password/<int:id>", methods=["GET", "POST"])
 def update_executive_password(id):
-    form = ExecutiveMemberForm()
-    executive_member_to_update = ExecutiveMembers.query.get_or_404(id)
+    form = MemberForm()
+    executive_member_to_update = Members.query.get_or_404(id)
     if request.method == "POST":
         hashed_pw = generate_password_hash(
             form.password_hash.data, method="pbkdf2:sha256"
@@ -302,11 +310,12 @@ def update_executive_password(id):
 
 @app.route("/content_management")
 def content_management():
-    activities = Activities.query.order_by(Activities.title)
+    activities = Activities.query.order_by(Activities.titleEN)
     news = News.query.order_by(News.title)
     annualReports = AnnualReports.query.order_by(AnnualReports.filename)
     banners = Banners.query.order_by(Banners.filename)
     quotes = Quotes.query.order_by(Quotes.title)
+    pages = Pages.query.order_by(Pages.url)
     buttons = [
         {"name": "Activities", "nameFR": "Activités", "link": "#activities"},
         {"name": "News", "nameFR": "Nouvelles", "link": "#news"},
@@ -321,6 +330,7 @@ def content_management():
         annualReports=annualReports,
         banners=banners,
         quotes=quotes,
+        pages=pages,
         buttons=buttons,
         s3_root=app.config["S3_ROOT"],
         background=get_background(),

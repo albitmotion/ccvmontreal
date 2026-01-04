@@ -1,0 +1,32 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="quotes">
+  <h3>
+    <span lang="en">Pages</span><span lang="fr">Pages</span>
+    </h3>
+
+  <table class="table" id="usersTable">
+    <thead>
+      <tr>
+        <th scope="col" class="firstCol">
+          <span lang="en">Name</span><span lang="fr">Nom</span>
+          </th>
+        <th scope="col">
+          <span lang="en">URL</span><span lang="fr">validate_on_submit</span>
+          </th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+  {% for page in pages %}
+    <tr>
+      <td class="firstCol">{{ page.name }}</td>
+      <td>{{ page.url }}</td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_page', id=page.id) }}" data-bs-title="Update Page {{ page.Name }}"><i class="bi bi-gear"></i></button></td>
+    </tr>
+  {% endfor %}
+  </table>
+  <div class="d-flex justify-content-between">
+      <div></div>
+      <div>
+      </div>
+ </div>
+
+  </div>

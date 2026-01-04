@@ -1,11 +1,11 @@
 from flask import Flask, render_template, jsonify, flash, request
 from app import (
     app,
-    ExecutiveMembers,
     Members,
     Quotes,
     AnnualReports,
     Banners,
+    Pages,
     Activities,
     News,
     get_background,
@@ -38,6 +38,17 @@ def calculate_days_from_today(target_date, date_format="%Y-%m-%d"):
         return "That's today!"
 
 
+# pages = Pages.query.order_by(Pages.url)
+# for page in pages:
+#     if page.url not in ["/", "/mission", "/member_directory"]:
+#         pass
+        # @app.route(page.url)
+        # def generic():
+        #     return render_template(
+        #         "/general/generic.html",
+        #         )
+
+
 @app.route("/")
 def index():
     clean = request.args.get("clean")
@@ -59,11 +70,13 @@ def index():
     if quotes:
         quotes[0]["active"] = "active"
     banner = Banners.query.filter_by(visible=True).first()
+    homeTexts = Pages.query.filter_by(url="/").first()
     return render_template(
         "/general/index.html",
         clean=clean,
         quotes=quotes,
         banner=banner,
+        homeTexts=homeTexts,
         background=get_background(),
         s3_root=app.config["S3_ROOT"],
     )
@@ -83,6 +96,7 @@ def about():
 def activity_calendar():
     clean = request.args.get("clean")
     activities = Activities.query.order_by(Activities.date.desc())
+    activities_count = activities.count()
     activity_list = []
     background = get_background()
     for activity in activities:
@@ -114,6 +128,7 @@ def activity_calendar():
         activities=activity_list,
         buttons=news_buttons,
         background=background,
+        activities_count=activities_count,
         s3_root=app.config["S3_ROOT"],
     )
 
@@ -160,7 +175,7 @@ def login():
 @app.route("/member_directory")
 def member_directory():
     members = Members.query.order_by(Members.name)
-    executive_members = ExecutiveMembers.query.order_by(ExecutiveMembers.name)
+    executive_members = Members.query.filter_by(category="Executive Member").order_by(Members.name)
     organizations = []
     background = get_background()
     for member in members:
@@ -172,9 +187,11 @@ def member_directory():
             if executive_member.organization != "System":
                 organizations.append(executive_member.organization)
     organizations = list(set(organizations))
+    mdTexts = Pages.query.filter_by(url="/member_directory").first()
     return render_template(
         "/general/member_directory.html",
         buttons=about_buttons,
+        mdTexts=mdTexts,
         organizations=sorted(organizations),
         background=background,
     )
@@ -184,9 +201,11 @@ def member_directory():
 def mission():
     clean = request.args.get("clean")
     background = get_background()
+    missionTexts = Pages.query.filter_by(url="/mission").first()
     return render_template(
         "general/mission.html",
         buttons=about_buttons,
+        missionTexts=missionTexts,
         clean=clean,
         background=background,
     )
@@ -197,12 +216,14 @@ def news():
     news = News.query.order_by(News.date)
     clean = request.args.get("clean")
     background = get_background()
+    news_count = news.count()
     return render_template(
         "general/news.html",
         clean=clean,
         news=news,
         buttons=news_buttons,
         background=background,
+        news_count=news_count,
         s3_root=app.config["S3_ROOT"],
     )
 
@@ -221,7 +242,7 @@ def resources():
 @app.route("/executive_members")
 def executive_members():
     clean = request.args.get("clean")
-    our_executive_members = ExecutiveMembers.query.order_by(ExecutiveMembers.order)
+    our_executive_members = Members.query.filter_by(category="Executive Member").order_by(Members.order)
     executive_members = []
     for executive_member in our_executive_members:
         if executive_member.name != "Initial Executive Member":

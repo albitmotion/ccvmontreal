@@ -9,62 +9,26 @@
   <div class="" style="display: grid;grid-template-columns:auto">
   {% endif %}
     <div>
-      <span lang="en">
-<p><strong>Connecting Volunteer Leaders Across Sectors</strong></p>
-
-<p>The Community Council on Volunteerism (CCV) is a professional network of volunteer program managers working in healthcare, social services, and community-based organizations. Founded in 1983 by seven pioneering agencies, CCV continues to grow through the active involvement of its members.</p>
-
-<p>Our organization has been created to serve the English community of Montreal, <strong>and our meetings and communications are in English.</strong></p>
-
-<p>We exist to:</p>
-
-<ul>
-<li><strong>Promote volunteerism</strong> across our communities</li>
-<li><strong>Support and elevate</strong> the profession of volunteer management</li>
-<li><strong>Foster collaboration</strong> among coordinators facing shared challenges</li>
-</ul>
-
-<p>CCV provides a dynamic space to exchange ideas, share tools, and build strategies that strengthen volunteer programs.</p>
 
 
-<a class="btn becomeMember" lang="en" href="{{ url_for('become_member') }}" id="becomeMember" role="button">
-  <span>JOIN US!</span>
-</a>
-
-<a class="btn becomeMember" href="{{ url_for('member_directory') }}" id="memberDirectory" style="width:300px" role="button">
-  <span>SEE OUR MEMBER LIST</span>
-</a>
+<span lang="en">
+  {{ homeTexts.textEN | safe }}
 </span>
 
 
 <span lang="fr">
-
-<p><strong>Relier les leaders du bénévolat à travers les secteurs</strong></p>
-
-<p>Le Conseil communautaire sur le bénévolat (CCV) est un réseau professionnel de gestionnaires de programmes de bénévolat œuvrant dans les secteurs de la santé, des services sociaux et des organismes communautaires. Fondé en 1983 par sept agences pionnières, le CCV continue de croître grâce à l’engagement actif de ses membres.</p>
-
-<p>Veuillez noter : Le CCV est une organisation anglophone. <strong>Toutes les réunions et communications se déroulent en anglais.</strong></p>
-
-<p>Nous existons pour:</p>
-
-<ul>
-  <li><strong>Promouvoir le bénévolat</strong> dans nos communautés</li>
-  <li><strong>Soutenir et valoriser</strong> la profession de gestion du bénévolat</li>
-  <li><strong>Favoriser la collaboration</strong> entre les coordonnateurs confrontés à des défis communs</li>
-</ul>
-
-<p>Le CCV offre un espace dynamique pour échanger des idées, partager des outils et élaborer des stratégies qui renforcent les programmes de bénévolat.</p>
-
-
-<a class="btn becomeMember" lang="fr" href="{{ url_for('become_member') }}" id="becomeMember" role="button">
-  <span >REJOIGNEZ-NOUS!</span>
-</a>
-
-<a class="btn becomeMember" href="{{ url_for('member_directory') }}" id="memberDirectory" style="width:300px" role="button">
-  <span >VOIR NOS MEMBRES</span>
-</a>
-
+  {{ homeTexts.textFR | safe }}
 </span>
+
+<a class="btn becomeMember"  href="/become_member" id="becomeMember" role="button">
+  <span lang="fr">REJOIGNEZ-NOUS!</span><span lang="en">JOIN US!</span>
+</a>
+
+<a class="btn becomeMember" href="/member_directory" id="memberDirectory" style="width:300px" role="button">
+  <span lang="fr">VOIR NOS MEMBRES</span><span lang="en">SEE OUR MEMBER LIST</span>
+</a>
+
+
     </div>
       {% if banner or quotes %}
         <div>

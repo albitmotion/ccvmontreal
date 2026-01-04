@@ -6,7 +6,6 @@ from app import (
     Members,
     Meetings,
     Memberships,
-    ExecutiveMembers,
     News,
     attendance,
     TaskRepartitionTexts,
@@ -28,10 +27,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 def check_login():
     result = json.loads(request.data)
     user = Members.query.filter_by(email=result["email"]).first()
-    is_executive_member = False
-    if not user:
-        user = ExecutiveMembers.query.filter_by(email=result["email"]).first()
+    print("USER", user)
+    if user.category == "Executive Member":
         is_executive_member = True
+    else:
+        is_executive_member = False
 
     userDict = {}
     if user:
@@ -41,10 +41,7 @@ def check_login():
             userDict["email"] = user.email
             userDict["is_executive_member"] = is_executive_member
             userDict["s3_root"] = app.config["S3_ROOT"]
-            if is_executive_member:
-                userDict["member_pic"] = user.executive_member_pic
-            else:
-                userDict["member_pic"] = user.member_pic
+            userDict["member_pic"] = user.member_pic
             app.config["CURRENT_USER_ID"] = user.id
             app.config["IS_EXECUTIVE_MEMBER"] = is_executive_member
 
@@ -101,7 +98,7 @@ def get_member_id(id):
 @app.route("/get_executive_member/", methods=["GET", "POST"])
 def get_executive_member():
     result = json.loads(request.data)
-    executiveMember = ExecutiveMembers.query.filter_by(email=result["email"]).first()
+    executiveMember = Members.query.filter_by(email=result["email"]).first()
     executiveMemberDict = {}
     if executiveMember:
         if executiveMember.verify_password(result["pass"]):
@@ -126,7 +123,7 @@ def get_executive_member():
 
 @app.route("/get_executive_member_id/<id>")
 def get_executive_user_id(id):
-    user = ExecutiveMembers.query.filter_by(id=id).first()
+    user = Members.query.filter_by(id=id).first()
     userDict = {}
     userDict["id"] = user.id
     userDict["name"] = user.name
@@ -136,8 +133,9 @@ def get_executive_user_id(id):
     userDict["english"] = user.english
     userDict["french"] = user.french
     userDict["preferable"] = user.preferable
-    userDict["organization"] = user.organization
-    userDict["executive_member_pic"] = user.executive_member_pic
+    userDict["organizationEN"] = user.organizationEN
+    userDict["organizationFR"] = user.organizationFR
+    userDict["member_pic"] = user.member_pic
     return userDict, 200
 
 
@@ -200,18 +198,20 @@ def clear_attendance():
 def create_initial_user():
     hashed_pw = generate_password_hash("123", method="pbkdf2:sha256")
     result = []
-    executive_member = ExecutiveMembers.query.filter_by(
+    executive_member = Members.query.filter_by(
         name="Initial Executive Member"
     ).first()
     if not executive_member:
-        executiveMember = ExecutiveMembers(
+        executiveMember = Members(
             id=1,
             name="Initial Executive Member",
             email="exec@mail.com",
             role="Initial Executive Member",
             order=1,
-            organization="System",
+            organizationEN="System",
+            organizationFR="System",
             password_hash=hashed_pw,
+            category="Executive Member",
         )
         db.session.add(executiveMember)
         db.session.commit()
@@ -220,12 +220,14 @@ def create_initial_user():
     hashed_pw = generate_password_hash("123", method="pbkdf2:sha256")
     if not member:
         member = Members(
-            id=1,
+            id=2,
             name="Initial Member",
             email="member@mail.com",
             role="Initial Member",
-            organization="System",
+            organizationEN="System",
+            organizationFR="System",
             password_hash=hashed_pw,
+            category="Member",
         )
         db.session.add(member)
         db.session.commit()

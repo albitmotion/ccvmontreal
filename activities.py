@@ -29,24 +29,30 @@ class AddRegisterActivity(AddRegister):
 
     def createRegister(self):
         self.register = Activities()
-        self.register.title = self.form.title.data
+        self.register.titleEN = self.form.titleEN.data
         self.register.titleFR = self.form.titleFR.data
-        self.register.text = self.form.text.data
+        self.register.textEN = self.form.textEN.data
         self.register.textFR = self.form.textFR.data
         self.register.date = self.form.date.data
-        self.register.hour = self.form.hour.data
-        self.register.address = self.form.address.data
+        self.register.hourEN = self.form.hourEN.data
+        self.register.hourFR = self.form.hourFR.data
+        self.register.addressEN = self.form.addressEN.data
+        self.register.addressFR = self.form.addressFR.data
         if self.unique_filename:
             self.register.file = self.unique_filename
 
 
 class UpdateRegisterActivity(UpdateRegister):
     def updateRegister(self):
-        self.register.title = self.form.title.data
-        self.register.text = self.request.form.get("ckeditor")
+        self.register.titleEN = self.form.titleEN.data
+        self.register.titleFR = self.form.titleFR.data
+        self.register.textEN = self.request.form.get("ckeditor")
+        self.register.textFR = self.request.form.get("ckeditor")
         self.register.date = self.form.date.data
-        self.register.hour = self.form.hour.data
-        self.register.address = self.form.address.data
+        self.register.hourEN = self.form.hourEN.data
+        self.register.hourFR = self.form.hourFR.data
+        self.register.addressEN = self.form.addressEN.data
+        self.register.addressFR = self.form.addressFR.data
         if self.unique_filename:
             self.register.file = self.unique_filename
 
@@ -55,11 +61,15 @@ class UpdateRegisterActivity(UpdateRegister):
 def add_activity():
     form = ActivityForm()
     form_fields = [
-        form.title,
-        form.text,
+        form.titleEN,
+        form.titleFR,
+        form.textEN,
+        form.textFR,
         form.date,
-        form.hour,
-        form.address,
+        form.hourEN,
+        form.hourFR,
+        form.addressEN,
+        form.addressFR,
         form.file,
     ]
 
