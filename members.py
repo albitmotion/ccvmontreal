@@ -39,6 +39,7 @@ class AddRegisterMember(AddRegister):
         self.register = Members()
         self.register.name = self.request.form["name"]
         self.register.role = self.request.form["role"]
+        self.register.roleFR = self.request.form["roleFR"]
         self.register.email = self.request.form["email"]
         self.register.telephone = self.request.form["telephone"]
         if "english" in self.request.form:
@@ -58,6 +59,7 @@ class UpdateRegisterMember(UpdateRegister):
     def updateRegister(self):
         self.register.name = self.form.name.data
         self.register.role = self.form.role.data
+        self.register.roleFR = self.form.roleFR.data
         self.register.email = self.form.email.data
         self.register.telephone = self.form.telephone.data
         self.register.organization = self.form.organization.data
@@ -124,6 +126,7 @@ def add_member():
     form_fields = [
         form.name,
         form.role,
+        form.roleFR,
         form.email,
         form.telephone,
         form.english,
@@ -156,6 +159,7 @@ def update_member(id):
     form_fields = [
         form.name,
         form.role,
+        form.roleFR,
         form.email,
         form.telephone,
         form.english,
