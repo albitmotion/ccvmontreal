@@ -71,7 +71,7 @@ else:
         username="CCVMontreal",
         password="mysqlroot",
         hostname="CCVMontreal.mysql.pythonanywhere-services.com",
-        databasename="CCVMontreal$default",
+        databasename="CCVMontreal$CCV1",
     )
     app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
     app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
