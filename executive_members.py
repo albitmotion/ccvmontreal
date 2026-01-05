@@ -51,6 +51,7 @@ class AddRegisterMember(AddRegister):
         self.register = Members()
         self.register.name = self.request.form["name"]
         self.register.role = self.request.form["role"]
+        self.register.roleFR = self.request.form["roleFR"]
         self.register.email = self.request.form["email"]
         self.register.bioEN = self.request.form["bioEN"]
         self.register.bioFR = self.request.form["bioFR"]
@@ -78,6 +79,7 @@ class UpdateRegisterMember(UpdateRegister):
         self.register.french = self.form.french.data
         self.register.preferable = self.form.preferable.data
         self.register.role = self.form.role.data
+        self.register.roleFR = self.form.roleFR.data
         self.register.order = self.form.order.data
         self.register.telephone = self.form.telephone.data
         self.register.organizationEN = self.form.organizationEN.data
@@ -140,6 +142,7 @@ def executive_member_area():
             "id": member.id,
             "name": member.name,
             "role": member.role,
+            "roleFR": member.roleFR,
             "organizationEN": member.organizationEN,
             "organizationFR": member.organizationFR,
             "status": payment_status["status"],
@@ -191,6 +194,7 @@ def add_executive_member():
     form_fields = [
         form.name,
         form.role,
+        form.roleFR,
         form.email,
         form.bioEN,
         form.bioFR,
@@ -230,6 +234,7 @@ def update_executive_member(id):
         form.english.data,
         form.french.data,
         form.role.data,
+        form.roleFR.data,
         form.order.data,
         form.telephone.data,
         form.organizationEN.data,

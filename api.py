@@ -111,8 +111,8 @@ def get_executive_member():
             executiveMemberDict["french"] = executiveMember.french
             executiveMemberDict["preferable"] = executiveMember.preferable
             executiveMemberDict["organization"] = executiveMember.organization
-            executiveMemberDict["executive_member_pic"] = (
-                executiveMember.executive_member_pic
+            executiveMemberDict["member_pic"] = (
+                executiveMember.member_pic
             )
         else:
             executiveMemberDict["error"] = "Invalid password"

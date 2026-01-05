@@ -24,8 +24,8 @@
    {% for our_executive_member in our_executive_members %}
 
      <tr>
-       {% if our_executive_member.executive_member_pic %}
-        <td class="firstCol"><img class="photo_list" src="{{ s3_root }}/images/executive_member_pics/{{ our_executive_member.executive_member_pic|string}}"></td>
+       {% if our_executive_member.member_pic %}
+        <td class="firstCol"><img class="photo_list" src="{{ s3_root }}/images/member_pics/{{ our_executive_member.member_pic|string}}"></td>
        {% else %}
         <td class="firstCol"><img class="photo_list" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
        {% endif %}

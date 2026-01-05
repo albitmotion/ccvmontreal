@@ -3,8 +3,8 @@
     <span lang="en">My Info</span><span lang="fr">Mes Informations</span>
 
   </h3>
-    {% if executive_member.executive_member_pic %}
-     <td class="firstCol"><img class="photo_big" src="{{ s3_root }}/images/executive_member_pics/{{ executive_member.executive_member_pic|string}}"></td>
+    {% if executive_member.member_pic %}
+     <td class="firstCol"><img class="photo_big" src="{{ s3_root }}/images/member_pics/{{ executive_member.member_pic|string}}"></td>
     {% else %}
      <td class="firstCol"><img class="photo_big" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
     {% endif %}
@@ -53,7 +53,7 @@
 
     <span lang="en"><strong>Organization:</strong></span><span lang="fr"><strong>Organisation:</strong></span>
     <span>{{ executive_member.organization}}</span><br/>
-    
+
     <br/><br/>
     <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_executive_member', id=executive_member.id, deletable=0) }}" data-bs-title="Edit My Info">
       <span lang="en">Edit My Info</span><span lang="fr">Modifier mes informations</span>

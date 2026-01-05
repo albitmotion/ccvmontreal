@@ -29,7 +29,6 @@ function loginFn(s3_root) {
       alertLogin.alert()
     }
     else {
-      console.log("out: ", out);
       sessionStorage.setItem('userId', out.id);
       sessionStorage.setItem('s3_root', out.s3_root);
       if (out.is_executive_member) {
@@ -149,15 +148,12 @@ function showUserPhoto() {
 
   let id = sessionStorage.getItem('userId');
   let s3_root = sessionStorage.getItem('s3_root');
-  console.log("s3_root: " + s3_root)
   let isExecutiveMember = sessionStorage.getItem('isExecutiveMember');
   if (isExecutiveMember == 'true') {
-    console.log('is em')
     var url_member = '/get_executive_member_id/' + id;
-    var photo_url = s3_root + "/images/executive_member_pics/"
+    var photo_url = s3_root + "/images/member_pics/"
   }
   else {
-    console.log('is not em')
     var url_member = '/get_member_id/' + id;
     var photo_url = s3_root + "/images/member_pics/"
   }
@@ -170,7 +166,7 @@ function showUserPhoto() {
     {
       // window.location.href = "/member_area/" + out.id
       if (isExecutiveMember == 'true') {
-        document.getElementById("photo").src = photo_url + out.executive_member_pic
+        document.getElementById("photo").src = photo_url + out.member_pic
       }
       else {
         document.getElementById("photo").src = photo_url + out.member_pic
@@ -208,42 +204,14 @@ function activateButton() {
   }
 }
 
-function likeNews(id) {
-  console.log('like news: ' + id)
-  var url = "/add_likes_news/"
-  let data = {
-    id: id,
-  }
-  let fetchData = {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: new Headers({
-      'Content-Type': 'application/json; charset=UTF-8'
-    })
-  }
-
-  fetch(url, fetchData)
-  .then(res => res.json())
-  .then(out => {
-    document.getElementById("likes").innerHTML = out.likes;
-
-
-  })
-}
-
 
 function changeStatuses() {
   var checkboxes = document.getElementsByClassName("checkboxAttendance")
   for (let i = 0; i < checkboxes.length; i++) {
-    console.log("id " + checkboxes[i].id)
     var splits = checkboxes[i].id.split("_")
     var member = splits[0];
     var meeting = splits[1];
     var checked = checkboxes[i].checked;
-    console.log("splits" + splits)
-    console.log("member" + member)
-    console.log("meeting" + meeting)
-    console.log("checked" + checkboxes[i].checked)
 
     if (member) {
       var url = "/change_attendance/"
@@ -371,7 +339,6 @@ function downloadAttendance() {
 
 
 function markReminded(id) {
-  console.log("reminded")
   var url = "/mark_reminded/"
   let data = {
     membership_id: id,

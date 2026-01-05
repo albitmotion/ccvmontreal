@@ -19,7 +19,8 @@ from flask_ckeditor import CKEditorField
 class MemberForm(FlaskForm):
     name = StringField("Name*:", validators=[DataRequired()])
     email = StringField("Email*:", validators=[DataRequired()])
-    role = StringField("Role:")
+    role = StringField("Role EN:")
+    roleFR = StringField("Role FR:")
     bioEN = StringField("BioEN:")
     bioFR = StringField("BioFR:")
     order = IntegerField("Order:")
@@ -63,7 +64,7 @@ class ExecutiveMemberForm(FlaskForm):
         ])
     organization = StringField("Organization:")
     order = IntegerField("Order:")
-    executive_member_pic = FileField("Executive Member Pic:")
+    member_pic = FileField("Executive Member Pic:")
     # update_pw = BooleanField("Update Password")
     password_hash = PasswordField(
         "Password",

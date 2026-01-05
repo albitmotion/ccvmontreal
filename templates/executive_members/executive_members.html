@@ -8,14 +8,13 @@
     {% for our_executive_member in our_executive_members %}
     <div class="col">
       <div class="card">
-        {% if our_executive_member.executive_member_pic %}
-          <img src="{{ s3_root }}/images/executive_member_pics/{{ our_executive_member.executive_member_pic|string}}" class="card-img-top" alt="...">
-        {% else %}
-          <img src="{{ url_for('static', filename='images/icons/user.png') }}" class="card-img-top exec_photo" alt="...">
-        {% endif %}
+
         <div class="card-body">
           <h5 class="card-title">{{ our_executive_member.name }}</h5>
-          <p class="card-text">{{ our_executive_member.role }}</p>
+          <p class="card-text">
+            <span lang=en>{{ our_executive_member.role }}</span>
+            <span lang=fr>{{ our_executive_member.roleFR }}</span>
+          </p>
           <p class="card-text">{{ our_executive_member.organization }}</p>
           <p class="card-text">
             <span lang=en>{{ our_executive_member.bioEN }}</span>
