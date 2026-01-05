@@ -53,29 +53,29 @@ app = Flask(__name__)
 ckeditor = CKEditor(app)
 app.config["S3"] = s3_client
 
-# if app.debug:
-UPLOAD_FOLDER = "static/upload/"
-app.config["S3_BASE_FOLDER"] = "dev/"
-app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
-app.config["DOWNLOAD"] = "static/download/"
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "mysql+pymysql://root:password123@localhost/ccv"
-)
-# else:
-#     UPLOAD_FOLDER = "/app/static/upload/"
-#     app.config["S3_BASE_FOLDER"] = "prod/"
-#     app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
-#     app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
-#
-#     SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-#         username="CCVMontreal",
-#         password="mysqlroot",
-#         hostname="CCVMontreal.mysql.pythonanywhere-services.com",
-#         databasename="CCVMontreal$default",
-#     )
-#     app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-#     app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
-#     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+if app.debug:
+    UPLOAD_FOLDER = "static/upload/"
+    app.config["S3_BASE_FOLDER"] = "dev/"
+    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
+    app.config["DOWNLOAD"] = "static/download/"
+    app.config["SQLALCHEMY_DATABASE_URI"] = (
+        "mysql+pymysql://root:password123@localhost/ccv"
+    )
+else:
+    UPLOAD_FOLDER = "/app/static/upload/"
+    app.config["S3_BASE_FOLDER"] = "prod/"
+    app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
+    app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
+
+    SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+        username="CCVMontreal",
+        password="mysqlroot",
+        hostname="CCVMontreal.mysql.pythonanywhere-services.com",
+        databasename="CCVMontreal$default",
+    )
+    app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+    app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["CURRENT_USER_ID"] = None
