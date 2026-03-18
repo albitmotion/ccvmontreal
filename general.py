@@ -38,17 +38,6 @@ def calculate_days_from_today(target_date, date_format="%Y-%m-%d"):
         return "That's today!"
 
 
-# pages = Pages.query.order_by(Pages.url)
-# for page in pages:
-#     if page.url not in ["/", "/mission", "/member_directory"]:
-#         pass
-        # @app.route(page.url)
-        # def generic():
-        #     return render_template(
-        #         "/general/generic.html",
-        #         )
-
-
 @app.route("/")
 def index():
     clean = request.args.get("clean")
@@ -71,6 +60,8 @@ def index():
         quotes[0]["active"] = "active"
     banner = Banners.query.filter_by(visible=True).first()
     homeTexts = Pages.query.filter_by(url="/").first()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "/general/index.html",
         clean=clean,
@@ -79,16 +70,23 @@ def index():
         homeTexts=homeTexts,
         background=get_background(),
         s3_root=app.config["S3_ROOT"],
+        title=title,
+        subtitle=subtitle,
     )
 
 
 @app.route("/about")
 def about():
     clean = request.args.get("clean")
+    background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "/general/about.html",
         clean=clean,
         background=background,
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -99,6 +97,8 @@ def activity_calendar():
     activities_count = activities.count()
     activity_list = []
     background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     for activity in activities:
         activityDict = {}
         activityDict["title"] = activity.title
@@ -130,6 +130,8 @@ def activity_calendar():
         background=background,
         activities_count=activities_count,
         s3_root=app.config["S3_ROOT"],
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -138,6 +140,8 @@ def annual_reports():
     annualReports = AnnualReports.query.order_by(AnnualReports.filename)
     clean = request.args.get("clean")
     background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "/general/annual_reports.html",
         buttons=about_buttons,
@@ -145,6 +149,8 @@ def annual_reports():
         annualReports=annualReports,
         background=background,
         s3_root=app.config["S3_ROOT"],
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -158,6 +164,8 @@ def contact_us():
         clean=clean,
         membership=membership,
         background=background,
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -165,10 +173,14 @@ def contact_us():
 def login():
     clean = request.args.get("clean")
     background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "general/login.html",
         clean=clean,
         background=background,
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -188,12 +200,16 @@ def member_directory():
                 organizations.append(executive_member.organizationEN)
     organizations = list(set(organizations))
     mdTexts = Pages.query.filter_by(url="/member_directory").first()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "/general/member_directory.html",
         buttons=about_buttons,
         mdTexts=mdTexts,
         organizations=sorted(organizations),
         background=background,
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -202,12 +218,16 @@ def mission():
     clean = request.args.get("clean")
     background = get_background()
     missionTexts = Pages.query.filter_by(url="/mission").first()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "general/mission.html",
         buttons=about_buttons,
         missionTexts=missionTexts,
         clean=clean,
         background=background,
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -217,6 +237,8 @@ def news():
     clean = request.args.get("clean")
     background = get_background()
     news_count = news.count()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "general/news.html",
         clean=clean,
@@ -225,6 +247,8 @@ def news():
         background=background,
         news_count=news_count,
         s3_root=app.config["S3_ROOT"],
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -232,10 +256,14 @@ def news():
 def resources():
     clean = request.args.get("clean")
     background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "general/resources.html",
         clean=clean,
         background=background,
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -248,6 +276,8 @@ def executive_members():
         if executive_member.name != "Initial Executive Member":
             executive_members.append(executive_member)
     background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "executive_members/executive_members.html",
         our_executive_members=executive_members,
@@ -255,6 +285,8 @@ def executive_members():
         clean=clean,
         background=background,
         s3_root=app.config["S3_ROOT"],
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -262,10 +294,14 @@ def executive_members():
 def become_member():
     clean = request.args.get("clean")
     background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "members/become_member.html",
         clean=clean,
         background=background,
+        title=title,
+        subtitle=subtitle,
     )
 
 

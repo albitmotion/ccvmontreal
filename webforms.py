@@ -107,7 +107,7 @@ class ActivityForm(FlaskForm):
     titleFR = StringField("Title FR", validators=[DataRequired()])
     textEN = CKEditorField("Text EN", validators=[DataRequired()])
     textFR = CKEditorField("Text FR", validators=[DataRequired()])
-    date = DateField("Date")
+    date = DateField("Date", validators=[DataRequired()])
     hourEN = StringField("Hour EN")
     hourFR = StringField("Hour FR")
     addressEN = StringField("Address EN")

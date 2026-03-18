@@ -1,55 +1,55 @@
 {% extends 'base/base_iframe.html' %}
 {% block content %}
 
-    {% for message in get_flashed_messages() %}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{ message|safe }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{ message|safe }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
 
-    <form method="POST" enctype="multipart/form-data">
-      {{ form.hidden_tag() }}
+<form method="POST" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
 
-      <strong>{{ form.titleEN.label(class="form-label") }}</strong>
-      {{ form.titleEN(class="form-control") }}
+  <strong>{{ form.titleEN.label(class="form-label") }}</strong>
+  {{ form.titleEN(class="form-control") }}
 
-      <strong>{{ form.titleFR.label(class="form-label") }}</strong>
-      {{ form.titleFR(class="form-control") }}
+  <strong>{{ form.titleFR.label(class="form-label") }}</strong>
+  {{ form.titleFR(class="form-control") }}
 
-      <strong>{{ form.textEN.label(class="form-label") }}</strong>
-      {{ ckeditor.create(name="ck1") }}
+  <strong>{{ form.textEN.label(class="form-label") }}</strong>
+  {{ form.textEN(class="form-control") }}
 
-      <strong>{{ form.textFR.label(class="form-label") }}</strong>
-      {{ ckeditor.create(name="ck2") }}
+  <strong>{{ form.textFR.label(class="form-label") }}</strong>
+  {{ form.textFR(class="form-control") }}
 
-      <strong>{{ form.date.label(class="form-label") }}</strong>
-      {{ form.date(class="form-control") }}
+  <strong>{{ form.date.label(class="form-label") }}</strong>
+  {{ form.date(class="form-control") }}
 
-      <strong>{{ form.hourEN.label(class="form-label") }}</strong>
-      {{ form.hourEN(class="form-control") }}
+  <strong>{{ form.hourEN.label(class="form-label") }}</strong>
+  {{ form.hourEN(class="form-control") }}
 
-      <strong>{{ form.hourFR.label(class="form-label") }}</strong>
-      {{ form.hourFR(class="form-control") }}
+  <strong>{{ form.hourFR.label(class="form-label") }}</strong>
+  {{ form.hourFR(class="form-control") }}
 
-      <strong>{{ form.addressEN.label(class="form-label") }}</strong>
-      {{ form.addressEN(class="form-control") }}
+  <strong>{{ form.addressEN.label(class="form-label") }}</strong>
+  {{ form.addressEN(class="form-control") }}
 
-      <strong>{{ form.addressFR.label(class="form-label") }}</strong>
-      {{ form.addressFR(class="form-control") }}
+  <strong>{{ form.addressFR.label(class="form-label") }}</strong>
+  {{ form.addressFR(class="form-control") }}
 
-      <strong>{{ form.file.label(class="form-label") }}</strong>
-      {{ form.file(class="form-control") }}
+  <strong>{{ form.file.label(class="form-label") }}</strong>
+  {{ form.file(class="form-control") }}
 
-      <br/>
-      {{ form.submit(class="btn blueButton") }}
+  <br />
+  {{ form.submit(class="btn blueButton") }}
 
 
-    </form>
+</form>
 
-    {{ ckeditor.load() }}
-    {{ ckeditor.config(name='ck1', height= "900px")}}
-    {{ ckeditor.config(name='ck2', height= "900px")}}
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='textEN', height= "900px")}}
+{{ ckeditor.config(name='textFR', height= "900px")}}
 
-<br/><br/><br/>
+<br /><br /><br />
 {% endblock %}

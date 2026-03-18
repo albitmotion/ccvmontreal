@@ -9,39 +9,43 @@
       <tr>
         <th scope="col" class="firstCol">
           <span lang="en">Image</span><span lang="fr">Image</span>
-          </th>
+        </th>
         <th scope="col" class="firstCol">
           <span lang="en">Title</span><span lang="fr">Titre</span>
-          </th>
+        </th>
         <th scope="col">
           <span lang="en">Date</span><span lang="fr">Date</span>
-          </th>
+        </th>
         <th scope="col">
           <span lang="en">Edit</span><span lang="fr">Modifier</span>
-          </th>
+        </th>
       </tr>
     </thead>
-  {% for activity in activities %}
+    {% for activity in activities %}
 
     <tr>
       {% if activity.file %}
-       <td class="firstCol" style="width:150px"><img class="photo_list_square" src="{{ s3_root }}/images/activities/{{  activity.file|string }}"></td>
+      <td class="firstCol" style="width:150px"><img class="photo_list_square"
+          src="{{ s3_root }}/images/activities/{{  activity.file|string }}"></td>
       {% else %}
-       <td></td>
+      <td></td>
       {% endif %}
-      <td class="firstCol">{{ activity.title }}</td>
+      <td class="firstCol">{{ activity.titleEN }}</td>
       <td>{{ activity.date }}</td>
-      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_activity', id=activity.id) }}" data-bs-title="Update Activity {{ activity.title }}"><i class="bi bi-gear"></i></button></td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal"
+          data-bs-url="{{ url_for('update_activity', id=activity.id) }}"
+          data-bs-title="Update Activity {{ activity.title }}"><i class="bi bi-gear"></i></button></td>
     </tr>
-  {% endfor %}
+    {% endfor %}
   </table>
   <div class="d-flex justify-content-between">
-      <div></div>
-      <div>
-        <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_activity') }}" data-bs-title="Add New Activity">
-          <span lang="en">Add New Activity</span><span lang="fr">Ajouter une nouvelle activité</span>
-        </button>
-      </div>
- </div>
-
+    <div></div>
+    <div>
+      <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal"
+        data-bs-url="{{ url_for('add_activity') }}" data-bs-title="Add New Activity">
+        <span lang="en">Add New Activity</span><span lang="fr">Ajouter une nouvelle activité</span>
+      </button>
+    </div>
   </div>
+
+</div>

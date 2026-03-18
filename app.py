@@ -53,7 +53,8 @@ app = Flask(__name__)
 ckeditor = CKEditor(app)
 app.config["S3"] = s3_client
 
-# # if app.debug:
+
+##################### LOCAL
 # UPLOAD_FOLDER = "static/upload/"
 # app.config["S3_BASE_FOLDER"] = "dev/"
 # app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
@@ -61,7 +62,9 @@ app.config["S3"] = s3_client
 # app.config["SQLALCHEMY_DATABASE_URI"] = (
 #     "mysql+pymysql://root:password123@localhost/ccv"
 # )
-# # else:
+
+
+##################### PRODUCTION
 UPLOAD_FOLDER = "/app/static/upload/"
 app.config["S3_BASE_FOLDER"] = "prod/"
 app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
@@ -76,6 +79,8 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostnam
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+##################### END PRODUCTION
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["CURRENT_USER_ID"] = None
@@ -288,7 +293,7 @@ def page_not_found(e):
 
 
 def get_payment_status(last_membership):
-    result = {}
+    result: dict = {}
     today = date.today()
     status = "Membership Not Found"
     expiration_date = ""
@@ -315,7 +320,7 @@ def get_payment_status(last_membership):
     if last_membership:
         result["remembered"] = last_membership.remembered
     else:
-        result["remembered"] = 0
+        result["remembered"] = None
     return result
 
 
@@ -366,18 +371,14 @@ class AddRegister:
 
     def returnTemplate(self):
         print("ADD REGISTER INIT - RETURN TEMPLATE")
+        print(f"Form errors: {self.form.errors}")
+
         if self.form.validate_on_submit():
-            print("IF1")
             if not self.checkIfExists():
-                print("IF2")
                 self.saveInS3()
-                print("post save in s3")
                 self.createRegister()
-                print('post create register')
                 db.session.add(self.register)
-                print('post add')
                 db.session.commit()
-                print('post commit')
                 for field in self.form_fields:
                     field.data = ""
 
@@ -401,10 +402,13 @@ class AddRegister:
         # Save file in s3 and database
         self.unique_filename = ""
         if self.file_field:
-            if self.request.files[self.file_field]:
-                self.unique_filename = save_file(
-                    self.request.files[self.file_field], self.s3_folder
-                )
+            try:
+                if self.request.files[self.file_field]:
+                    self.unique_filename = save_file(
+                        self.request.files[self.file_field], self.s3_folder
+                    )
+            except:
+                pass
 
     def createRegister(self):
         pass

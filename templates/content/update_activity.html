@@ -2,43 +2,56 @@
 
 {% block content %}
 
-  {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    {{ message|safe }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  {% endfor %}
-  <form action="/update_activity/{{ register_to_update.id }}" method="POST" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{ message|safe }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<form action="/update_activity/{{ register_to_update.id }}" method="POST" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
 
-    <strong>{{ form.title.label(class="form-label") }}</strong>
-    {{ form.title(class="form-control", value=register_to_update.title) }}
+  <strong>{{ form.titleEN.label(class="form-label") }}</strong>
+  {{ form.titleEN(class="form-control", value=register_to_update.titleEN) }}
 
-    <strong>{{ form.text.label(class="form-label") }}</strong>
-    {{ ckeditor.create(value=register_to_update.text) }}
+  <strong>{{ form.titleFR.label(class="form-label") }}</strong>
+  {{ form.titleFR(class="form-control", value=register_to_update.titleFR) }}
 
-    <strong>{{ form.date.label(class="form-label") }}</strong>
-    {{ form.date(class="form-control", value=register_to_update.date) }}
+  <strong>{{ form.textEN.label(class="form-label") }}</strong>
+  {{ form.textEN(class="form-control") }}
 
-    <strong>{{ form.hour.label(class="form-label") }}</strong>
-    {{ form.hour(class="form-control", value=register_to_update.hour) }}
+  <strong>{{ form.textFR.label(class="form-label") }}</strong>
+  {{ form.textFR(class="form-control") }}
 
-    <strong>{{ form.address.label(class="form-label") }}</strong>
-    {{ form.address(class="form-control", value=register_to_update.address) }}
+  <strong>{{ form.date.label(class="form-label") }}</strong>
+  {{ form.date(class="form-control", value=register_to_update.date) }}
 
-    <strong>{{ form.file.label(class="form-label") }}</strong>
-    {{ form.file(class="form-control", value=register_to_update.file) }}
+  <strong>{{ form.hourEN.label(class="form-label") }}</strong>
+  {{ form.hourEN(class="form-control", value=register_to_update.hourEN) }}
+
+  <strong>{{ form.hourFR.label(class="form-label") }}</strong>
+  {{ form.hourFR(class="form-control", value=register_to_update.hourFR) }}
+
+  <strong>{{ form.addressEN.label(class="form-label") }}</strong>
+  {{ form.addressEN(class="form-control", value=register_to_update.addressEN) }}
+
+  <strong>{{ form.addressFR.label(class="form-label") }}</strong>
+  {{ form.addressFR(class="form-control", value=register_to_update.addressFR) }}
+
+  <strong>{{ form.file.label(class="form-label") }}</strong>
+  {{ form.file(class="form-control", value=register_to_update.file) }}
 
 
-    <br/>
-    {{ form.submit(class="btn blueButton") }}
-    <a class="btn btn-danger" href="{{ url_for('delete_activity', id=register_to_update.id) }}">Delete</a>
+  <br />
+  {{ form.submit(class="btn blueButton") }}
+  <a class="btn btn-danger" href="{{ url_for('delete_activity', id=register_to_update.id) }}">Delete</a>
 
-  </form>
+</form>
 
-  {{ ckeditor.load() }}
-  {{ ckeditor.config(name='text', height= "900px")}}
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='textEN', height= "900px")}}
+{{ ckeditor.config(name='textFR', height= "900px")}}
 
-  <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+<script src="{{ url_for('static', filename='js/forms.js') }}"></script>
 
 {% endblock %}

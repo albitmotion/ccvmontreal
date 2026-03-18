@@ -157,6 +157,8 @@ def executive_member_area():
         }
         member_payment["memberships"] = memberships
         member_payments.append(member_payment)
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     buttons = [
         {"name": "My Info", "nameFR": "Mes informations", "link": "#myInfo"},
         {"name": "Task Repartition", "nameFR": "Task Repartition", "link": "#taskRepartition"},
@@ -178,12 +180,14 @@ def executive_member_area():
         buttons=buttons,
         surveys=surveys,
         meetings=meetings,
-        title="Members",
+        title_member="Members",
         member_payments=member_payments,
         deletable=True,
         form=form,
         s3_root=app.config["S3_ROOT"],
         background=get_background(),
+        title=title,
+        subtitle=subtitle,
     )
 
 
@@ -321,6 +325,8 @@ def content_management():
     banners = Banners.query.order_by(Banners.filename)
     quotes = Quotes.query.order_by(Quotes.title)
     pages = Pages.query.order_by(Pages.url)
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     buttons = [
         {"name": "Activities", "nameFR": "Activités", "link": "#activities"},
         {"name": "News", "nameFR": "Nouvelles", "link": "#news"},
@@ -339,6 +345,8 @@ def content_management():
         buttons=buttons,
         s3_root=app.config["S3_ROOT"],
         background=get_background(),
+        title=title,
+        subtitle=subtitle,
     )
 
 

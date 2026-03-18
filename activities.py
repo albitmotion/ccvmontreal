@@ -24,7 +24,7 @@ TEMPLATE_FOLDER = "content"
 
 class AddRegisterActivity(AddRegister):
     def checkIfExists(self):
-        self.register = Activities.query.filter_by(title=self.form.title.data).first()
+        self.register = Activities.query.filter_by(titleEN=self.form.titleEN.data).first()
         return self.register
 
     def createRegister(self):
@@ -46,8 +46,8 @@ class UpdateRegisterActivity(UpdateRegister):
     def updateRegister(self):
         self.register.titleEN = self.form.titleEN.data
         self.register.titleFR = self.form.titleFR.data
-        self.register.textEN = self.request.form.get("ckeditor")
-        self.register.textFR = self.request.form.get("ckeditor")
+        self.register.textEN = self.form.textEN.data
+        self.register.textFR = self.form.textFR.data
         self.register.date = self.form.date.data
         self.register.hourEN = self.form.hourEN.data
         self.register.hourFR = self.form.hourFR.data
@@ -81,8 +81,8 @@ def add_activity():
 
 @app.route("/update_activity/<int:id>", methods=["GET", "POST"])
 def update_activity(id):
-    form = ActivityForm()
     register = Activities.query.get_or_404(id)
+    form = ActivityForm(obj=register)
 
     updateRegister = UpdateRegisterActivity(
         request, register, form, REGISTER_TYPE, S3_FOLDER, TEMPLATE_FOLDER

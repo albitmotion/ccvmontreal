@@ -3,13 +3,15 @@
     <a class="navbar-brand" href="{{ url_for('index') }}">
       <img src="{{ url_for('static', filename='images/ccv_logo.png') }}">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ url_for('index') }}"><span lang="en">Home</span><span lang="fr">Accueil</span></a>
+          <a class="nav-link" aria-current="page" href="{{ url_for('index') }}"><span lang="en">Home</span><span
+              lang="fr">Accueil</span></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -19,21 +21,21 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ url_for('mission') }}">
-              <span lang="en">Our Mission</span>
-              <span lang="fr">Notre Mission</span>
-            </a></li>
+                <span lang="en">Our Mission</span>
+                <span lang="fr">Notre Mission</span>
+              </a></li>
             <li><a class="dropdown-item" href="{{ url_for('executive_members') }}">
-              <span lang="en">Executive Members</span>
-              <span lang="fr">Membres Exécutifs</span>
-            </a></li>
+                <span lang="en">Executive Members</span>
+                <span lang="fr">Membres Exécutifs</span>
+              </a></li>
             <li><a class="dropdown-item" href="{{ url_for('member_directory') }}">
-              <span lang="en">Member Directory</span>
-              <span lang="fr">Répertoire des Membres</span>
-            </a></li>
+                <span lang="en">Member Directory</span>
+                <span lang="fr">Répertoire des Membres</span>
+              </a></li>
             <li><a class="dropdown-item" href="{{ url_for('annual_reports') }}">
-              <span lang="en">Annual Reports</span>
-              <span lang="fr">Rapports Annuels</span>
-            </a></li>
+                <span lang="en">Annual Reports</span>
+                <span lang="fr">Rapports Annuels</span>
+              </a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -44,15 +46,15 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ url_for('news') }}">
-              <span lang="en">News from the vol. ecosystem</span>
-              <span lang="fr">Actualités de l'écosystème bénévole</span>
+                <span lang="en">News from the vol. ecosystem</span>
+                <span lang="fr">Actualités de l'écosystème bénévole</span>
 
-            </a></li>
+              </a></li>
             <li><a class="dropdown-item" href="{{ url_for('activity_calendar') }}">
-              <span lang="en">Activity Calendar</span>
-              <span lang="fr">Calendrier d'activités</span>
+                <span lang="en">Activity Calendar</span>
+                <span lang="fr">Calendrier d'activités</span>
 
-            </a></li>
+              </a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -74,29 +76,32 @@
         <li class="nav-item dropdown dropstart" style="list-style-type:none;">
           <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-              <img class="background_img" id="photo" src="">
+            <img class="background_img" id="photo" src="">
           </a>
           <ul class="dropdown-menu" style="top: 50px;">
             <li><a class="dropdown-item hidden" href="{{ url_for('member_area', id=1) }}" id="member_area_menu">
-              <span lang="en">Member Area</span><span lang="fr">Espace membre</span>
+                <span lang="en">Member Area</span><span lang="fr">Espace membre</span>
               </a></li>
-            <li><a class="dropdown-item hidden" href="{{ url_for('executive_member_area', id=1) }}" id="executive_member_area_menu">
-              <span lang="en">Executive Member Area</span><span lang="fr">Espace membre exécutif</span>
+            <li><a class="dropdown-item hidden" href="{{ url_for('executive_member_area', id=1) }}"
+                id="executive_member_area_menu">
+                <span lang="en">Executive Member Area</span><span lang="fr">Espace membre exécutif</span>
               </a></li>
-            <li><a class="dropdown-item hidden" href="{{ url_for('content_management', id=1) }}" id="content_management_menu">
-              <span lang="en">Content Management</span><span lang="fr">Gestion de contenu</span>
+            <li><a class="dropdown-item hidden" href="{{ url_for('content_management', id=1) }}"
+                id="content_management_menu">
+                <span lang="en">Content Management</span><span lang="fr">Gestion de contenu</span>
               </a></li>
             <li><a class="dropdown-item hidden" href="{{ url_for('tutorials') }}" id="tutorials_menu">
-              <span lang="en">Video Tutorials</span><span lang="fr">Tutoriels vidéo</span>
+                <span lang="en">Video Tutorials</span><span lang="fr">Tutoriels vidéo</span>
               </a></li>
             <li><a class="dropdown-item hidden" onclick="logout()">
-              <span lang="en">Logout</span><span lang="fr">Déconnexion</span>
+                <span lang="en">Logout</span><span lang="fr">Déconnexion</span>
               </a></li>
           </ul>
         </li>
 
 
-        <a class="btn language" id="lang_btn" id="" onclick="changeLang()" role="button" style="margin-top: 10px;"><span lang="en">French</span><span lang="fr">English</span></a>
+        <a class="btn language" id="lang_btn" id="" onclick="changeLang()" role="button" style="margin-top: 10px;"><span
+            lang="en">French</span><span lang="fr">English</span></a>
 
         <a class="btn signIn" id="signIn" href="{{ url_for('login') }}" role="button">
           <span lang="en">Login</span>
@@ -112,27 +117,27 @@
   </div>
 </nav>
 {% if background is defined %}
-  <img class="background_img" src="{{ url_for('static', filename='images/' + background ) }}">
+<img class="background_img" src="{{ url_for('static', filename='images/' + background ) }}">
 {% else %}
-  <img class="background_img" src="{{ url_for('static', filename='images/background_01.jpg') }}">
+<img class="background_img" src="{{ url_for('static', filename='images/background_01.jpg') }}">
 {% endif %}
 <div class="centered imgTitle">
-  <span lang="en">The Power Of Volunteer In Our Community</span>
-  <span lang="fr">La Force Du Bénévolat Dans Notre Communauté</span>
+  <span lang="en">{{ title.textEN | safe }}</span>
+  <span lang="fr">{{ title.textFR | safe }}</span>
 
 
 </div>
 <div class="centered imgTitle2">
-  <span lang="en">Since 1983 supporting coordinators of volunteer services.</span>
-  <span lang="fr">Depuis 1983, nous soutenons les coordonnateurs de services bénévoles.</span>
+  <span lang="en">{{ subtitle.textEN | safe }}</span>
+  <span lang="fr">{{ subtitle.textFR | safe }}</span>
 
 
 </div>
 <div class="centered buttonsTitle">
-{% for button in buttons %}
+  {% for button in buttons %}
   <a class="btn subMenuButton" href="{{ button.link }}" role="button" active>
     <span lang="en">{{ button.name }}</span><span lang="fr">{{ button.nameFR }}</span>
-    </a>
-{% endfor %}
+  </a>
+  {% endfor %}
 </div>
-<br/><br/>
+<br /><br />
