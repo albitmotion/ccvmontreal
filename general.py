@@ -101,12 +101,17 @@ def activity_calendar():
     subtitle = Pages.query.filter_by(url="/subtitle").first()
     for activity in activities:
         activityDict = {}
-        activityDict["title"] = activity.title
-        activityDict["text"] = activity.text
+        activityDict["titleEN"] = activity.titleEN
+        activityDict["titleFR"] = activity.titleFR
+        activityDict["textEN"] = activity.textEN
+        activityDict["textFR"] = activity.textFR
         activityDict["date"] = activity.date
-        activityDict["hour"] = activity.hour
-        activityDict["when"] = "%s at %s" % (activity.date, activity.hour)
-        activityDict["address"] = activity.address
+        activityDict["hourEN"] = activity.hourEN
+        activityDict["hourFR"] = activity.hourFR
+        activityDict["whenEN"] = "%s at %s" % (activity.date, activity.hourEN)
+        activityDict["whenFR"] = "%s at %s" % (activity.date, activity.hourFR)
+        activityDict["addressEN"] = activity.addressEN
+        activityDict["addressFR"] = activity.addressFR
         activityDict["file"] = activity.file
 
         time_difference = calculate_days_from_today(activity.date)
