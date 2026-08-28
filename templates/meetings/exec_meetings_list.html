@@ -1,0 +1,58 @@
+<div class="col-md-12 shadow-lg rounded div-info" id="meetings_list">
+  <h3>
+    <span lang="en">Executive Meetings</span><span lang="fr">Réunions du Comité Exécutif</span>
+
+  </h3>
+  <input type="text" class="form-control" id="meeting-search-input" onkeyup="filterMeeting()" placeholder="Search" />
+  <table class="table" id="meetingTable">
+    <thead>
+      <tr>
+        <th class="firstCol" scope="col">
+          <span lang="en">Date</span><span lang="fr">Date</span>
+        </th>
+        <th scope="col">
+          <span lang="en">Minute</span><span lang="fr">Minute</span>
+        </th>
+        <th scope="col">
+          <span lang="en">Attendees</span><span lang="fr">Participants</span>
+        </th>
+        {% if executive_member %}
+        <th scope="col">
+          <span lang="en">Edit</span><span lang="fr">Modifier</span>
+        </th>
+        {% endif %}
+      </tr>
+    </thead>
+    {% for meeting in exec_meetings %}
+    <tr>
+      <td class="firstCol">{{ meeting.date.strftime('%Y-%m-%d') }}</td>
+      <td>
+        <a target="_blank" href="{{ s3_root }}/docs/meetings/{{ meeting.file|string }}">
+          <i class="bi bi-file-pdf-fill" style="color:red"></i>{{ meeting.minute }}
+        </a>
+      </td>
+      <td>{{ meeting.attendees }}</td>
+      {% if executive_member %}
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal"
+          data-bs-url="{{ url_for('update_meeting', id=meeting.id) }}"
+          data-bs-title="Update Meeting {{ meeting.date.strftime('%Y-%m-%d') }}"><i class="bi bi-gear"></i></button>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+  {% if executive_member %}
+  <div class="d-flex justify-content-between">
+    <div></div>
+    <div>
+      <button class="btn blueButton" style="width:100%" data-bs-toggle="modal" data-bs-target="#defaultModal"
+        data-bs-url="{{ url_for('add_exec_meeting') }}" data-bs-title="Add New Executive Meeting">
+        <span lang="en">Add New Executive Meeting</span><span lang="fr">Ajouter une nouvelle réunions du comité
+          exécutif</span>
+
+      </button>
+    </div>
+  </div>
+  {% endif %}
+
+</div>

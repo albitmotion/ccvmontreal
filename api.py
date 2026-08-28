@@ -27,14 +27,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 def check_login():
     result = json.loads(request.data)
     user = Members.query.filter_by(email=result["email"]).first()
-    print("USER", user)
-    if user.category == "Executive Member":
-        is_executive_member = True
-    else:
-        is_executive_member = False
 
     userDict = {}
     if user:
+        if user.category == "Executive Member":
+            is_executive_member = True
+        else:
+            is_executive_member = False
         if user.verify_password(result["pass"]):
             userDict["id"] = user.id
             userDict["name"] = user.name

@@ -11,6 +11,7 @@ from app import (
     AddRegister,
     UpdateRegister,
     DeleteRegister,
+    Pages,
 )
 from webforms import MemberForm
 
@@ -86,7 +87,7 @@ def member_area():
     id = app.config["CURRENT_USER_ID"]
 
     our_members = Members.query.order_by(Members.name)
-    meetings = Meetings.query.order_by(Meetings.date)
+    meetings = Meetings.query.filter_by(category="Member").order_by(Meetings.date)
     member = Members.query.filter_by(id=id).first()
     memberships = Memberships.query.filter_by(member_id=id)
     first_membership = (
@@ -97,6 +98,8 @@ def member_area():
         .order_by(Memberships.end.desc())
         .first()
     )
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     buttons = [
         {"name": "My Info", "nameFR": "Mes informations", "link": "#myInfo"},
         {"name": "My Membership", "nameFR": "Mon adhésion", "link": "#myMembership"},
@@ -115,8 +118,10 @@ def member_area():
         first_membership=first_membership,
         last_membership=last_membership,
         deletable=False,
-        title="Contact Other Members",
+        titleContact="Contact Other Members",
         s3_root=app.config["S3_ROOT"],
+        title=title,
+        subtitle=subtitle,
     )
 
 

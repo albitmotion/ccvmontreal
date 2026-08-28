@@ -55,30 +55,30 @@ app.config["S3"] = s3_client
 
 
 ##################### LOCAL
-# UPLOAD_FOLDER = "static/upload/"
-# app.config["S3_BASE_FOLDER"] = "dev/"
-# app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
-# app.config["DOWNLOAD"] = "static/download/"
-# app.config["SQLALCHEMY_DATABASE_URI"] = (
-#     "mysql+pymysql://root:password123@localhost/ccv"
-# )
+UPLOAD_FOLDER = "static/upload/"
+app.config["S3_BASE_FOLDER"] = "dev/"
+app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
+app.config["DOWNLOAD"] = "static/download/"
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    "mysql+pymysql://root:password123@localhost/ccv"
+)
 
 
 ##################### PRODUCTION
-UPLOAD_FOLDER = "/app/static/upload/"
-app.config["S3_BASE_FOLDER"] = "prod/"
-app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
-app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
+# UPLOAD_FOLDER = "/app/static/upload/"
+# app.config["S3_BASE_FOLDER"] = "prod/"
+# app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
+# app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
 
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="CCVMontreal",
-    password="mysqlroot",
-    hostname="CCVMontreal.mysql.pythonanywhere-services.com",
-    databasename="CCVMontreal$CCV1",
-)
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+#     username="CCVMontreal",
+#     password="mysqlroot",
+#     hostname="CCVMontreal.mysql.pythonanywhere-services.com",
+#     databasename="CCVMontreal$CCV1",
+# )
+# app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+# app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 ##################### END PRODUCTION
 
@@ -123,8 +123,8 @@ class Members(db.Model):
     )
 
     # executive member only
-    bioEN = db.Column(db.String(500))
-    bioFR = db.Column(db.String(500))
+    bioEN = db.Column(db.String(1000))
+    bioFR = db.Column(db.String(1000))
     order = db.Column(db.Integer)
 
     @property
@@ -163,6 +163,7 @@ class Meetings(db.Model):
     minute = db.Column(db.String(200))
     attendees = db.Column(db.Integer)
     file = db.Column(db.String(400), nullable=True)
+    category = db.Column(db.String(50))
 
     def __repr__(self):
         return "<Name %r>" % self.date
@@ -276,6 +277,15 @@ class Pages(db.Model):
     url = db.Column(db.String(200))
     textEN = db.Column(db.Text, nullable=False)
     textFR = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return "<Name %r>" % self.name
+
+class Resources(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200))
+    file = db.Column(db.String(400))
+    url = db.Column(db.String(200))
 
     def __repr__(self):
         return "<Name %r>" % self.name

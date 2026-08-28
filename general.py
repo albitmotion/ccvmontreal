@@ -164,6 +164,8 @@ def contact_us():
     clean = request.args.get("clean")
     membership = request.args.get("membership")
     background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "general/contact_us.html",
         clean=clean,
@@ -314,3 +316,15 @@ def become_member():
 def tutorials():
     background = get_background()
     return render_template("general/tutorials.html")
+
+
+@app.route("/release_notes")
+def release_notes():
+    background = get_background()
+    title = Pages.query.filter_by(url="/title").first()
+    subtitle = Pages.query.filter_by(url="/subtitle").first()
+    return render_template(
+        "general/release_notes.html",
+        title=title,
+        subtitle=subtitle,
+        )

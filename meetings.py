@@ -26,6 +26,20 @@ class AddRegisterMeetings(AddRegister):
         self.register.minute = self.request.files["file"].filename
         self.register.attendees = self.request.form["attendees"]
         self.register.file = self.unique_filename
+        self.register.category = "Member"
+
+class AddRegisterExecMeetings(AddRegister):
+    def checkIfExists(self):
+        self.register = Meetings.query.filter_by(date=self.request.form["date"]).first()
+        return self.register
+
+    def createRegister(self):
+        self.register = Meetings()
+        self.register.date = self.request.form["date"]
+        self.register.minute = self.request.files["file"].filename
+        self.register.attendees = self.request.form["attendees"]
+        self.register.file = self.unique_filename
+        self.register.category = "Executive Member"
 
 
 class UpdateRegisterMeetings(UpdateRegister):
@@ -47,6 +61,15 @@ def add_meeting():
     )
     return addRegister.returnTemplate()
 
+@app.route("/add_exec_meeting", methods=["GET", "POST"])
+def add_exec_meeting():
+    form = MeetingForm()
+    form_fields = [form.date, form.minute, form.attendees, form.file]
+
+    addRegister = AddRegisterExecMeetings(
+        request, form, REGISTER_TYPE, S3_FOLDER, form_fields, TEMPLATE_FOLDER
+    )
+    return addRegister.returnTemplate()
 
 @app.route("/update_meeting/<int:id>", methods=["GET", "POST"])
 def update_meeting(id):

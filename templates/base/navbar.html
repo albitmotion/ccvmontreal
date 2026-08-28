@@ -90,10 +90,13 @@
                 id="content_management_menu">
                 <span lang="en">Content Management</span><span lang="fr">Gestion de contenu</span>
               </a></li>
-            <li><a class="dropdown-item hidden" href="{{ url_for('tutorials') }}" id="tutorials_menu">
-                <span lang="en">Video Tutorials</span><span lang="fr">Tutoriels vidéo</span>
-              </a></li>
-            <li><a class="dropdown-item hidden" onclick="logout()">
+            <li>
+              <a class="dropdown-item hidden" href="{{ url_for('release_notes') }}" id="tutorials_menu">
+                <span lang="en">Release Notes</span><span lang="fr">Notes de version</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item hidden" onclick="logout()">
                 <span lang="en">Logout</span><span lang="fr">Déconnexion</span>
               </a></li>
           </ul>

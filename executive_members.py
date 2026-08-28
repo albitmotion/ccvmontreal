@@ -101,7 +101,8 @@ def executive_member_area():
     our_executive_members = Members.query.filter_by(category="Executive Member").order_by(Members.name)
     our_members = Members.query.filter_by(category="Member").order_by(Members.name)
     surveys = Surveys.query.order_by(Surveys.title)
-    meetings = Meetings.query.order_by(Meetings.date)
+    meetings = Meetings.query.filter_by(category="Member").order_by(Meetings.date)
+    exec_meetings = Meetings.query.filter_by(category="Executive Member").order_by(Meetings.date)
 
     member_payments = []
     for member in our_members:
@@ -180,6 +181,7 @@ def executive_member_area():
         buttons=buttons,
         surveys=surveys,
         meetings=meetings,
+        exec_meetings=exec_meetings,
         title_member="Members",
         member_payments=member_payments,
         deletable=True,
