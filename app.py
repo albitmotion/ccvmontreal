@@ -123,8 +123,8 @@ class Members(db.Model):
     )
 
     # executive member only
-    bioEN = db.Column(db.String(1000))
-    bioFR = db.Column(db.String(1000))
+    bioEN = db.Column(db.String(1500))
+    bioFR = db.Column(db.String(1500))
     order = db.Column(db.Integer)
 
     @property
