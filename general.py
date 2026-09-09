@@ -7,6 +7,7 @@ from app import (
     Banners,
     Pages,
     Activities,
+    Resources,
     News,
     get_background,
 )
@@ -263,12 +264,14 @@ def news():
 def resources():
     clean = request.args.get("clean")
     background = get_background()
+    resources = Resources.query.order_by(Resources.nameEN)
     title = Pages.query.filter_by(url="/title").first()
     subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "general/resources.html",
         clean=clean,
         background=background,
+        resources=resources,
         title=title,
         subtitle=subtitle,
     )

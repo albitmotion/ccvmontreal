@@ -10,21 +10,38 @@
   </div>
   {% endfor %}
 
-  <form action="/update_meeting/{{ register_to_update.id }}" method="POST" enctype="multipart/form-data">
+  <form action="/update_resource/{{ register_to_update.id }}" method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
+
+    
+    <strong>{{ form.nameEN.label(class="form-label") }}</strong>
+    {{ form.nameEN(class="form-control", value=register_to_update.nameEN) }}
+
+    <strong>{{ form.nameFR.label(class="form-label") }}</strong>
+    {{ form.nameFR(class="form-control", value=register_to_update.nameFR) }}
+
+    <strong>{{ form.descriptionEN.label(class="form-label") }}</strong>
+    {{ ckeditor.create(value=register_to_update.descriptionEN, name="descriptionEN") }}
+
+    <strong>{{ form.descriptionFR.label(class="form-label") }}</strong>
+    {{ ckeditor.create(value=register_to_update.descriptionFR, name="descriptionFR") }}
+
+    <strong>{{ form.url.label(class="form-label") }}</strong>
+    {{ form.url(class="form-control", value=register_to_update.url) }}
 
     <strong>{{ form.file.label(class="form-label") }}</strong>
     {{ form.file(class="form-control", value=register_to_update.file) }}
-    <strong>{{ form.date.label(class="form-label") }}</strong>
-    {{ form.date(class="form-control", value=register_to_update.date) }}
-    <strong>{{ form.attendees.label(class="form-label") }}</strong>
-    {{ form.attendees(class="form-control", value=register_to_update.attendees) }}
 
-
+    
     <br/>
     {{ form.submit(class="btn blueButton") }}
-    <a class="btn btn-danger" href="{{ url_for('delete_meeting', id=register_to_update.id) }}">Delete</a>
+    <a class="btn btn-danger" href="{{ url_for('delete_resource', id=register_to_update.id) }}">Delete</a>
 
-  </form>
+</form>
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='descriptionEN', height= "900px")}}
+{{ ckeditor.config(name='descriptionFR', height= "900px")}}
+
+<script src="{{ url_for('static', filename='js/forms.js') }}"></script>
 
 {% endblock %}

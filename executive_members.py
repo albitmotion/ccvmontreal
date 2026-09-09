@@ -14,6 +14,7 @@ from app import (
     Banners,
     Quotes,
     Pages,
+    Resources,
     TaskRepartitionTexts,
     TaskRepartitionFiles,
     save_file,
@@ -327,6 +328,7 @@ def content_management():
     banners = Banners.query.order_by(Banners.filename)
     quotes = Quotes.query.order_by(Quotes.title)
     pages = Pages.query.order_by(Pages.url)
+    resources = Resources.query.order_by(Resources.nameEN)
     title = Pages.query.filter_by(url="/title").first()
     subtitle = Pages.query.filter_by(url="/subtitle").first()
     buttons = [
@@ -344,6 +346,7 @@ def content_management():
         banners=banners,
         quotes=quotes,
         pages=pages,
+        resources=resources,
         buttons=buttons,
         s3_root=app.config["S3_ROOT"],
         background=get_background(),

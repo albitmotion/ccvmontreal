@@ -55,30 +55,30 @@ app.config["S3"] = s3_client
 
 
 ##################### LOCAL
-# UPLOAD_FOLDER = "static/upload/"
-# app.config["S3_BASE_FOLDER"] = "dev/"
-# app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
-# app.config["DOWNLOAD"] = "static/download/"
-# app.config["SQLALCHEMY_DATABASE_URI"] = (
-#     "mysql+pymysql://root:password123@localhost/ccv"
-# )
+UPLOAD_FOLDER = "static/upload/"
+app.config["S3_BASE_FOLDER"] = "dev/"
+app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
+app.config["DOWNLOAD"] = "static/download/"
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    "mysql+pymysql://root:password123@localhost/ccv"
+)
 
 
 ##################### PRODUCTION
-UPLOAD_FOLDER = "/app/static/upload/"
-app.config["S3_BASE_FOLDER"] = "prod/"
-app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
-app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
+# UPLOAD_FOLDER = "/app/static/upload/"
+# app.config["S3_BASE_FOLDER"] = "prod/"
+# app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
+# app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
 
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="CCVMontreal",
-    password="mysqlroot",
-    hostname="CCVMontreal.mysql.pythonanywhere-services.com",
-    databasename="CCVMontreal$CCV1",
-)
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+#     username="CCVMontreal",
+#     password="mysqlroot",
+#     hostname="CCVMontreal.mysql.pythonanywhere-services.com",
+#     databasename="CCVMontreal$CCV1",
+# )
+# app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+# app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 ##################### END PRODUCTION
 
@@ -283,9 +283,12 @@ class Pages(db.Model):
 
 class Resources(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200))
-    file = db.Column(db.String(400))
+    nameEN = db.Column(db.String(200))
+    nameFR = db.Column(db.String(200))
+    descriptionEN = db.Column(db.String(1500))
+    descriptionFR = db.Column(db.String(1500))
     url = db.Column(db.String(200))
+    file = db.Column(db.String(400))
 
     def __repr__(self):
         return "<Name %r>" % self.name
@@ -557,7 +560,7 @@ def get_background():
 
 
 # import declared routes
-import general, members, executive_members, memberships, meetings, surveys, api, activities, annualReports, banners, news, quotes, pages, taskRepartition
+import general, members, executive_members, memberships, meetings, surveys, api, activities, annualReports, banners, news, quotes, pages, taskRepartition, resources
 
 if __name__ == "__main__":
     app.run()

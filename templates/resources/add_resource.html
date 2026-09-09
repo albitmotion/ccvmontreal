@@ -11,19 +11,31 @@
     <form method="POST" enctype="multipart/form-data">
       {{ form.hidden_tag() }}
 
+
+      {{ form.nameEN.label(class="form-label") }}
+      {{ form.nameEN(class="form-control") }}
+
+      {{ form.nameFR.label(class="form-label") }}
+      {{ form.nameFR(class="form-control") }}
+
+      {{ form.descriptionEN.label(class="form-label") }}
+      {{ form.descriptionEN(class="form-control") }}
+
+      {{ form.descriptionFR.label(class="form-label") }}
+      {{ form.descriptionFR(class="form-control") }}
+
+      {{ form.url.label(class="form-label") }}
+      {{ form.url(class="form-control") }}
+
       {{ form.file.label(class="form-label") }}
       {{ form.file(class="form-control") }}
-
-      {{ form.date.label(class="form-label") }}
-      {{ form.date(class="form-control") }}
-
-      {{ form.attendees.label(class="form-label") }}
-      {{ form.attendees(class="form-control") }}
-
 
 
       <br/>
       {{ form.submit(class="btn blueButton") }}
 
     </form>
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='descriptionEN', height= "900px")}}
+    {{ ckeditor.config(name='descriptionFR', height= "900px")}}
 {% endblock %}

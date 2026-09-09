@@ -8,31 +8,25 @@
     <thead>
       <tr>
         <th class="firstCol" scope="col">
-          <span lang="en">Date</span><span lang="fr">Date</span>
+          <span lang="en">Name</span><span lang="fr">Date</span>
         </th>
         <th scope="col">
-          <span lang="en">Minute</span><span lang="fr">Minute</span>
+          <span lang="en">URL</span><span lang="fr">Minute</span>
         </th>
-        <th scope="col">
-          <span lang="en">Attendees</span><span lang="fr">Participants</span>
-        </th>
-        {% if executive_member %}
         <th scope="col">
           <span lang="en">Edit</span><span lang="fr">Modifier</span>
         </th>
-        {% endif %}
       </tr>
     </thead>
     {% for resource in resources %}
     <tr>
-      <td class="firstCol">{{ resource.date.strftime('%Y-%m-%d') }}</td>
-      <td>
-        <a target="_blank" href="{{ s3_root }}/docs/meetings/{{ resource.file|string }}">
-          <i class="bi bi-file-pdf-fill" style="color:red"></i>{{ resource.minute }}
-        </a>
-      </td>
+      <td class="firstCol">{{ resource.nameEN }}</td>
       <td>{{ resource.url }}</td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal"
+          data-bs-url="{{ url_for('update_resource', id=resource.id) }}"
+          data-bs-title="Update Resource {{ resource.nameEN }}"><i class="bi bi-gear"></i></button></td>
     </tr>
+    
     {% endfor %}
   </table>
   <div class="d-flex justify-content-between">

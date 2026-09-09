@@ -85,6 +85,15 @@ class SurveyForm(FlaskForm):
     file = FileField("File")
     submit = SubmitField("Submit")
 
+class ResourceForm(FlaskForm):
+    nameEN = StringField("Name EN", validators=[DataRequired()])
+    nameFR = StringField("Name FR")
+    descriptionEN = CKEditorField("description EN")
+    descriptionFR = CKEditorField("description FR")
+    url = StringField("URL")
+    file = FileField("File")
+    submit = SubmitField("Submit")
+
 
 class MeetingForm(FlaskForm):
     date = DateField("Date", validators=[DataRequired()])
