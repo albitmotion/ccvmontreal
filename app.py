@@ -55,30 +55,30 @@ app.config["S3"] = s3_client
 
 
 ##################### LOCAL
-# UPLOAD_FOLDER = "static/upload/"
-# app.config["S3_BASE_FOLDER"] = "dev/"
-# app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
-# app.config["DOWNLOAD"] = "static/download/"
-# app.config["SQLALCHEMY_DATABASE_URI"] = (
-#     "mysql+pymysql://root:password123@localhost/ccv"
-# )
+UPLOAD_FOLDER = "static/upload/"
+app.config["S3_BASE_FOLDER"] = "dev/"
+app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
+app.config["DOWNLOAD"] = "static/download/"
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    "mysql+pymysql://root:password123@localhost/ccv"
+)
 
 
 ##################### PRODUCTION
-UPLOAD_FOLDER = "/app/static/upload/"
-app.config["S3_BASE_FOLDER"] = "prod/"
-app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
-app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
+# UPLOAD_FOLDER = "/app/static/upload/"
+# app.config["S3_BASE_FOLDER"] = "prod/"
+# app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
+# app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
 
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="CCVMontreal",
-    password="mysqlroot",
-    hostname="CCVMontreal.mysql.pythonanywhere-services.com",
-    databasename="CCVMontreal$CCV1",
-)
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+#     username="CCVMontreal",
+#     password="mysqlroot",
+#     hostname="CCVMontreal.mysql.pythonanywhere-services.com",
+#     databasename="CCVMontreal$CCV1",
+# )
+# app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+# app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 ##################### END PRODUCTION
 
@@ -372,7 +372,6 @@ class AddRegister:
         file_field="file",
         member_id=None,
     ):
-        print("ADD REGISTER INIT")
         self.request = request
         self.form = form
         self.register_type = register_type
@@ -383,8 +382,6 @@ class AddRegister:
         self.member_id = member_id
 
     def returnTemplate(self):
-        print("ADD REGISTER INIT - RETURN TEMPLATE")
-        print(f"Form errors: {self.form.errors}")
 
         if self.form.validate_on_submit():
             if not self.checkIfExists():
