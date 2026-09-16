@@ -1,0 +1,53 @@
+{
+  "current_version": "1.4.0",
+  "releases": [
+    {
+      "version": "0.1.2",
+      "date": "2026-09-15",
+      "status": "released",
+      "changes": [
+        "Fixed bug on add new member."
+      ]
+    },
+    {
+      "version": "0.1.1",
+      "date": "2026-09-09",
+      "status": "released",
+      "changes": [
+        "Added Resources management with add, edit, delete, and search.",
+        "Updated the public Resources & Tools page to load resources dynamically.",
+        "Added English and French support for resource content.",
+        "Removed Surveys."
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-08-29",
+      "status": "released",
+      "changes": [
+        "Removed photos from the Executive Members page.",
+        "Fixed an issue where parts of Executive Members bios were being cut off.",
+        "Fixed an error in Contact Us page.",
+        "Added Executive Meetings.",
+        "Fixed an error that prevented users from adding new activities.",
+        "Transferred \"www.ccvmontreal.org\" from Weebly to PythonAnywhere."
+      ]
+    }
+    
+  ],
+  "releases_planned": [
+    {
+      "version": "0.1.3",
+      "status": "planned",
+      "changes": [
+        "Fix broken image links, such as those in the Executive Members menu and Activities when no image is provided.",
+        "Transfer contact form mail to Rosalie email."
+      ]
+    }
+  ],
+  "backlog": [
+    "Find a permanent solution to the \"Server Error\" issue.",
+    "Find a good way to do regular backups (database and upload files).",
+    "Adapt the User Interface for smaller screens (cellphone, tablet, etc)."
+  ]
+}

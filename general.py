@@ -11,6 +11,8 @@ from app import (
     News,
     get_background,
 )
+import json
+import os
 
 from datetime import date, timedelta
 from datetime import datetime
@@ -323,6 +325,13 @@ def tutorials():
 
 @app.route("/release_notes")
 def release_notes():
+    json_path = os.path.join(
+        app.root_path,
+        "data",
+        "releases.json"
+    )
+    with open(json_path, encoding="utf-8") as file:
+        release_data = json.load(file)
     background = get_background()
     title = Pages.query.filter_by(url="/title").first()
     subtitle = Pages.query.filter_by(url="/subtitle").first()
@@ -330,4 +339,5 @@ def release_notes():
         "general/release_notes.html",
         title=title,
         subtitle=subtitle,
+        release_data=release_data
         )

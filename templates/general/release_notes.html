@@ -3,60 +3,70 @@
 
 <div class="row">
     <div class="col-6">
-        <h1>Release Notes</h1>
+        <h2>Release Notes</h2>
         <br>
-        <h3>Version 0.1.1 — September 09, 2026</h3>
-        <h4>✨ Improvements</h4>
-        <ul>
-            <li>Added Resources management with add, edit, delete, and search.</li>
-            <li>Updated the public Resources & Tools page to load resources dynamically.</li>
-            <li>Added English and French support for resource content.</li>
-            <li>Removed Surveys.</li>
 
-        </ul>
+        {% for release in release_data.releases %}
 
-        <h3>Version 0.1.0 — August 29, 2026</h3>
+            <h3>
+                Version {{ release.version }}
+                {% if release.status == "planned" %}
+                    <span class="badge bg-secondary">Planned</span>
+                {% endif %}
+            </h3>
 
-        <h4>🐛 Bug Fixes</h4>
+            {% if release.date %}
+                <p>{{ release.date }}</p>
+            {% endif %}
 
-        <ul>
-            <li>Removed photos from the Executive Members page.</li>
-            <li>Fixed an issue where parts of Executive Members bios were being cut off.</li>
-            <li>Fixed an error in Contact Us page.</li>
-            <li>Added Executive Meetings.</li>
-            <li>Fixed an error that prevented users from adding new activities.</li>
-        </ul>
+            <ul>
+                {% for change in release.changes %}
+                    <li>{{ change }}</li>
+                {% endfor %}
+            </ul>
 
-        <h4>✨ Improvements</h4>
+        {% endfor %}
 
-        <ul>
-            <li>Transferred "www.ccvmontreal.org" from Weebly to PythonAnywhere.</li>
-        </ul>
 
+                
 
     </div>
     <div class="col-6">
         <h1>🔜 Coming Next</h1>
         <br>
-        <h3>📅 Planned for Version 0.1.2</h3>
 
-        <ul>
-            <li>Fix broken image links, such as those in the Executive Members menu and Activities when no image is provided.</li>
-            <li>Transfer contact form mail to Rosalie email.</li>
-        </ul>
+        {% for release in release_data.releases_planned %}
 
+            <h3>
+                Version {{ release.version }}
+                {% if release.status == "planned" %}
+                    <span class="badge bg-secondary">Planned</span>
+                {% endif %}
+            </h3>
+
+            {% if release.date %}
+                <p>{{ release.date }}</p>
+            {% endif %}
+
+            <ul>
+                {% for change in release.changes %}
+                    <li>{{ change }}</li>
+                {% endfor %}
+            </ul>
+
+        {% endfor %}
+        
 
         <h3>📅 Planned / Backlog</h3>
-        <ul>
-            <li>Find a permanent solution to the "Server Error" issue.</li>
-            <li>Find a good way to do regular backups (database and upload files).</li>
-            <li>Adapt the User Interface for smaller screens (cellphone, tablet, etc).</li>
+        <br>
 
+        <ul>
+            {% for item in release_data.backlog %}
+                <li>{{ item }}</li>
+            {% endfor %}
         </ul>
 
-        
     </div>
-
 </div>
 
 
