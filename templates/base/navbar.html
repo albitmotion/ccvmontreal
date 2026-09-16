@@ -125,15 +125,17 @@
 <img class="background_img" src="{{ url_for('static', filename='images/background_01.jpg') }}">
 {% endif %}
 <div class="centered imgTitle">
-  <span lang="en">{{ title.textEN | safe }}</span>
-  <span lang="fr">{{ title.textFR | safe }}</span>
-
+  {% if title is defined and title %}
+    <span lang="en">{{ title.textEN | safe }}</span>
+    <span lang="fr">{{ title.textFR | safe }}</span>
+  {% endif %}
 
 </div>
 <div class="centered imgTitle2">
-  <span lang="en">{{ subtitle.textEN | safe }}</span>
-  <span lang="fr">{{ subtitle.textFR | safe }}</span>
-
+  {% if subtitle is defined and title %}
+    <span lang="en">{{ subtitle.textEN | safe }}</span>
+    <span lang="fr">{{ subtitle.textFR | safe }}</span>
+  {% endif %}
 
 </div>
 <div class="centered buttonsTitle">
