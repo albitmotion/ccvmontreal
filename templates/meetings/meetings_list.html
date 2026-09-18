@@ -27,7 +27,7 @@
      <tr>
        <td class="firstCol">{{ meeting.date.strftime('%Y-%m-%d') }}</td>
        <td>
-         <a target="_blank" href="{{ s3_root }}/docs/meetings/{{ meeting.file|string }}">
+         <a target="_blank" href="{{ s3_root }}docs/meetings/{{ meeting.file|string }}">
            <i class="bi bi-file-pdf-fill" style="color:red"></i>{{ meeting.minute }}
          </a></td>
        <td>{{ meeting.attendees }}</td>
