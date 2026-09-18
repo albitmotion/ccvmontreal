@@ -305,12 +305,14 @@ def executive_members():
 def become_member():
     clean = request.args.get("clean")
     background = get_background()
+    becomeMemberTexts = Pages.query.filter_by(url="/become_member").first()
     title = Pages.query.filter_by(url="/title").first()
     subtitle = Pages.query.filter_by(url="/subtitle").first()
     return render_template(
         "members/become_member.html",
         clean=clean,
         background=background,
+        becomeMemberTexts=becomeMemberTexts,
         title=title,
         subtitle=subtitle,
     )
