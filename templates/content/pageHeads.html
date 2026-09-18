@@ -1,6 +1,6 @@
 <div class="col-md-12 shadow-lg rounded div-info" id="pageHeaders">
   <h3>
-    <span lang="en">Page Heads</span><span lang="fr">Bannières</span>
+    <span lang="en">Page Headers</span><span lang="fr">En-têtes de page</span>
     </h3>
 
   <table class="table" id="usersTable">
@@ -22,7 +22,7 @@
           {{ pageHead.filename }}
         </a>
       </td>
-      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_pageHead', id=pageHead.id) }}" data-bs-title="Update Page Head {{ pageHead.filename }}"><i class="bi bi-gear"></i></button></td>
+      <td><button class="btn" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('update_pageHead', id=pageHead.id) }}" data-bs-title="Update Page Header {{ pageHead.filename }}"><i class="bi bi-gear"></i></button></td>
     </tr>
   {% endfor %}
   </table>
@@ -30,7 +30,7 @@
       <div></div>
       <div>
         <button class="btn blueButton" style="padding:0px" data-bs-toggle="modal" data-bs-target="#defaultModal" data-bs-url="{{ url_for('add_pageHead') }}" data-bs-title="Add New Page Head">
-          <span lang="en">Add New Page Head</span><span lang="fr">Ajouter un nouvel en-tête de page</span>
+          <span lang="en">Add New Page Header</span><span lang="fr">Ajouter un nouvel en-tête de page</span>
         </button>
       </div>
  </div>
