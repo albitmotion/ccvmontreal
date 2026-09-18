@@ -96,7 +96,7 @@ def about():
 @app.route("/activity_calendar")
 def activity_calendar():
     clean = request.args.get("clean")
-    activities = Activities.query.order_by(Activities.date.desc())
+    activities = Activities.query.order_by(Activities.date.asc())
     activities_count = activities.count()
     activity_list = []
     background = get_background()

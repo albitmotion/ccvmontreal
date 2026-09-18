@@ -4,7 +4,7 @@
 
   </h3>
     {% if executive_member.member_pic %}
-     <td class="firstCol"><img class="photo_big" src="{{ s3_root }}/images/member_pics/{{ executive_member.member_pic|string}}"></td>
+     <td class="firstCol"><img class="photo_big" src="{{ s3_root }}images/member_pics/{{ executive_member.member_pic|string}}"></td>
     {% else %}
      <td class="firstCol"><img class="photo_big" src="{{ url_for('static', filename='images/icons/user.png') }}"></td>
     {% endif %}

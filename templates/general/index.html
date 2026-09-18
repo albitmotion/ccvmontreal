@@ -33,7 +33,7 @@
       {% if banner or quotes %}
         <div>
           {% if banner %}
-            <img class="workshop" src="{{ s3_root }}/images/banners/{{banner.file}}">
+            <img class="workshop" src="{{ s3_root }}images/banners/{{banner.file}}">
             <!-- <img class="workshop" src="{{ url_for('static', filename='upload/banners/' + banner.file) }}"> -->
           {% endif %}
           {% if quotes %}

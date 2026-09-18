@@ -61,6 +61,7 @@
 
     <br/>
     {{ form.submit(class="btn blueButton") }}
+    <a class="btn btn-outline-secondary" href="{{ url_for('convert_to_executive_member', id=register_to_update.id) }}">Convert to Executive Member</a>
     {% if deletable %}
       <a class="btn btn-danger" href="{{ url_for('delete_member', id=register_to_update.id) }}">Delete</a>
     {% endif %}

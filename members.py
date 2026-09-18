@@ -63,7 +63,8 @@ class UpdateRegisterMember(UpdateRegister):
         self.register.roleFR = self.form.roleFR.data
         self.register.email = self.form.email.data
         self.register.telephone = self.form.telephone.data
-        self.register.organization = self.form.organization.data
+        self.register.organizationEN = self.form.organizationEN.data
+        self.register.organizationFR = self.form.organizationFR.data
         self.register.volunteers = self.form.volunteers.data
         self.register.english = self.form.english.data
         self.register.french = self.form.french.data
@@ -203,6 +204,20 @@ def delete_member(id):
         register, form, REGISTER_TYPE, S3_FOLDER, TEMPLATE_FOLDER, "member_pic"
     )
     return deleteRegister.returnTemplate()
+
+@app.route("/convert_to_executive_member/<int:id>", methods=["GET", "POST"])
+def convert_to_executive_member(id):
+    form = MemberForm()
+    register = Members.query.get_or_404(id)
+
+    register.category = "Executive Member"
+    db.session.commit()
+    flash(
+        "Member <strong>%s</strong> converted to Executive Member"
+        % register.name
+    )
+
+    return render_template("content/empty.html")
 
 
 @app.route("/update_member_password/<int:id>", methods=["GET", "POST"])

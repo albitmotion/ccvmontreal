@@ -50,33 +50,6 @@ class MemberForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
-class ExecutiveMemberForm(FlaskForm):
-    name = StringField("Name*:", validators=[DataRequired()])
-    role = StringField("Role*:", validators=[DataRequired()])
-    email = StringField("Email*:", validators=[DataRequired()])
-    bio = StringField("Bio:")
-    telephone = StringField("Telephone:")
-    english = BooleanField("English:")
-    french = BooleanField("French:")
-    preferable = SelectField('Preferable:', choices=[
-            ('English', 'English'),
-            ('French', 'French'),
-        ])
-    organization = StringField("Organization:")
-    order = IntegerField("Order:")
-    member_pic = FileField("Executive Member Pic:")
-    # update_pw = BooleanField("Update Password")
-    password_hash = PasswordField(
-        "Password",
-        validators=[
-            DataRequired(),
-            EqualTo("password_hash2", message="Passwords Must Match!"),
-        ],
-    )
-    password_hash2 = PasswordField("Confirm Password", validators=[DataRequired()])
-    submit = SubmitField("Submit")
-
-
 class SurveyForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     start = DateField("Start")
@@ -84,6 +57,7 @@ class SurveyForm(FlaskForm):
     responders = IntegerField("Responders")
     file = FileField("File")
     submit = SubmitField("Submit")
+
 
 class ResourceForm(FlaskForm):
     nameEN = StringField("Name EN", validators=[DataRequired()])
@@ -166,6 +140,10 @@ class BannerForm(FlaskForm):
     visible = BooleanField("Visible")
     submit = SubmitField("Submit")
 
+class PageHeadForm(FlaskForm):
+    filename = StringField("Filename")
+    file = FileField("File")
+    submit = SubmitField("Submit")
 
 class QuoteForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])

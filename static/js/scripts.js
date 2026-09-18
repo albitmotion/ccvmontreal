@@ -151,11 +151,9 @@ function showUserPhoto() {
   let isExecutiveMember = sessionStorage.getItem('isExecutiveMember');
   if (isExecutiveMember == 'true') {
     var url_member = '/get_executive_member_id/' + id;
-    var photo_url = s3_root + "/images/member_pics/"
   }
   else {
     var url_member = '/get_member_id/' + id;
-    var photo_url = s3_root + "/images/member_pics/"
   }
 
   document.getElementById("executive_member_area_menu").href = "/executive_member_area";
@@ -165,11 +163,11 @@ function showUserPhoto() {
   .then(out =>
     {
       // window.location.href = "/member_area/" + out.id
-      if (isExecutiveMember == 'true') {
-        document.getElementById("photo").src = photo_url + out.member_pic
+      if (out.member_pic) {
+        document.getElementById("photo").src = s3_root + "images/member_pics/" + out.member_pic
       }
       else {
-        document.getElementById("photo").src = photo_url + out.member_pic
+        document.getElementById("photo").src = "/static/images/icons/user.png"
       }
     })
   .catch(err => console.log(err));

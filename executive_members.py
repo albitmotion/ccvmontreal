@@ -12,6 +12,7 @@ from app import (
     Activities,
     News,
     Banners,
+    PageHeads,
     Quotes,
     Pages,
     Resources,
@@ -278,6 +279,20 @@ def delete_executive_member(id):
     )
     return deleteRegister.returnTemplate()
 
+@app.route("/convert_to_member/<int:id>", methods=["GET", "POST"])
+def convert_to_member(id):
+    form = MemberForm()
+    register = Members.query.get_or_404(id)
+
+    register.category = "Member"
+    db.session.commit()
+    flash(
+        "Executive Member <strong>%s</strong> converted to Member"
+        % register.name
+    )
+
+    return render_template("content/empty.html")
+
 
 @app.route("/update_executive_password/<int:id>", methods=["GET", "POST"])
 def update_executive_password(id):
@@ -326,6 +341,7 @@ def content_management():
     news = News.query.order_by(News.title)
     annualReports = AnnualReports.query.order_by(AnnualReports.filename)
     banners = Banners.query.order_by(Banners.filename)
+    pageHeads = PageHeads.query.order_by(PageHeads.filename)
     quotes = Quotes.query.order_by(Quotes.title)
     pages = Pages.query.order_by(Pages.url)
     resources = Resources.query.order_by(Resources.nameEN)
@@ -344,6 +360,7 @@ def content_management():
         news=news,
         annualReports=annualReports,
         banners=banners,
+        pageHeads=pageHeads,
         quotes=quotes,
         pages=pages,
         resources=resources,

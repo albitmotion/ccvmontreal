@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
 from flask_ckeditor import CKEditor
 
-from webforms import MemberForm, ExecutiveMemberForm, SurveyForm, MeetingForm
+from webforms import MemberForm, SurveyForm, MeetingForm
 
 from sqlalchemy import desc
 from flask_migrate import Migrate
@@ -54,28 +54,12 @@ ckeditor = CKEditor(app)
 app.config["S3"] = s3_client
 
 
-##################### LOCAL
-# UPLOAD_FOLDER = "static/upload/"
-# app.config["S3_BASE_FOLDER"] = "dev/"
-# app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/dev"
-# app.config["DOWNLOAD"] = "static/download/"
-# app.config["SQLALCHEMY_DATABASE_URI"] = (
-#     "mysql+pymysql://root:password123@localhost/ccv"
-# )
+app.config["S3_BASE_FOLDER"] = os.environ.get("S3_BASE_FOLDER")
+app.config["DOWNLOAD"] = os.environ.get("DOWNLOAD")
+SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
 
+app.config["S3_ROOT"] = "https://ccvmontreal.s3.us-east-2.amazonaws.com/" + app.config["S3_BASE_FOLDER"]
 
-##################### PRODUCTION
-UPLOAD_FOLDER = "/app/static/upload/"
-app.config["S3_BASE_FOLDER"] = "prod/"
-app.config["S3_ROOT"] = "https://s3.us-east-2.amazonaws.com/ccvmontreal/prod"
-app.config["DOWNLOAD"] = "/home/albitmotion/temp/"
-
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="CCVMontreal",
-    password="mysqlroot",
-    hostname="CCVMontreal.mysql.pythonanywhere-services.com",
-    databasename="CCVMontreal$CCV1",
-)
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -84,9 +68,7 @@ app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_recycle": 280,
 }
 
-##################### END PRODUCTION
-
-app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+app.config["UPLOAD_FOLDER"] = os.environ.get("UPLOAD_FOLDER")
 app.config["CURRENT_USER_ID"] = None
 app.config["IS_EXECUTIVE_MEMBER"] = None
 app.config["SECRET_KEY"] = "secretKey"
@@ -257,6 +239,15 @@ class Banners(db.Model):
     filename = db.Column(db.String(200))
     file = db.Column(db.String(400))
     visible = db.Column(db.Boolean)
+
+    def __repr__(self):
+        return "<Title %r>" % self.title
+
+
+class PageHeads(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(200))
+    file = db.Column(db.String(400))
 
     def __repr__(self):
         return "<Title %r>" % self.title
@@ -550,18 +541,17 @@ class DeleteRegister:
 
 
 def get_background():
-    backgrounds = [
-        "background_01.jpg",
-        "background_02.jpg",
-        "background_03.jpg",
-        "background_04.jpg",
-        "background_05.jpg",
-    ]
-    return random.choice(backgrounds)
+    pageHeads = PageHeads.query.all()
+    backgrounds = []
+    for pageHead in pageHeads:
+        backgrounds.append(app.config["S3_ROOT"] + "images/pageHeads/" + pageHead.file)
+        
+    if backgrounds:
+        return random.choice(backgrounds)
 
 
 # import declared routes
-import general, members, executive_members, memberships, meetings, surveys, api, activities, annualReports, banners, news, quotes, pages, taskRepartition, resources
+import general, members, executive_members, memberships, meetings, surveys, api, activities, annualReports, banners, pageHeads, news, quotes, pages, taskRepartition, resources
 
 if __name__ == "__main__":
     app.run()

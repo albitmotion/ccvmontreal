@@ -32,10 +32,6 @@
                 <span lang="en">Member Directory</span>
                 <span lang="fr">Répertoire des Membres</span>
               </a></li>
-            <li><a class="dropdown-item" href="{{ url_for('annual_reports') }}">
-                <span lang="en">Annual Reports</span>
-                <span lang="fr">Rapports Annuels</span>
-              </a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -86,7 +82,7 @@
                 id="executive_member_area_menu">
                 <span lang="en">Executive Member Area</span><span lang="fr">Espace membre exécutif</span>
               </a></li>
-            <li><a class="dropdown-item hidden" href="{{ url_for('content_management', id=1) }}"
+            <li><a class="dropdown-item hidden" href="{{ url_for('content_management') }}"
                 id="content_management_menu">
                 <span lang="en">Content Management</span><span lang="fr">Gestion de contenu</span>
               </a></li>
@@ -120,7 +116,7 @@
   </div>
 </nav>
 {% if background is defined %}
-<img class="background_img" src="{{ url_for('static', filename='images/' + background ) }}">
+<img class="background_img" src="{{ background }}">
 {% else %}
 <img class="background_img" src="{{ url_for('static', filename='images/background_01.jpg') }}">
 {% endif %}
