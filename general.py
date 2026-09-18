@@ -21,7 +21,6 @@ about_buttons = [
     {"name": "Our Mission", "nameFR": "Notre Mission", "link": "/mission"},
     {"name": "Executive Members", "nameFR": "Membres exécutifs", "link": "/executive_members"},
     {"name": "Member Directory", "nameFR": "Répertoire des membres", "link": "/member_directory"},
-    {"name": "Annual Reports", "nameFR": "Rapports annuels", "link": "/annual_reports"},
 ]
 news_buttons = [
     {"name": "News from the vol. ecosystem", "nameFR": "Actualités de l'écosystème bénévole", "link": "/news"},
